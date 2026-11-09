@@ -1,0 +1,82 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------< dev.knowledge:knowledge-assistant >------------------
+[INFO] Building knowledge-assistant 0.1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ knowledge-assistant ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ knowledge-assistant ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ knowledge-assistant ---
+[INFO] skip non existing resourceDirectory /workspace/ai-knowledge-assistant/backend/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ knowledge-assistant ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ knowledge-assistant ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.knowledge.AnswerServiceTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.555 s -- in dev.knowledge.AnswerServiceTest
+[INFO] Running dev.knowledge.ApiIntegrationTest
+17:28:29.833 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.knowledge.ApiIntegrationTest]: ApiIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:28:30.045 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.knowledge.KnowledgeApplication for test class dev.knowledge.ApiIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-04T17:28:30.641Z  INFO 1455 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : Starting ApiIntegrationTest using Java 21.0.12.1 with PID 1455 (started by agent in /workspace/ai-knowledge-assistant/backend)
+2026-10-04T17:28:30.643Z  INFO 1455 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : No active profile set, falling back to 1 default profile: "default"
+2026-10-04T17:28:32.350Z  INFO 1455 --- [knowledge-assistant] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-04T17:28:32.353Z  INFO 1455 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-04T17:28:32.358Z  INFO 1455 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-10-04T17:28:32.391Z  INFO 1455 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : Started ApiIntegrationTest in 2.189 seconds (process running for 3.953)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/agent/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.955 s -- in dev.knowledge.ApiIntegrationTest
+[INFO] Running dev.knowledge.DocumentStoreTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s -- in dev.knowledge.DocumentStoreTest
+[INFO] Running dev.knowledge.MarkdownChunkerTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in dev.knowledge.MarkdownChunkerTest
+[INFO] Running dev.knowledge.OllamaExcerptProviderTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.316 s -- in dev.knowledge.OllamaExcerptProviderTest
+[INFO] Running dev.knowledge.RetrievalEvaluationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.200 s -- in dev.knowledge.RetrievalEvaluationTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 26, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ knowledge-assistant ---
+[INFO] Building jar: /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar
+[INFO]
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ knowledge-assistant ---
+[INFO] Replacing main artifact /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.868 s
+[INFO] Finished at: 2026-10-04T17:28:39Z
+[INFO] ------------------------------------------------------------------------

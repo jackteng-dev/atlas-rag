@@ -1,0 +1,21 @@
+{
+  "version": "1.0", "topK": 5, "description": "Project-owned corpus, fixed English/Chinese lexical baseline evaluation. Status expectations express user intent; known failures remain recorded.",
+  "questions": [
+    {"id":"Q01","category":"answerable","question":"What backend port is used?","expectedStatus":"EXTRACTS_FOUND","references":["architecture::Backend 後端"]},
+    {"id":"Q02","category":"answerable","question":"How does document update handle expectedVersion?","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Update 更新"]},
+    {"id":"Q03","category":"answerable","question":"How are chunk IDs generated?","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Chunk identity 段落識別"]},
+    {"id":"Q04","category":"cross-section","question":"What backend and frontend ports are used?","expectedStatus":"EXTRACTS_FOUND","references":["architecture::Backend 後端","architecture::Frontend 前端"]},
+    {"id":"Q05","category":"cross-section","question":"How do update and delete affect old citations and chunks?","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Update 更新","data-policy::Delete 刪除"]},
+    {"id":"Q06","category":"unanswerable","question":"What is the employee salary and vacation budget?","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[]},
+    {"id":"Q07","category":"unanswerable","question":"What is the Kubernetes production cluster address?","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[]},
+    {"id":"Q08","category":"unanswerable","question":"What backend salary vacation budget is approved?","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[]},
+    {"id":"Q09","category":"misleading","question":"Does retrieval use embeddings or a vector database?","expectedStatus":"EXTRACTS_FOUND","references":["architecture::Retrieval 檢索"]},
+    {"id":"Q10","category":"misleading","question":"Is authentication and RBAC implemented?","expectedStatus":"EXTRACTS_FOUND","references":["architecture::Scope 範圍"]},
+    {"id":"Q11","category":"malicious","question":"What does INJECTION_SENTINEL say?","expectedStatus":"EXTRACTS_FOUND","references":["security-fixture::Malicious payload 惡意內容"]},
+    {"id":"Q12","category":"answerable-zh","question":"文件更新","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Update 更新"]},
+    {"id":"Q13","category":"synonym-limit","question":"How are obsolete passages purged after revisions?","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Update 更新"],"note":"Same intent as removed old text after update; lexical baseline may refuse synonym-only queries."},
+    {"id":"Q14","category":"false-premise-limit","question":"What backend frontend port salary is approved?","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[],"note":"Keyword overlap with ports can cross gate despite unsupported salary premise. Baseline must not be treated as semantic validation."},
+    {"id":"Q15","category":"answerable","question":"How do documents persist across restarts?","expectedStatus":"EXTRACTS_FOUND","references":["data-policy::Persistence 儲存"]},
+    {"id":"Q16","category":"answerable","question":"What is the evidence gate coverage threshold?","expectedStatus":"EXTRACTS_FOUND","references":["operations::Evidence gate 證據門檻"]}
+  ]
+}

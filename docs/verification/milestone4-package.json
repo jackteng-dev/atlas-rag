@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-05T07:36:23.397242+00:00",
+  "archive": "/workspace/ai-knowledge-assistant/work/packages/atlas-local-20261005T073528971326Z.zip",
+  "bytes": 24124474,
+  "archiveSha256": "d956386947a3a32252ede1fb5bd271f2d542a23e9de73f41066a067eb4cdf90f",
+  "entries": 32,
+  "allEntryChecksumsPass": true,
+  "noModelsUserDataOrCredentials": true,
+  "extractedCliAndSyntaxSmokePass": true,
+  "extractedModelDownloadOrServiceStartPerformed": false,
+  "deliveryJarSha256": "69ce747ff085eb4464adeef3ef5a6105e2d42f8667ac1c44b462b971d0c28c9c"
+}

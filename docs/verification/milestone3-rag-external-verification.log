@@ -1,0 +1,66 @@
+{
+  "result": "PASS",
+  "output": "work/rag-demo-verification-1791174794766.json",
+  "checkedAt": "2026-10-05T04:34:17.445Z",
+  "base": "https://khux3w-ip-90-96-179-66.tunnelmole.net",
+  "external": true,
+  "pageHttpStatus": 200,
+  "mode": "LOCAL_RAG_GENERATION",
+  "configuration": {
+    "coverageThreshold": 0.6,
+    "bm25K1": 1.2,
+    "bm25B": 0.75,
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1",
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "topK": 5,
+    "rag": {
+      "fusion": "RRF_K60",
+      "llm": "QWEN2_5_1_5B_INSTRUCT",
+      "vectorStore": "QDRANT",
+      "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+      "embedding": "BGE_M3",
+      "candidateK": 10,
+      "enabled": true,
+      "paidApiCalls": 0,
+      "reranker": "BGE_RERANKER_V2_M3",
+      "rerankerMinLogit": -6
+    }
+  },
+  "apiQuestion": "你用什麼架構",
+  "apiStatus": "ANSWER_GENERATED",
+  "apiRequestId": "e99c16df-7af5-4ecd-a030-847de0fb94f4",
+  "apiGenerated": [
+    {
+      "text": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。",
+      "chunkIds": [
+        "architecture-bde2102d34ebcc93-1"
+      ]
+    }
+  ],
+  "apiChecks": {
+    "sourceChecks": 5,
+    "citationChecks": 1
+  },
+  "noEvidenceStatus": "INSUFFICIENT_EVIDENCE",
+  "browserQuestionStatus": "ANSWER_GENERATED",
+  "browserRequestId": "1ddbf68f-e6fa-4491-80ae-c68dfc813f04",
+  "browserChecks": {
+    "sourceChecks": 5,
+    "citationChecks": 1
+  },
+  "sourceButtonVerification": "PASS",
+  "traceAndTokenDisplay": "PASS",
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "unexpectedDialogs": [],
+  "screenshots": {
+    "desktop": "work/screenshots/rag/1791174794766-answer.png",
+    "mobile": "work/screenshots/rag/1791174794766-mobile.png"
+  },
+  "paidModelApiCost": 0,
+  "limitations": [
+    "Citation provenance does not prove sentence entailment",
+    "Temporary tunnel depends on the environment and processes"
+  ]
+}

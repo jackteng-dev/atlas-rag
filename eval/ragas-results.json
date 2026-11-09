@@ -1,0 +1,1035 @@
+{
+  "measuredAt": "2026-10-05T07:01:41.850986+00:00",
+  "ragasVersion": "0.4.3",
+  "judgeModel": "qwen3-4b-instruct-2507",
+  "embeddingModel": "BGE-M3",
+  "localOnly": true,
+  "telemetryDisabled": true,
+  "sourceArtifactSha256": "7450a40c32b42a95a8cf12822a06a7eeb80a95eb2c3b40fe102b7dcaf8f90df2",
+  "adapterSha256": "82310f1b47ffaa24725a7b31033152eb97485b455475968573f479dd23903b15",
+  "configuration": {
+    "shortChinesePrompts": true,
+    "fewShotExamples": 0,
+    "relevanceStrictness": 1,
+    "temperature": 0,
+    "judgeMaxTokens": 768,
+    "contextPrecisionPromptVersion": "partial-evidence-v2"
+  },
+  "selection": {
+    "requestedSamples": 10,
+    "completedSamples": 10,
+    "requestedIds": [
+      "D01",
+      "D02",
+      "D08",
+      "D10",
+      "H01",
+      "H03",
+      "H09",
+      "H14",
+      "H17",
+      "H21"
+    ],
+    "complete": true
+  },
+  "totals": {
+    "averages": {
+      "contextPrecision": {
+        "mean": 0.9814814814064815,
+        "scored": 9,
+        "requested": 10
+      },
+      "faithfulness": {
+        "mean": 0.9629629629629629,
+        "scored": 9,
+        "requested": 10
+      },
+      "answerRelevance": {
+        "mean": 0.8071538929604266,
+        "scored": 9,
+        "requested": 10
+      }
+    },
+    "judgeRequests": 28,
+    "judgeCacheHits": 15,
+    "judgeInputTokens": 10924,
+    "judgeOutputTokens": 1753,
+    "paidModelApiCost": 0
+  },
+  "controls": null,
+  "results": [
+    {
+      "id": "D01",
+      "question": "這套文件助理的前後端分別用哪些技術？",
+      "referenceAnswer": "後端是 Java / Spring Boot，前端是 Vue 3 / TypeScript。",
+      "response": "後端使用 Java / Spring Boot\n前端使用 Vue 3 / TypeScript",
+      "contexts": [
+        "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.686703310977867
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "e8859416b3d85a2e9310d4cf1f3218c8839f9274f77b7323d328b5cc838fda7f",
+          "cacheHit": false,
+          "elapsedMs": 19777,
+          "usage": {
+            "completion_tokens": 45,
+            "prompt_tokens": 389,
+            "total_tokens": 434,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 明確提到後端為 Java / Spring Boot、前端為 Vue 3 / TypeScript，與 answer 內容完全一致，直接相關。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "4a814d8089482f593899fc8533fb8034683bced2c21d3462a70a5f2e71131a5f",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "後端使用 Java / Spring Boot",
+              "前端使用 Vue 3 / TypeScript"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "b22742835d16964dbc77214390b1bb562e6d098bd8c74593d069c46240286210",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "後端使用 Java / Spring Boot",
+                "reason": "context 中明確提到後端是 Java / Spring Boot 後端",
+                "verdict": 1
+              },
+              {
+                "statement": "前端使用 Vue 3 / TypeScript",
+                "reason": "context 中明確提到前端是 Vue 3 / TypeScript 前端",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "5ee08bc641e1532a3b8012fd0a3e78a4e4d9a93b71e46541ea6d9c22453f087d",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "後端和前端分別使用什麼技術？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "question": "向量資料是存進哪個資料庫？",
+      "referenceAnswer": "BGE-M3 產生的 1024 維向量存進 Qdrant。",
+      "response": "向量資料存進 Qdrant",
+      "contexts": [
+        "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+        "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。",
+        "從專案根目錄執行 python3 scripts/local-model-runtime.py，啟動本專案獨立的 Qdrant、BGE-M3 embedding、BGE reranker 及 Qwen2.5 模型。所有服務只監聽 loopback，不使用全域資料庫服務或 Docker。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.9999999999666667,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9355116607884949
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "b909bef914cac089013475d5c1cd425fc9d3997b1d1f8e353308ca2d2f12a49e",
+          "cacheHit": false,
+          "elapsedMs": 39106,
+          "usage": {
+            "completion_tokens": 81,
+            "prompt_tokens": 447,
+            "total_tokens": 528,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確提到「BGE-M3 產生 1024 維多語向量並存進自架 Qdrant」，與 answer 中「BGE-M3 產生的 1024 維向量存進 Qdrant」相符，為直接相關事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "e5fd60f3a21eed644957a57fdedc2a68ee65f96c280b10052675c51d5ebbd5a8",
+          "cacheHit": false,
+          "elapsedMs": 29709,
+          "usage": {
+            "completion_tokens": 66,
+            "prompt_tokens": 424,
+            "total_tokens": 490,
+            "prompt_tokens_details": {
+              "cached_tokens": 310
+            }
+          },
+          "judgment": {
+            "reason": "context 提到向量會同步到 Qdrant，與 answer 中「存進 Qdrant」相關，雖未明確說是 BGE-M3 產生的向量，但指向 Qdrant 是正確的資料庫，有直接相關事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "7ae33d6fbf4a3d7058b2e8a87ea8c2f844c98c720ddd16a40a8461cd51d1b0c3",
+          "cacheHit": false,
+          "elapsedMs": 30121,
+          "usage": {
+            "completion_tokens": 79,
+            "prompt_tokens": 411,
+            "total_tokens": 490,
+            "prompt_tokens_details": {
+              "cached_tokens": 310
+            }
+          },
+          "judgment": {
+            "reason": "context 提到 Qdrant 是啟動的服務之一，且 BGE-M3 與 Qdrant 服務相關，暗示向量資料可能存入 Qdrant，與 answer 中的陳述相符，雖無明確說明向量存入 Qdrant，但有合理關聯。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "cd9af0926496e6b66badc10f26aefecf8c56024668724e4b6cb5beeff6fd8223",
+          "cacheHit": true,
+          "elapsedMs": 1,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "向量資料存進Qdrant"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "32b9b60df683481a1f5024bcd22be8868cdee2a4c8ae96dd01bbe51d96c50290",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "向量資料存進Qdrant",
+                "reason": "context 中提到 \"BGE-M3 產生 1024 維多語向量並存進自架 Qdrant\"，明確說明向量存進 Qdrant",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "67e7ba945d3b8d6df0da94b5801cdacdb82f35812eb40457e7e1e27903c40048",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "向量資料存進什麼系統？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "question": "填好候補登記就確定拿到課程名額了嗎？",
+      "referenceAnswer": "候補登記不代表錄取；正式錄取通知且完成付款後才取得名額。",
+      "response": "候補登記不代表錄取。",
+      "contexts": [
+        "候補登記不代表錄取。學員收到正式錄取通知且完成付款後，才取得課程名額。上課當天請提前十五分鐘報到。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.7108370666329479
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "d7fd4bbd8ebc8776f2527f6bfad3a898ba92afec8dc2dcd46835e44ce016d098",
+          "cacheHit": false,
+          "elapsedMs": 23810,
+          "usage": {
+            "completion_tokens": 55,
+            "prompt_tokens": 387,
+            "total_tokens": 442,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確指出「候補登記不代表錄取」及「正式錄取通知且完成付款後才取得名額」，與 answer 中的內容一致，包含直接相關事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "454fb517109a36f92bb49eebc3a84a7f6a0661f09bb6a87ea42a4424168c7652",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "候補登記不代表錄取。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "6b09195c7b2fe6c2db8f5bb2526548bd22115669c27733d4b7e3495f1ab16ab2",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "候補登記不代表錄取。",
+                "reason": "context 中明確提到「候補登記不代表錄取」，與原文一致。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "cefab2615ba40fa5b094e3039250679aa801ddefae636ea5408a3efd12c0b642",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "候補登記代表什麼意思？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "question": "尚未啟用的課程退費要在多久內申請，通過後多久退款？",
+      "referenceAnswer": "付款後七天內申請，審核通過後五個工作天內退回原付款方式。",
+      "response": "尚未啟用的課程，需在付款後七天內申請退費。\n退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+      "contexts": [
+        "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.99999999995,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9213664836826799
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "7281fd73098f8f8ba93aba85c999aac0767cda4636125c3c4e044d7e3995be7b",
+          "cacheHit": false,
+          "elapsedMs": 29948,
+          "usage": {
+            "completion_tokens": 72,
+            "prompt_tokens": 389,
+            "total_tokens": 461,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 提到未啟用課程可在付款後七天內申請退款，與 answer 中「付款後七天內申請」相符；但未提及審核通過後退款時間，answer 中的「五個工作天內退回」無對應事實，僅部分支持。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "381b9ac5aa6e9fdc43d0e5397ca84ce29dce63fc66c896e429056ab8db92a549",
+          "cacheHit": false,
+          "elapsedMs": 23778,
+          "usage": {
+            "completion_tokens": 53,
+            "prompt_tokens": 382,
+            "total_tokens": 435,
+            "prompt_tokens_details": {
+              "cached_tokens": 316
+            }
+          },
+          "judgment": {
+            "reason": "context 中提到審核通過後五個工作天內退款，與 answer 中此部分一致，雖申請期限不同，但退款時間事實正確且直接相關，故支持部分事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "ed88c29cedd806497265e57b9de2d4b8b68a30ab3189518dfc4cb95c3878ec4b",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "尚未啟用的課程，需在付款後七天內申請退費。",
+              "退款申請審核通過後，款項於五個工作天內退回原付款方式。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "3de10acbc626b8886fa7fca2519a36ac44d81eba7012d599ce0c2fec6c1bcae4",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "尚未啟用的課程，需在付款後七天內申請退費。",
+                "reason": "context 中明確提到「未啟用課程的訂單，可在付款後七天內申請全額退款」，語意一致。",
+                "verdict": 1
+              },
+              {
+                "statement": "退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+                "reason": "context 中明確提到「退款申請審核通過後，款項於五個工作天內退回原付款方式」，語意一致。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "3928f41500cb4bec3a23e4d65b9bd7bc432b8401734a4b25de769878c1caed75",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "尚未啟用的課程如何申請退費？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H01",
+      "question": "可以介紹一下這個系統底層用的程式語言與框架嗎？",
+      "referenceAnswer": "Java / Spring Boot 後端，Vue 3 / TypeScript 前端。",
+      "response": "後端使用 Java / Spring Boot。\n前端使用 Vue 3 / TypeScript。",
+      "contexts": [
+        "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。",
+        "從專案根目錄執行 python3 scripts/local-model-runtime.py，啟動本專案獨立的 Qdrant、BGE-M3 embedding、BGE reranker 及 Qwen2.5 模型。所有服務只監聽 loopback，不使用全域資料庫服務或 Docker。",
+        "設定 AKA_RAG_ENABLED=true、AKA_CHUNK_STRATEGY=semantic 與獨立 AKA_STORE，再啟動 packaged Java jar。前端使用 npm --prefix frontend run preview；/api 代理至 loopback 18081。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.8333333332916666,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.6212055615319947
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "65c6855fb6249b5dd739666c6c1961b1d5ca995d074cf91a1a9157babe90514d",
+          "cacheHit": false,
+          "elapsedMs": 24737,
+          "usage": {
+            "completion_tokens": 58,
+            "prompt_tokens": 393,
+            "total_tokens": 451,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確提到後端使用 Java / Spring Boot、前端使用 Vue 3 / TypeScript，與問題所問的底層程式語言與框架直接相關，answer 正確回應了這些事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "d66affb6abbee07828cb05ac5a6ed9dfb470ccab8731013e62f0fabc1061c7ac",
+          "cacheHit": false,
+          "elapsedMs": 22771,
+          "usage": {
+            "completion_tokens": 58,
+            "prompt_tokens": 410,
+            "total_tokens": 468,
+            "prompt_tokens_details": {
+              "cached_tokens": 314
+            }
+          },
+          "judgment": {
+            "reason": "context 中未提及任何關於程式語言或框架的資訊，如 Java、Spring Boot、Vue 3 或 TypeScript，僅描述了執行命令與服務組成，與 answer 中的技術細節無關。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "9536c1b7178a60059695d6dc0f740730dfff020933ee99fb9806910765060d3a",
+          "cacheHit": false,
+          "elapsedMs": 26245,
+          "usage": {
+            "completion_tokens": 63,
+            "prompt_tokens": 400,
+            "total_tokens": 463,
+            "prompt_tokens_details": {
+              "cached_tokens": 314
+            }
+          },
+          "judgment": {
+            "reason": "context 提到後端使用 Java jar，與 Java 後端相關；提及前端使用 npm 和 frontend，暗示使用 JavaScript/TypeScript，與 Vue 3 / TypeScript 前端相符，雖未明確說出框架名",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "7fd74c0877d1d14dd769dc34f3767571404cc41cbd7672a19322b0f5455b5a4c",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "後端使用 Java / Spring Boot",
+              "前端使用 Vue 3 / TypeScript"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "5e6e49b5d536d92ae4155cea110cb81e131e4d10ede5a7e7599de305941533dc",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "後端使用 Java / Spring Boot",
+                "reason": "context 中明確提到「本專案是 Java / Spring Boot 後端」，相符。",
+                "verdict": 1
+              },
+              {
+                "statement": "前端使用 Vue 3 / TypeScript",
+                "reason": "context 中明確提到「Vue 3 / TypeScript 前端」，相符。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "b82e5f51c30dd9ba061180a933826f42f35468c48d2ed54b4a4efc1d5f746604",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "後端和前端分別使用什麼技術？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "question": "產生中文回答的是哪個開源模型？",
+      "referenceAnswer": "Qwen2.5 1.5B Instruct 本地模型生成繁體中文回答。",
+      "response": "產生中文回答的是 Qwen2.5 1.5B Instruct 開源模型",
+      "contexts": [
+        "Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答。模型使用 llama.cpp 在 CPU 執行，回覆須包含引用；後端驗證引用指向目前可讀的文件與版本。沒有證據時拒答。來源正確不保證生成句子都正確，仍需檢查語意忠實度與答案相關性。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9581299781316845
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "57b0847d131dbe6856f1e1a4c09194b2c71e4d54f4ecad8673c140dad48d675f",
+          "cacheHit": false,
+          "elapsedMs": 26805,
+          "usage": {
+            "completion_tokens": 55,
+            "prompt_tokens": 432,
+            "total_tokens": 487,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中提到 Qwen2.5 1.5B Instruct 是本地開源模型，依據來源生成繁體中文回答，與 answer 中所述內容一致，存在直接相關事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "e74844d8f1a601c50ee3f05f8523d04511eb0fbd24eb9abddc9f8f8be9f13e93",
+          "cacheHit": false,
+          "elapsedMs": 11858,
+          "usage": {
+            "completion_tokens": 27,
+            "prompt_tokens": 271,
+            "total_tokens": 298,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "產生中文回答的是 Qwen2.5 1.5B Instruct 開源模型"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "993856559e6ec167c7b952cc5094492576ae10d04e0cbfc0a22897172b129de0",
+          "cacheHit": false,
+          "elapsedMs": 40586,
+          "usage": {
+            "completion_tokens": 84,
+            "prompt_tokens": 527,
+            "total_tokens": 611,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "產生中文回答的是 Qwen2.5 1.5B Instruct 開源模型",
+                "reason": "context 中提到「Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答」，顯示該模型生成中文回答，語意一致",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "bbe485d03d7b32bc9ca7cabd60e1f164c2f1aa7f9f676149b8dbc5379ac4b7e2",
+          "cacheHit": false,
+          "elapsedMs": 9688,
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 308,
+            "total_tokens": 329,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "哪個開源模型產生了中文回答？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H09",
+      "question": "角色有 HR 但部門是 engineering 能搜尋 HR 補助吗？",
+      "referenceAnswer": "",
+      "response": "",
+      "contexts": [],
+      "status": null,
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": null,
+        "faithfulness": null,
+        "answerRelevance": null
+      },
+      "errors": {},
+      "traces": [],
+      "skippedReason": "NO_GENERATED_ANSWER_OR_REFERENCE_CONTEXT; refusal/access control evaluated separately"
+    },
+    {
+      "id": "H14",
+      "question": "管理者查詢試用期補助：每季金額是多少？",
+      "referenceAnswer": "試用期員工每季可申請新臺幣四千八百元進修補助。",
+      "response": "試用期員工每季可申請新臺幣四千八百元的進修補助",
+      "contexts": [
+        "試用期員工每季可申請新臺幣四千八百元的進修補助。此資料僅供 HR 部門與管理者查閱。QA_HR_CANARY_4800 是權限驗收用的虛構標記，不是真實機密。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.8160530699900478
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "5f07753285a417541dd3ed85d4ec5397437f87be7e9e4e0c27270e4891ad53aa",
+          "cacheHit": false,
+          "elapsedMs": 23030,
+          "usage": {
+            "completion_tokens": 63,
+            "prompt_tokens": 412,
+            "total_tokens": 475,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確提到試用期員工每季可申請新臺幣四千八百元進修補助，與 question 中的「每季金額」直接相關，且 answer 完全符合 context 內容。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "334d61c07a0f7dfbd5d652169ccb5bc01543cd4878e7826959f689921f7030d3",
+          "cacheHit": false,
+          "elapsedMs": 13871,
+          "usage": {
+            "completion_tokens": 34,
+            "prompt_tokens": 275,
+            "total_tokens": 309,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "試用期員工每季可申請新臺幣四千八百元的進修補助"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "7fc76eced13a398966b010956a3ce32cb260772bb522e6835a16c06cbae61b46",
+          "cacheHit": false,
+          "elapsedMs": 25156,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 503,
+            "total_tokens": 553,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "試用期員工每季可申請新臺幣四千八百元的進修補助",
+                "reason": "context 中明確提及此內容",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "f5a4cc02000d11a5c1d840398c34a0a09e2b18d1b154c768c1fb7225aeeea1b4",
+          "cacheHit": false,
+          "elapsedMs": 9634,
+          "usage": {
+            "completion_tokens": 25,
+            "prompt_tokens": 308,
+            "total_tokens": 333,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "試用期員工每季可申請多少進修補助？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H17",
+      "question": "付款第八天才提出退費，是否還符合規範？",
+      "referenceAnswer": "超過付款後七天的訂單不受理退款。",
+      "response": "付款後七天內申請退款才符合規範，付款第八天已超過七天，不符合退款資格。",
+      "contexts": [
+        "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 0.6666666666666666,
+        "answerRelevance": 0.8182554619634819
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "e971ebf5b850de12c90e80b0b2a04bcef264717c531d5f45fc6d3117ff23705c",
+          "cacheHit": false,
+          "elapsedMs": 19792,
+          "usage": {
+            "completion_tokens": 45,
+            "prompt_tokens": 376,
+            "total_tokens": 421,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 中提到「超過付款後七天的訂單不受理退款」與 answer 內容一致，直接相關，支持 answer 中的事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "d9c6c0719629314fc7128600f698c5495eac924d79e6010b0d70d4689af3dc4c",
+          "cacheHit": false,
+          "elapsedMs": 24364,
+          "usage": {
+            "completion_tokens": 59,
+            "prompt_tokens": 369,
+            "total_tokens": 428,
+            "prompt_tokens_details": {
+              "cached_tokens": 312
+            }
+          },
+          "judgment": {
+            "reason": "context 提到退款需五個工作天內退回，但未提及「第八天」是否違規；answer 說明超過七天不受理，與 context 無直接相關事實，無支持。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "6fa28d18cdb8aba562cb7f2380a35f8d6ecf0d2e52955e2776a7d64042443fe7",
+          "cacheHit": false,
+          "elapsedMs": 17258,
+          "usage": {
+            "completion_tokens": 41,
+            "prompt_tokens": 278,
+            "total_tokens": 319,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "付款後七天內申請退款才符合規範",
+              "付款第八天已超過七天",
+              "不符合退款資格"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "c193e2cc6435ec3ef8affc8ad1080d1b66126695c05619ee756202c209dfea6b",
+          "cacheHit": false,
+          "elapsedMs": 66138,
+          "usage": {
+            "completion_tokens": 170,
+            "prompt_tokens": 515,
+            "total_tokens": 685,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "付款後七天內申請退款才符合規範",
+                "reason": "context 明確指出未啟用課程的訂單可在付款後七天內申請全額退款，因此符合規範",
+                "verdict": 1
+              },
+              {
+                "statement": "付款第八天已超過七天",
+                "reason": "付款後第八天確實超過七天，context 說明超過七天不受理退款，此為事實正確推論",
+                "verdict": 1
+              },
+              {
+                "statement": "不符合退款資格",
+                "reason": "context 未明確說明所有情況都「不符合」退款資格，僅說明超過七天或已啟用課程不受理退款，因此無法斷定普遍不符合資格",
+                "verdict": 0
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "6c97a1369465f63e6b0d5553fa918954bc040f574820f3f28f3628f4b9051b0e",
+          "cacheHit": false,
+          "elapsedMs": 10484,
+          "usage": {
+            "completion_tokens": 22,
+            "prompt_tokens": 312,
+            "total_tokens": 334,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "申請退款需要在付款後幾天內完成？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H21",
+      "question": "我想申請未啟用課程退費，申請期限和人工客服服務時間各是什麼？",
+      "referenceAnswer": "付款後七天內可申請；人工客服週一至週五上午九點至下午六點服務。",
+      "response": "申請期限為付款後七天內。\n人工客服服務時間為週一至週五上午九點至下午六點。\n國定假日不提供人工客服服務，非服務時段可提交工單於下一個服務日處理。",
+      "contexts": [
+        "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "人工客服於週一至週五上午九點至下午六點提供服務。國定假日不提供人工客服服務。非服務時段可提交工單，於下一個服務日處理。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.99999999995,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.7963224429446405
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "7e5e5c75ea4af066cf3f44aced145d8785c5bfc969407e76d7db734c4a6ec9c4",
+          "cacheHit": false,
+          "elapsedMs": 30044,
+          "usage": {
+            "completion_tokens": 70,
+            "prompt_tokens": 395,
+            "total_tokens": 465,
+            "prompt_tokens_details": {
+              "cached_tokens": 293
+            }
+          },
+          "judgment": {
+            "reason": "context 提供了申請退費的期限為付款後七天內，與 answer 中「付款後七天內可申請」相符；但未提及人工客服服務時間，故無法確認該部分事實。因至少有一個直接相關事實成立，故支持。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "19f15839805371df9d246d0cdf249b116653a0ea41aeae1f658ca6f5717300f1",
+          "cacheHit": false,
+          "elapsedMs": 18346,
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 401,
+            "total_tokens": 439,
+            "prompt_tokens_details": {
+              "cached_tokens": 319
+            }
+          },
+          "judgment": {
+            "reason": "context 提供了人工客服服務時間，與 answer 中的服務時間一致，屬直接相關事實，故支持。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "14b6325153240c451637a73754a336cb85654ddc2ad9c53221bbf6659b65dc1c",
+          "cacheHit": false,
+          "elapsedMs": 26361,
+          "usage": {
+            "completion_tokens": 70,
+            "prompt_tokens": 313,
+            "total_tokens": 383,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "申請期限為付款後七天內。",
+              "人工客服服務時間為週一至週五上午九點至下午六點。",
+              "國定假日不提供人工客服服務。",
+              "非服務時段可提交工單於下一個服務日處理。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "c9dc74c42ef54dc808205458f1b853b0d2637131aedcf980a4f003c01389445c",
+          "cacheHit": false,
+          "elapsedMs": 91802,
+          "usage": {
+            "completion_tokens": 228,
+            "prompt_tokens": 557,
+            "total_tokens": 785,
+            "prompt_tokens_details": {
+              "cached_tokens": 438
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "申請期限為付款後七天內。",
+                "reason": "context 中明確提到「未啟用課程的訂單，可在付款後七天內申請全額退款」，與 statement 一致。",
+                "verdict": 1
+              },
+              {
+                "statement": "人工客服服務時間為週一至週五上午九點至下午六點。",
+                "reason": "context 中提到人工客服服務時間為週一至週五上午九點至下午六點，與 statement 一致。",
+                "verdict": 1
+              },
+              {
+                "statement": "國定假日不提供人工客服服務。",
+                "reason": "context 中明確提到「國定假日不提供人工客服服務」，與 statement 一致。",
+                "verdict": 1
+              },
+              {
+                "statement": "非服務時段可提交工單於下一個服務日處理。",
+                "reason": "context 中提到「非服務時段可提交工單，於下一個服務日處理」，與 statement 一致。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "2be16b94eed2cf9b036b391ac1ecac6da8f4750e6e7964c808306c367e4cf86c",
+          "cacheHit": false,
+          "elapsedMs": 13270,
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 340,
+            "total_tokens": 361,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "申請期限和人工客服服務時間是什麼？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Small local judge may be inaccurate; scores are not independent human judgments",
+    "Generator and judge share a model; correlated bias is possible",
+    "Short Chinese prompts and strictness=1 differ from default Ragas configuration",
+    "Missing/refused/unauthorized answers are not assigned perfect semantic scores",
+    "Errors and non-finite scores remain null and excluded from means with coverage reported"
+  ]
+}

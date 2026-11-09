@@ -1,0 +1,6 @@
+Verified bge-m3-q8.gguf
+Verified bge-reranker-v2-m3-q8.gguf
+Verified llama.tar.gz
+Verified qdrant.tar.gz
+Verified qwen3-4b-q4.gguf
+Free local RAG runtime ready. No inference service was started.

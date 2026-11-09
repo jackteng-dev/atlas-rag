@@ -1,0 +1,21 @@
+{
+  "createdBeforeHoldoutExecution": true,
+  "selectedIds": [
+    "D01",
+    "D02",
+    "D08",
+    "D10",
+    "H01",
+    "H03",
+    "H09",
+    "H14",
+    "H21",
+    "H17"
+  ],
+  "reason": "The frozen IDs cover natural Chinese, precise names, necessary conditions, cross-section and cross-document answers, an authorized private answer and an access-denied case. Injection and evidence refusals are covered by the full functional suite, not by this preselected subset.",
+  "datasetSha256": "5c97ff8976f66c4c5cfdc805e47f18acc744d2138dacf6abcd6c485d3bb74534",
+  "reasonCorrectionOnly": true,
+  "unchangedSelectedIdsSinceBeforeHoldoutExecution": true,
+  "originalSelectionSha256": "02a60b7d910933b4e18ea8a4833121248d1c154361bd3b304e0a48f814972a9d",
+  "reasonAmendedAt": "2026-10-05T06:26:12.173738+00:00"
+}

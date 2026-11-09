@@ -1,0 +1,16 @@
+C01 contextPrecision 0.9999999999
+C01 faithfulness 1.0
+C01 answerRelevance 0.9892524820657771
+C02 contextPrecision 0.9999999999
+C02 faithfulness 0.0
+C02 answerRelevance 0.9892524820657771
+C03 contextPrecision 0.0
+C03 faithfulness 0.0
+C03 answerRelevance 0.9892524820657771
+C04 contextPrecision 0.9999999999
+C04 faithfulness 1.0
+C04 answerRelevance 0.5436662779543066
+C05 contextPrecision 0.99999999995
+C05 faithfulness 1.0
+C05 answerRelevance 0.9599381256969173
+{"output": "work/evaluation/ragas-v4-controls-calibrated.json", "totals": {"averages": {"contextPrecision": {"mean": 0.79999999993, "scored": 5, "requested": 5}, "faithfulness": {"mean": 0.6, "scored": 5, "requested": 5}, "answerRelevance": {"mean": 0.894272369969711, "scored": 5, "requested": 5}}, "judgeRequests": 8, "judgeCacheHits": 13, "judgeInputTokens": 2751, "judgeOutputTokens": 336, "paidModelApiCost": 0}, "controls": {"faithfulnessAndPrecisionPasses": 5, "samples": 5, "relevanceOrdersOnTopicAboveOffTopic": true}}

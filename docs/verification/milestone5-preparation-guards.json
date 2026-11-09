@@ -1,0 +1,9 @@
+{
+  "reportedAt": "2026-10-05T08:44:05.921287+00:00",
+  "result": "PASS",
+  "duplicatePrepareRejected": true,
+  "nonFreshBootstrapRejected": true,
+  "existingDataByteUnchanged": true,
+  "credentialAndConfigModes": "0600",
+  "actualCommandsExecutedDuringThisSession": true
+}

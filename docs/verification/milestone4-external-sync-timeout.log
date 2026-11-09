@@ -1,0 +1,26 @@
+curl: (22) The requested URL returned error: 504
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: curl -fSs --max-time 150 https://uhfeqs-ip-90-96-179-66.tunnelmole.net/api/questions -H Content-Type: application/json --data {"question":"你用什麼架構"}
+curl: (22) The requested URL returned error: 504
+
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:942:11)
+    at execFileSync (node:child_process:978:15)
+    at request (file:///workspace/ai-knowledge-assistant/scripts/verify-rag-demo.mjs:19:21)
+    at file:///workspace/ai-knowledge-assistant/scripts/verify-rag-demo.mjs:44:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 22,
+  signal: null,
+  output: [ null, '', 'curl: (22) The requested URL returned error: 504\n' ],
+  pid: 22439,
+  stdout: '',
+  stderr: 'curl: (22) The requested URL returned error: 504\n'
+}
+
+Node.js v24.19.0

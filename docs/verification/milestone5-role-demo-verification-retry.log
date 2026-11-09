@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "output": "work/role-demo-verification-1791189412769.json",
+  "checkedAt": "2026-10-05T08:38:04.306Z",
+  "base": "https://uhfeqs-ip-90-96-179-66.tunnelmole.net",
+  "external": true,
+  "pageStatus": 200,
+  "anonymousApiStatus": 401,
+  "checks": [
+    {
+      "profile": "reader",
+      "roles": [
+        "VIEWER"
+      ],
+      "departments": [
+        "engineering"
+      ],
+      "privateDocumentStatus": 404,
+      "privateSourceStatus": 404,
+      "updateStatus": 403
+    },
+    {
+      "profile": "hr",
+      "roles": [
+        "HR"
+      ],
+      "departments": [
+        "hr"
+      ],
+      "privateDocumentStatus": 200,
+      "privateSourceStatus": 200,
+      "updateStatus": 403
+    },
+    {
+      "profile": "admin",
+      "roles": [
+        "ADMIN"
+      ],
+      "departments": [
+        "engineering",
+        "hr"
+      ],
+      "privateDocumentStatus": 200,
+      "privateSourceStatus": 200,
+      "updateStatus": 200
+    },
+    {
+      "profile": "outsider",
+      "roles": [
+        "HR"
+      ],
+      "departments": [
+        "engineering"
+      ],
+      "privateDocumentStatus": 404,
+      "privateSourceStatus": 404,
+      "updateStatus": 403
+    }
+  ],
+  "readerScopedQuestionStatus": 404,
+  "hrQuestionStatus": "ANSWER_GENERATED",
+  "hrModelUsage": {
+    "inputTokens": 329,
+    "outputTokens": 46
+  },
+  "hrSourceChecks": {
+    "sources": 1,
+    "citations": 1
+  },
+  "browserQuestionStatus": "ANSWER_GENERATED",
+  "browserSourceChecks": {
+    "sources": 1,
+    "citations": 1
+  },
+  "transports": [
+    {
+      "profile": "hr",
+      "creationStatus": 202,
+      "pollStatus": 200,
+      "polls": 7,
+      "elapsedMs": 16749
+    }
+  ],
+  "sourceButtonVerification": "PASS",
+  "readOnlyLibrary": "PASS",
+  "logoutClearsPrivateWorkspace": "PASS",
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "screenshots": {
+    "desktop": "work/screenshots/role-demo/1791189412769-desktop.png",
+    "mobile": "work/screenshots/role-demo/1791189412769-mobile.png"
+  },
+  "allDataIsFictional": true,
+  "noApiOrModelStubs": true,
+  "paidApiCalls": 0
+}

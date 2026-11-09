@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-06",
+  "repository": "Elpsy-Deng/ai-knowledge-assistant",
+  "branch": "main",
+  "remoteMainAtStart": "534113d4fda442c951b11677dc95fa8e41910958",
+  "verifiedCodeCommit": "a8e344549a9b924b8d3a97216f5d12adaf2ecf76",
+  "scope": "平台共用工作流程、交接與文件；本輪不修改商業程式",
+  "frontend": {
+    "command": "npm --prefix frontend run build",
+    "typecheck": true,
+    "productionBuild": "success"
+  },
+  "backend": {
+    "tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "result": "BUILD SUCCESS",
+    "conditions": "Maven verify；合約與整合測試使用 stub／隔離暫存 store，未重新執行真實模型推論"
+  },
+  "newModelDownloadsOrInference": false,
+  "newPublicTunnelVerification": false,
+  "browserTestsThisStage": false,
+  "privateLogsCommitted": false,
+  "scripts": {
+    "evaluationNode": 3,
+    "deploymentPython": 5,
+    "ragasGuardsPython": 3,
+    "failures": 0
+  },
+  "logSha256": {
+    "ai-knowledge-assistant-frontend.log": "74a5046cb4b813e29d7b157a66d1aea441999ab7f46b40b56e8a709089571472",
+    "atlas-backend.log": "6cfe2ac72697ddc9792f03aa58d228f1c5319df6bb5b5610711c82f700020fea",
+    "atlas-node.log": "9143cbe01d110796b6400a4828491ad3e670de57677c097dba35e19b2d5ff075",
+    "atlas-deploy.log": "a91240947e2839f1386a89c656d9ce3a2119da4f0961846cc4394edda3aa0317",
+    "atlas-ragas.log": "9d5ee7b2417c7d3adb372cd996f5ee595958733551f94f729690e1e6a123d9c6"
+  }
+}

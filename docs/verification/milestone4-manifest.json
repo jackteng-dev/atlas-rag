@@ -1,0 +1,153 @@
+{
+  "checkedAt": "2026-10-05T07:37:33.627009+00:00",
+  "branch": "codex/ai-retrieval-evaluation",
+  "baseCommit": "d22eb1560e52f7d57dab8be392ef0089dbdcd376",
+  "committedOrPushed": false,
+  "onlyRepositoryOperated": "ai-knowledge-assistant",
+  "qualityCandidateJarSha256": "92566636a127ea071efe28aeff9017f40b73e7b8ab4051d64a76dff664e882e9",
+  "deliveryJarSha256": "69ce747ff085eb4464adeef3ef5a6105e2d42f8667ac1c44b462b971d0c28c9c",
+  "deliveryTransportChangedAfterQualityCandidate": true,
+  "generatorRetrieverPromptAndQualityGateUnchangedAfterFrozenHoldout": true,
+  "qualityTotals": {
+    "questions": 40,
+    "functionalPasses": 37,
+    "expectedHttpAndStatusMatches": 39,
+    "canonicalSourceChecks": 39,
+    "generatedCitationChecks": 36,
+    "generationInputTokens": 9275,
+    "generationOutputTokens": 1366,
+    "paidModelApiCost": 0
+  },
+  "holdoutFunctionalPasses": 22,
+  "holdoutQuestions": 24,
+  "knownFunctionalMisses": [
+    "D08",
+    "H06",
+    "H24"
+  ],
+  "independentHumanAccuracyMeasured": false,
+  "ragasSelection": {
+    "requestedSamples": 10,
+    "completedSamples": 10,
+    "requestedIds": [
+      "D01",
+      "D02",
+      "D08",
+      "D10",
+      "H01",
+      "H03",
+      "H09",
+      "H14",
+      "H17",
+      "H21"
+    ],
+    "complete": true
+  },
+  "ragasTotals": {
+    "averages": {
+      "contextPrecision": {
+        "mean": 0.9814814814064815,
+        "scored": 9,
+        "requested": 10
+      },
+      "faithfulness": {
+        "mean": 0.9629629629629629,
+        "scored": 9,
+        "requested": 10
+      },
+      "answerRelevance": {
+        "mean": 0.8071538929604266,
+        "scored": 9,
+        "requested": 10
+      }
+    },
+    "judgeRequests": 28,
+    "judgeCacheHits": 15,
+    "judgeInputTokens": 10924,
+    "judgeOutputTokens": 1753,
+    "paidModelApiCost": 0
+  },
+  "ragasControlPasses": 5,
+  "ragasControlSamples": 5,
+  "ragasLimitations": [
+    "Generator and judge use the same local 4B model",
+    "Synthetic reference data; independent human review pending",
+    "H17 judge stripped a condition; preserved without holdout tuning",
+    "Context precision is ranking average precision, not all-context relevance"
+  ],
+  "checks": {
+    "backendTests": {
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0
+    },
+    "frontendTypecheckAndBuild": true,
+    "frontendJarAssetsByteEqual": true,
+    "offlineBrowserTests": 4,
+    "deploymentSafetyTests": 5,
+    "ragasGuardTests": 3,
+    "evaluationScriptTests": 3,
+    "realAuthWeb": true,
+    "realJobOwnershipHttpAndExplicitBrowserRaceStubs": true,
+    "realBackupRestoreLifecycle": true,
+    "ownedFullRuntimeStopStart": true,
+    "externalHttpsPageQuestionAndSources": true,
+    "screenshotsVisuallyInspected": true,
+    "gitDiffCheck": true
+  },
+  "originalArtifactsUnchanged": {
+    "backend/src/main/resources/corpus/architecture.md": "65e5eef80376b754e69e8198d9bf707e6fe3437e7a388edf1a50560b940466a5",
+    "backend/src/main/resources/corpus/data-policy.md": "d7397cdf7afc9dcaa1ace7941143276c89b9a355f562f6b6d2c3644678d80a6e",
+    "backend/src/main/resources/corpus/operations.md": "db60e3e709fda6a2b386ad980a82c8ceca745aead45f577b46e20d89c6e0a26b",
+    "backend/src/main/resources/corpus/security-fixture.md": "7529b9519397ca55d19d11edda63bb045881d24147fe3c863a2e86e1c516cac9",
+    "eval/questions.json": "72ca3adfba6fbac3257a717fd41bdde183383909f1959bfbd1a8649d92f6d89b",
+    "eval/results.json": "d805e4e8506a1916626b19ac6436f33b0c007f5ae2aab169f1a921167ab87fbd",
+    "eval/retrieval-comparison.json": "3b831bc500d2958274e0f32deba885198a4c1e754039ecfb68ce31de123b54bf"
+  },
+  "pinnedArtifactManifestSha256": "f92737ead1d15eba4bf488059a27f3c3850d48d7925262ad4010feb5bb4a94bf",
+  "currentModelArtifactsAndExecutablesChecksumGuardPassedBeforeOwnedStartup": true,
+  "cloudEnvironment": {
+    "latestObservedSpecRevision": "31",
+    "observationsCurrent": true,
+    "networkPolicy": "unrestricted/enforced",
+    "externalTransport": "inherited HTTPS proxy and CA; TLS verification enabled",
+    "secretsConfigured": false
+  },
+  "resourceLimits": {
+    "cpuMax": "200000 100000",
+    "memoryMaxBytes": 8589934592,
+    "memoryEvents": "low 0\nhigh 0\nmax 70447\noom 0\noom_kill 0\noom_group_kill 0\n"
+  },
+  "publicDeployment": {
+    "ownedSupervisorPid": 26003,
+    "state": "READY",
+    "health": {
+      "llm": true,
+      "embedding": true,
+      "reranker": true,
+      "qdrant": true,
+      "app": true,
+      "web": true,
+      "ready": true
+    }
+  },
+  "externalEvidence": "docs/verification/2026-10-05-public-rag-v4-demo.json",
+  "externalVerifiedAt": "2026-10-05T07:32:08.943Z",
+  "externalUrl": "https://uhfeqs-ip-90-96-179-66.tunnelmole.net",
+  "externalFinalPageHttpStatus": 200,
+  "externalFinalStatus": "READY",
+  "additionalNaturalRoleQuestionFalseRefusalPreserved": true,
+  "temporaryTunnel": true,
+  "package": {
+    "checkedAt": "2026-10-05T07:36:23.397242+00:00",
+    "archive": "/workspace/ai-knowledge-assistant/work/packages/atlas-local-20261005T073528971326Z.zip",
+    "bytes": 24124474,
+    "archiveSha256": "d956386947a3a32252ede1fb5bd271f2d542a23e9de73f41066a067eb4cdf90f",
+    "entries": 32,
+    "allEntryChecksumsPass": true,
+    "noModelsUserDataOrCredentials": true,
+    "extractedCliAndSyntaxSmokePass": true,
+    "extractedModelDownloadOrServiceStartPerformed": false,
+    "deliveryJarSha256": "69ce747ff085eb4464adeef3ef5a6105e2d42f8667ac1c44b462b971d0c28c9c"
+  }
+}

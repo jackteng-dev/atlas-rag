@@ -1,0 +1,18 @@
+
+> knowledge-assistant-ui@0.1.0 build
+> npm run typecheck && vite build
+
+
+> knowledge-assistant-ui@0.1.0 typecheck
+> vue-tsc --noEmit
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 13 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.41 kB │ gzip:  0.30 kB
+dist/assets/index-DCmrfXzT.css  16.68 kB │ gzip:  4.50 kB
+dist/assets/index-Rr6BkIRi.js   81.72 kB │ gzip: 32.02 kB
+
+✓ built in 160ms

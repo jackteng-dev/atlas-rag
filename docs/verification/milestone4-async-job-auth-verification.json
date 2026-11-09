@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-05T07:29:06.151Z",
+  "result": "PASS",
+  "realHttp": {
+    "anonymousPost": 401,
+    "creation": 202,
+    "otherOwnerGet": 404,
+    "ownerFailedError": 404,
+    "noStore": true
+  },
+  "browserDelayedPrivateResponseDiscarded": true,
+  "browserQuestionAndPollResponsesAreExplicitStubs": true
+}

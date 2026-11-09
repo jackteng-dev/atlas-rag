@@ -1,0 +1,22 @@
+R01 ANSWER_GENERATED citations=1/1 51065 ms
+R02 ANSWER_GENERATED citations=1/1 21518 ms
+R03 ANSWER_GENERATED citations=3/3 39394 ms
+R04 ANSWER_GENERATED citations=1/1 25675 ms
+R05 INSUFFICIENT_EVIDENCE citations=0/0 11473 ms
+R06 ANSWER_GENERATED citations=1/1 20015 ms
+R07 INSUFFICIENT_EVIDENCE citations=0/0 9033 ms
+R08 INSUFFICIENT_EVIDENCE citations=0/0 9736 ms
+{
+  "output": "/workspace/ai-knowledge-assistant/work/evaluation/rag-1791174764488.json",
+  "totals": {
+    "questions": 8,
+    "expectedStatusMatches": 7,
+    "citedSourceProvenanceChecks": 7,
+    "generatedCitationReferences": 7,
+    "faithfulness": null,
+    "answerRelevance": null,
+    "paidModelApiCost": 0,
+    "generationInputTokens": 2211,
+    "generationOutputTokens": 436
+  }
+}

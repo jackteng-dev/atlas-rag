@@ -1,0 +1,172 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------< dev.knowledge:knowledge-assistant >------------------
+[INFO] Building knowledge-assistant 0.1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ knowledge-assistant ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ knowledge-assistant ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 23 source files with javac [debug parameters release 21] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ knowledge-assistant ---
+[INFO] skip non existing resourceDirectory /workspace/ai-knowledge-assistant/backend/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ knowledge-assistant ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ knowledge-assistant ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.knowledge.AnswerServiceTest
+04:26:31.186 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=d816e1b5-770b-44a4-a4e0-66b0dba32f22 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=15 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1]]
+04:26:31.353 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=773babf4-03e8-4a71-b893-c5603f87a1d3 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2]]
+04:26:31.378 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=a0ec8db7-8d88-4e9d-9a7e-fc3e8022bf2a mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1]]
+04:26:31.381 [main] WARN dev.knowledge.AnswerService -- knowledge_query_failed requestId=23cdef8e-2b91-4bb8-ba8d-6c8ec6c38ebb code=INDEX_CHANGED elapsedMs=1
+04:26:31.399 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=26d1543b-030c-48ea-a9ee-64989359fd59 mode=TEST status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=0]]
+04:26:31.400 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=a7243f5a-09e9-40e2-abe7-7c62f1f72206 mode=TEST status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1]]
+04:26:31.443 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=c3fb239d-f14e-4f07-a5df-d3671a8c736a mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=0]]
+04:26:31.444 [main] INFO dev.knowledge.AnswerService -- knowledge_query requestId=e8c842fd-9b90-46d6-849b-0b6a8bb5c19b mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=2], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1]]
+04:26:31.445 [main] WARN dev.knowledge.AnswerService -- knowledge_query_failed requestId=2f71d1e7-4264-4621-aae8-712b620786f0 code=DOCUMENT_NOT_FOUND elapsedMs=0
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.745 s -- in dev.knowledge.AnswerServiceTest
+[INFO] Running dev.knowledge.ApiIntegrationTest
+04:26:31.611 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.knowledge.ApiIntegrationTest]: ApiIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+04:26:31.816 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.knowledge.KnowledgeApplication for test class dev.knowledge.ApiIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-05T04:26:32.370Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : Starting ApiIntegrationTest using Java 21.0.12.1 with PID 6745 (started by agent in /workspace/ai-knowledge-assistant/backend)
+2026-10-05T04:26:32.373Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T04:26:34.139Z  INFO 6745 --- [knowledge-assistant] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name accounts
+2026-10-05T04:26:34.761Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T04:26:34.761Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T04:26:34.762Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-05T04:26:34.792Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.ApiIntegrationTest         : Started ApiIntegrationTest in 2.843 seconds (process running for 4.832)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/workspace/ai-knowledge-assistant/work/tools/m2/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-10-05T04:26:35.671Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=9cfd6533-b2d4-4eb0-9db0-6e4e83830126 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=0]]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.321 s -- in dev.knowledge.ApiIntegrationTest
+[INFO] Running dev.knowledge.DocumentStoreTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.145 s -- in dev.knowledge.DocumentStoreTest
+[INFO] Running dev.knowledge.MarkdownChunkerTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in dev.knowledge.MarkdownChunkerTest
+[INFO] Running dev.knowledge.OllamaExcerptProviderTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.318 s -- in dev.knowledge.OllamaExcerptProviderTest
+[INFO] Running dev.knowledge.ConfiguredAuthenticationTest
+2026-10-05T04:26:36.284Z  INFO 6745 --- [knowledge-assistant] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [dev.knowledge.ConfiguredAuthenticationTest]: ConfiguredAuthenticationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T04:26:36.288Z  INFO 6745 --- [knowledge-assistant] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration dev.knowledge.KnowledgeApplication for test class dev.knowledge.ConfiguredAuthenticationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-05T04:26:36.365Z  INFO 6745 --- [knowledge-assistant] [           main] d.k.ConfiguredAuthenticationTest         : Starting ConfiguredAuthenticationTest using Java 21.0.12.1 with PID 6745 (started by agent in /workspace/ai-knowledge-assistant/backend)
+2026-10-05T04:26:36.366Z  INFO 6745 --- [knowledge-assistant] [           main] d.k.ConfiguredAuthenticationTest         : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T04:26:36.775Z  INFO 6745 --- [knowledge-assistant] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name accounts
+2026-10-05T04:26:36.898Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T04:26:36.898Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T04:26:36.899Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-05T04:26:36.907Z  INFO 6745 --- [knowledge-assistant] [           main] d.k.ConfiguredAuthenticationTest         : Started ConfiguredAuthenticationTest in 0.567 seconds (process running for 6.947)
+2026-10-05T04:26:38.161Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=6a2902ec-30c3-48b9-85eb-dffb0bf04072 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1]]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.258 s -- in dev.knowledge.ConfiguredAuthenticationTest
+[INFO] Running dev.knowledge.DocumentAuthorizationTest
+2026-10-05T04:26:38.545Z  INFO 6745 --- [knowledge-assistant] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [dev.knowledge.DocumentAuthorizationTest]: DocumentAuthorizationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-05T04:26:38.549Z  INFO 6745 --- [knowledge-assistant] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration dev.knowledge.KnowledgeApplication for test class dev.knowledge.DocumentAuthorizationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-05T04:26:38.584Z  INFO 6745 --- [knowledge-assistant] [           main] d.knowledge.DocumentAuthorizationTest    : Starting DocumentAuthorizationTest using Java 21.0.12.1 with PID 6745 (started by agent in /workspace/ai-knowledge-assistant/backend)
+2026-10-05T04:26:38.585Z  INFO 6745 --- [knowledge-assistant] [           main] d.knowledge.DocumentAuthorizationTest    : No active profile set, falling back to 1 default profile: "default"
+2026-10-05T04:26:38.843Z  INFO 6745 --- [knowledge-assistant] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name accounts
+2026-10-05T04:26:38.918Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-05T04:26:38.919Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-05T04:26:38.919Z  INFO 6745 --- [knowledge-assistant] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-05T04:26:38.947Z  INFO 6745 --- [knowledge-assistant] [           main] d.knowledge.DocumentAuthorizationTest    : Started DocumentAuthorizationTest in 0.394 seconds (process running for 8.987)
+2026-10-05T04:26:38.998Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=b193fb82-1527-4c5b-bb8b-5338b1ac9f10 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=0]]
+2026-10-05T04:26:39.065Z  WARN 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query_failed requestId=9472d656-6dd1-4f83-9e1e-7c09709afb84 code=DOCUMENT_NOT_FOUND elapsedMs=0
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.539 s -- in dev.knowledge.DocumentAuthorizationTest
+[INFO] Running dev.knowledge.RetrievalEvaluationTest
+2026-10-05T04:26:39.099Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=5cafb019-a548-41ee-8636-2cdb392654af mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=2]]
+2026-10-05T04:26:39.153Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=0af3e88b-4746-4926-ade8-31bb0ba64f76 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.156Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=4a5d5e02-eed7-4b8c-9a32-a4ffb2c2aca9 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.186Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=037e1b25-e828-4c55-9047-c1547f3d317e mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.188Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=803fdd0e-7527-4466-8495-594e50311bc4 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.191Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=8fefc008-a498-4cc9-af72-fb34e59089b0 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.193Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=9ac34255-6279-4964-9149-108be22d3d4b mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=2 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.195Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=c7211629-5a95-4871-80fc-45440ea9f88a mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.196Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=b396837d-0246-45a4-9b2e-d0b395b04715 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=0]]
+2026-10-05T04:26:39.197Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=a2496430-24a7-47ea-991e-3586757b25cf mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=2]]
+2026-10-05T04:26:39.199Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=99e9be9c-a0b7-4321-b986-c8d1efd05bb7 mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.201Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=2895727a-c674-4b04-a3af-d87b50f2c197 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.202Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=68c92697-6182-45d2-bf26-0ccf2574e4bf mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=1]]
+2026-10-05T04:26:39.203Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=4ae3e7ba-cafe-4896-81a2-09d56aa5d629 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=1]]
+2026-10-05T04:26:39.205Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=4f6d096c-9f49-419a-b5da-587f6deee2f0 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.205Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=a2963082-d63f-4d71-b138-4f380b99085a mode=OFFLINE_EXTRACTIVE status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=2]]
+2026-10-05T04:26:39.206Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=27f4f5c6-797a-4203-8d09-9af4570a5336 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.207Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=4ce19738-891f-4e95-8f9c-e8a32c28ebc9 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+2026-10-05T04:26:39.240Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=7b3daa0d-6b5f-441c-a0db-3b73f379dba6 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=33 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=2]]
+2026-10-05T04:26:39.255Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=03187329-05d5-455c-b91e-482bb58fb267 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=1]]
+2026-10-05T04:26:39.257Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=a3daef48-4125-466f-bf2a-79c22b19df08 mode=OFFLINE_EXTRACTIVE status=EXTRACTS_FOUND elapsedMs=1 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=4], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=4, outputCount=5]]
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.201 s -- in dev.knowledge.RetrievalEvaluationTest
+[INFO] Running dev.knowledge.LocalModelContractsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.464 s -- in dev.knowledge.LocalModelContractsTest
+[INFO] Running dev.knowledge.RagPipelineTest
+2026-10-05T04:26:39.781Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=1ba6d28a-1193-47cf-b7fe-25f64529b68e mode=LOCAL_RAG_GENERATION status=ANSWER_GENERATED elapsedMs=14 inputTokens=12 outputTokens=4 stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=vector_index, status=READY, elapsedMs=9, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=0], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=1, inputCount=1, outputCount=1], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=1, inputCount=1, outputCount=1], PipelineStage[name=reranker, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=generation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1]]
+2026-10-05T04:26:39.783Z  WARN 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query_failed requestId=173da82b-587c-4413-a83f-d4f1fc3d6c7c code=DOCUMENT_NOT_FOUND elapsedMs=0
+2026-10-05T04:26:39.792Z  WARN 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query_failed requestId=980a9b44-c341-4214-bf95-face30441e55 code=INVALID_CITATION elapsedMs=0
+2026-10-05T04:26:39.793Z  WARN 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query_failed requestId=5cf0f3bd-6a09-462f-b39e-61f92fcb8bce code=MODEL_INVALID_OUTPUT elapsedMs=0
+2026-10-05T04:26:39.813Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=d01c6cfd-785b-4b7f-90ad-a6c52cca1218 mode=LOCAL_RAG_GENERATION status=ANSWER_GENERATED elapsedMs=0 inputTokens=12 outputTokens=4 stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=vector_index, status=READY, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1], PipelineStage[name=reranker, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=generation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1]]
+2026-10-05T04:26:39.815Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=a129c57a-beb9-4bd1-90b4-c65580857fb0 mode=LOCAL_RAG_GENERATION status=ANSWER_GENERATED elapsedMs=0 inputTokens=12 outputTokens=4 stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=vector_index, status=READY, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=0, inputCount=2, outputCount=1], PipelineStage[name=reranker, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=generation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1]]
+2026-10-05T04:26:39.816Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=1475ad3c-f035-46a7-b8a6-a2787e944b4d mode=LOCAL_RAG_GENERATION status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=vector_index, status=READY, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0]]
+2026-10-05T04:26:39.817Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=2d6c2233-1718-4fa6-ae88-9d28dd771f81 mode=LOCAL_RAG_GENERATION status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=vector_index, status=READY, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0]]
+2026-10-05T04:26:39.823Z  INFO 6745 --- [knowledge-assistant] [           main] dev.knowledge.AnswerService              : knowledge_query requestId=3e3fab87-ed6d-48aa-8783-a24e3e60a703 mode=LOCAL_RAG_GENERATION status=INSUFFICIENT_EVIDENCE elapsedMs=0 inputTokens=null outputTokens=null stages=[PipelineStage[name=authorization_and_expiry, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=vector_index, status=READY, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=bm25, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=0], PipelineStage[name=dense_retrieval, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=rrf_fusion, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=1], PipelineStage[name=reranker, status=COMPLETE, elapsedMs=0, inputCount=1, outputCount=0], PipelineStage[name=generation, status=SKIPPED_NO_EVIDENCE, elapsedMs=0, inputCount=0, outputCount=0], PipelineStage[name=citation_validation, status=COMPLETE, elapsedMs=0, inputCount=0, outputCount=0]]
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in dev.knowledge.RagPipelineTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 38, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ knowledge-assistant ---
+[INFO] Building jar: /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar
+[INFO]
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ knowledge-assistant ---
+[INFO] Replacing main artifact /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/ai-knowledge-assistant/backend/target/knowledge-assistant-0.1.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.868 s
+[INFO] Finished at: 2026-10-05T04:26:40Z
+[INFO] ------------------------------------------------------------------------

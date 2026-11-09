@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-10-05T07:32:08.943Z",
+  "base": "https://uhfeqs-ip-90-96-179-66.tunnelmole.net",
+  "external": true,
+  "pageHttpStatus": 200,
+  "mode": "LOCAL_RAG_GENERATION",
+  "configuration": {
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "topK": 5,
+    "rag": {
+      "llm": "qwen3-4b-instruct-2507",
+      "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+      "paidApiCalls": 0,
+      "rerankerMinLogit": -8,
+      "fusion": "RRF_K60",
+      "generationPromptVersion": "complete-answer-v4",
+      "vectorStore": "QDRANT",
+      "embedding": "BGE_M3",
+      "candidateK": 10,
+      "reranker": "BGE_RERANKER_V2_M3",
+      "rerankerMaxLogitGap": 5,
+      "enabled": true
+    },
+    "coverageThreshold": 0.6,
+    "bm25K1": 1.2,
+    "bm25B": 0.75,
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1"
+  },
+  "apiQuestion": "你用什麼架構",
+  "apiStatus": "ANSWER_GENERATED",
+  "transport": "HTTP_202_JOB_POLLING",
+  "transports": [
+    {
+      "question": "你用什麼架構",
+      "creationHttpStatus": 202,
+      "pollHttpStatus": 200,
+      "polls": 53,
+      "elapsedMs": 119220
+    },
+    {
+      "question": "員工的薪水是多少？",
+      "creationHttpStatus": 202,
+      "pollHttpStatus": 200,
+      "polls": 6,
+      "elapsedMs": 11050
+    },
+    {
+      "question": "我在瀏覽器填 ADMIN 就能看到 HR 文件嗎？",
+      "creationHttpStatus": 202,
+      "pollHttpStatus": 200,
+      "polls": 25,
+      "elapsedMs": 57111
+    }
+  ],
+  "apiRequestId": "191db899-2c2b-4748-a01c-b79096248291",
+  "apiGenerated": [
+    {
+      "text": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。",
+      "chunkIds": [
+        "architecture-528f5e17adf89726-1"
+      ]
+    }
+  ],
+  "apiChecks": {
+    "sourceChecks": 5,
+    "citationChecks": 1
+  },
+  "noEvidenceStatus": "INSUFFICIENT_EVIDENCE",
+  "roleExplanationStatus": "INSUFFICIENT_EVIDENCE",
+  "roleExplanationGenerated": [],
+  "roleExplanationChecks": {
+    "sourceChecks": 1,
+    "citationChecks": 0
+  },
+  "roleExplanationComplete": false,
+  "browserJobCreationHttpStatus": 202,
+  "browserQuestionStatus": "ANSWER_GENERATED",
+  "browserRequestId": "115b3c8b-9d3b-45c5-962f-2f6359f2455f",
+  "browserChecks": {
+    "sourceChecks": 5,
+    "citationChecks": 1
+  },
+  "sourceButtonVerification": "PASS",
+  "traceAndTokenDisplay": "PASS",
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "unexpectedDialogs": [],
+  "screenshots": {
+    "desktop": "work/screenshots/rag/1791185229946-answer.png",
+    "mobile": "work/screenshots/rag/1791185229946-mobile.png"
+  },
+  "paidModelApiCost": 0,
+  "limitations": [
+    "Citation provenance does not prove sentence entailment",
+    "Temporary tunnel depends on the environment and processes"
+  ]
+}

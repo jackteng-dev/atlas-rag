@@ -1,0 +1,15 @@
+backend/target/
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+work/
+__pycache__/
+data/
+.env
+.env.*
+!.env.example
+*.log
+!docs/verification/*.log
+.idea/
+.vscode/

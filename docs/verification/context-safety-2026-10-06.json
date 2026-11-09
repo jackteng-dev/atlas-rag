@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-06",
+  "repository": "Elpsy-Deng/ai-knowledge-assistant",
+  "sourceMainCommit": "495b537a6d1a8a94788ca1ee831da9195222f772",
+  "scope": "八項工作階段與 context 安全規則；只改文件",
+  "rules": 8,
+  "copiesConsistent": true,
+  "frontend": "typecheck and production build passed",
+  "backend": {
+    "tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "passed",
+    "conditions": "Maven verify；隔離 store／合約 stub，未執行真實模型推論"
+  },
+  "preciseContextOrAccountUsageToolAvailable": false,
+  "browserOrModelQualityTestsThisStage": false,
+  "logSha256": {
+    "ai-knowledge-assistant-frontend.log": "cc1b0c9ba8ae4aab6cbe8bc0a988bac55d33deb9222aa027650c5898b895fca3",
+    "atlas-backend.log": "35feee10a51d7a5a752407e6c4ebd571995185d94f1496157d6ddc2cd55366b1"
+  }
+}

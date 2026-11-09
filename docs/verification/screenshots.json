@@ -1,0 +1,32 @@
+[
+  {
+    "bytes": 101508,
+    "file": "docs/screenshots/01-workspace.png",
+    "sha256": "47f17ee8e4a1fcac35d7fe97c743f255182b465e3359235b44361822f690a6d4"
+  },
+  {
+    "bytes": 156600,
+    "file": "docs/screenshots/02-answer-sources.png",
+    "sha256": "446fd8be24bc1207742697759bfe89bfc4bb7dc70bd71fcee8c098a131643f4c"
+  },
+  {
+    "bytes": 101528,
+    "file": "docs/screenshots/03-insufficient-evidence.png",
+    "sha256": "0d21542a7bfa7d78804509b7e905720a8a3cb3bf30cbb08de770233a63694dc1"
+  },
+  {
+    "bytes": 101694,
+    "file": "docs/screenshots/04-document-library.png",
+    "sha256": "148e94bc78cb7ac93d813da757835c7cba359d2322a577b183f1057982228dbf"
+  },
+  {
+    "bytes": 115228,
+    "file": "docs/screenshots/05-untrusted-document.png",
+    "sha256": "b87b3effeecc7a9e4c66cda873ad785d1fba40bfcd079bf149aa55771fdd4e0f"
+  },
+  {
+    "bytes": 69178,
+    "file": "docs/screenshots/06-mobile.png",
+    "sha256": "371ff44fe188b3089ddd4d88191f4e1d405a0de7eab7f0cb87bccb6f4e4ee2e1"
+  }
+]

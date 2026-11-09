@@ -1,0 +1,77 @@
+{
+  "javaStoreLockRejectedLiveRestore": true,
+  "activeBackupRevision": 1,
+  "updatedDocumentVersion": 2,
+  "restoredDocumentVersion": 1,
+  "beforeRestore": {
+    "requestId": "c4a9e553-72df-4536-942d-e18586cdb700",
+    "status": "ANSWER_GENERATED",
+    "generated": [
+      {
+        "text": "尚未啟用的課程，可在付款後七天內申請全額退款。",
+        "chunkIds": [
+          "customer-guide-f68b93ac8f1b2623-1"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+        "documentId": "customer-guide",
+        "title": "星河研習平台學員服務規範（虛構驗收資料）",
+        "version": 2,
+        "heading": "退款資格",
+        "excerpt": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "lineStart": 4,
+        "lineEnd": 4,
+        "score": 5.3707170486450195,
+        "href": "/api/documents/customer-guide/chunks/customer-guide-f68b93ac8f1b2623-1?version=2"
+      }
+    ],
+    "vectorStage": {
+      "name": "vector_index",
+      "status": "READY",
+      "elapsedMs": 12050,
+      "inputCount": 1,
+      "outputCount": 1
+    }
+  },
+  "afterRestore": {
+    "requestId": "8dfc8040-8ccb-46d8-bcf8-a4f062d47b16",
+    "status": "ANSWER_GENERATED",
+    "generated": [
+      {
+        "text": "尚未啟用的課程，可在付款後七天內申請全額退款。",
+        "chunkIds": [
+          "customer-guide-f68b93ac8f1b2623-1"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+        "documentId": "customer-guide",
+        "title": "星河研習平台學員服務規範（虛構驗收資料）",
+        "version": 1,
+        "heading": "退款資格",
+        "excerpt": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "lineStart": 4,
+        "lineEnd": 4,
+        "score": 5.3707170486450195,
+        "href": "/api/documents/customer-guide/chunks/customer-guide-f68b93ac8f1b2623-1?version=1"
+      }
+    ],
+    "vectorStage": {
+      "name": "vector_index",
+      "status": "READY",
+      "elapsedMs": 6229,
+      "inputCount": 1,
+      "outputCount": 1
+    }
+  },
+  "qdrantRebuiltFromRestoredSource": true,
+  "oldVectorVersionsRemoved": true,
+  "points": 4,
+  "packagedAppRestarted": true,
+  "reusedModelProcessesPreserved": true
+}

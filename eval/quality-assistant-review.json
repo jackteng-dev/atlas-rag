@@ -1,0 +1,259 @@
+{
+  "reviewedAt": "2026-10-05T06:34:26.759487+00:00",
+  "reviewer": "implementation-assistant",
+  "independentHumanReview": false,
+  "sourceArtifactSha256": "7450a40c32b42a95a8cf12822a06a7eeb80a95eb2c3b40fe102b7dcaf8f90df2",
+  "generatedAnswersReviewed": 27,
+  "falseRefusalId": "H06",
+  "rows": [
+    {
+      "id": "D01",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "68e63ebf91e219922f5b46fc391cbcf1a9b091d351f8af27b5f881a4d26061d0"
+      ]
+    },
+    {
+      "id": "D02",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "ba4d901ab3c66ec4ef23a08da77f421d869d25205f5711e03ebe47f729fb522a"
+      ]
+    },
+    {
+      "id": "D03",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "c97dfa3050b9a2e51603bca9178a47a774b100e46ae47b16df3076126065b25b"
+      ]
+    },
+    {
+      "id": "D04",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "88de04bcc9606933ed42eb203f1005ab2681a035ad95d63f8f976d21789df857"
+      ]
+    },
+    {
+      "id": "D05",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "36e80fbf4ddd582a2ac54c347f4d5d26f642589bc337b8374cce67952f5f37bd"
+      ]
+    },
+    {
+      "id": "D06",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "0c8ae0ae16a930f96473f134dc158e145761da8c37ba417fa70790b65e6159fe"
+      ]
+    },
+    {
+      "id": "D07",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "ab4f3ec05a9c0b8cad3ba03f5a318e48a1b6e194cefe89da56530d8694a58cc8"
+      ]
+    },
+    {
+      "id": "D08",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "PARTIAL",
+      "note": "The negative answer is supported, but it omits the formal acceptance notice/payment conditions required by the frozen functional criterion.",
+      "citedExcerptSha256": [
+        "e9f82a69b34a03d52e1b84b7dd669e2c5a2b73c2b9049e673ab966380d197fbc"
+      ]
+    },
+    {
+      "id": "D09",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "c67e84428102b5826193b6aad3e329828fb037ea5e0c92aaa9e05ccde0e2e914"
+      ]
+    },
+    {
+      "id": "D10",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "0c8ae0ae16a930f96473f134dc158e145761da8c37ba417fa70790b65e6159fe",
+        "ab4f3ec05a9c0b8cad3ba03f5a318e48a1b6e194cefe89da56530d8694a58cc8"
+      ]
+    },
+    {
+      "id": "D15",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "f0057e3d02c365d945dcfcdce3297c638da8e4cc21e8570cf3c37d28f874e57e"
+      ]
+    },
+    {
+      "id": "D16",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "36e80fbf4ddd582a2ac54c347f4d5d26f642589bc337b8374cce67952f5f37bd"
+      ]
+    },
+    {
+      "id": "H01",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "68e63ebf91e219922f5b46fc391cbcf1a9b091d351f8af27b5f881a4d26061d0"
+      ]
+    },
+    {
+      "id": "H02",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "ba4d901ab3c66ec4ef23a08da77f421d869d25205f5711e03ebe47f729fb522a"
+      ]
+    },
+    {
+      "id": "H03",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "5e7afd47124f29515ca4f7ad22a233983142e2b6aa8ba0f579f9fcec884180c5"
+      ]
+    },
+    {
+      "id": "H04",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "5e7afd47124f29515ca4f7ad22a233983142e2b6aa8ba0f579f9fcec884180c5"
+      ]
+    },
+    {
+      "id": "H05",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "c225f3bfa305f12d3e49c9ed54d071a66cf90d2c4719db7622fec468d0c69808"
+      ]
+    },
+    {
+      "id": "H13",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "f0057e3d02c365d945dcfcdce3297c638da8e4cc21e8570cf3c37d28f874e57e"
+      ]
+    },
+    {
+      "id": "H14",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "f0057e3d02c365d945dcfcdce3297c638da8e4cc21e8570cf3c37d28f874e57e"
+      ]
+    },
+    {
+      "id": "H16",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "0c8ae0ae16a930f96473f134dc158e145761da8c37ba417fa70790b65e6159fe"
+      ]
+    },
+    {
+      "id": "H17",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "0c8ae0ae16a930f96473f134dc158e145761da8c37ba417fa70790b65e6159fe"
+      ]
+    },
+    {
+      "id": "H18",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "e9f82a69b34a03d52e1b84b7dd669e2c5a2b73c2b9049e673ab966380d197fbc"
+      ]
+    },
+    {
+      "id": "H19",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "36e80fbf4ddd582a2ac54c347f4d5d26f642589bc337b8374cce67952f5f37bd"
+      ]
+    },
+    {
+      "id": "H20",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "c67e84428102b5826193b6aad3e329828fb037ea5e0c92aaa9e05ccde0e2e914"
+      ]
+    },
+    {
+      "id": "H21",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "0c8ae0ae16a930f96473f134dc158e145761da8c37ba417fa70790b65e6159fe",
+        "36e80fbf4ddd582a2ac54c347f4d5d26f642589bc337b8374cce67952f5f37bd"
+      ]
+    },
+    {
+      "id": "H22",
+      "evidenceSupport": "SUPPORTED",
+      "completenessAgainstFixedCriteria": "MEETS",
+      "note": "Reviewed generated statements against the actually cited original excerpts; this is implementation-assistant review, not an independent human label.",
+      "citedExcerptSha256": [
+        "3651b28d848d364a04a9e1b41e96fc40491e9b3d1ab4b283d37d0ac552d4a617"
+      ]
+    },
+    {
+      "id": "H24",
+      "evidenceSupport": "PARTLY_UNSUPPORTED_CAUSAL_EXPLANATION",
+      "completenessAgainstFixedCriteria": "PARTIAL",
+      "note": "The refusal to fetch a deleted source is correct, but the explanation attributes deletion to expiry. The cited excerpt describes deletion and expiry separately; that causal link is unsupported. It also omits the documented 404 response.",
+      "citedExcerptSha256": [
+        "c97dfa3050b9a2e51603bca9178a47a774b100e46ae47b16df3076126065b25b"
+      ]
+    }
+  ],
+  "limitations": [
+    "Qualitative assistant review is not a blinded human benchmark or independent accuracy measurement",
+    "Human review worksheet remains pending"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-04T15:32:01.0242172Z",
+  "backendUrl": "http://127.0.0.1:18081",
+  "realModelInference": false,
+  "globalDatabaseStarted": false,
+  "previewUrl": "http://127.0.0.1:4175",
+  "paidModelCalls": 0,
+  "status": {
+    "mode": "OFFLINE_EXTRACTIVE",
+    "chunkCount": 16,
+    "documentCount": 4,
+    "status": "READY",
+    "embedding": "NONE",
+    "indexRevision": 7,
+    "retrieval": "BM25_KEYWORD",
+    "coverageThreshold": 0.6,
+    "chunkMaxChars": 800
+  },
+  "timezone": "Asia/Taipei",
+  "embedding": "NONE",
+  "port8081": "Windows excluded range 8054-8153; bind AccessDenied",
+  "restartPersistence": "Matched persisted revision and document count"
+}

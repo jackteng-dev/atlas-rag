@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-05T07:30:08.855Z",
+  "packagedFrontend": true,
+  "anonymousApiStatus": 401,
+  "checked": [
+    {
+      "profile": "reader",
+      "packagedHtmlStatus": 200,
+      "privateDocumentStatus": 404,
+      "privateListVisible": false
+    },
+    {
+      "profile": "hr",
+      "packagedHtmlStatus": 200,
+      "privateDocumentStatus": 200,
+      "privateListVisible": true
+    },
+    {
+      "profile": "outsider",
+      "packagedHtmlStatus": 200,
+      "privateDocumentStatus": 404,
+      "privateListVisible": false
+    }
+  ],
+  "logoutClearsDocuments": true,
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "noBrowserApiStubs": true
+}

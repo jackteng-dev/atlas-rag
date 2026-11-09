@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-10-05T04:35:29.918258+00:00",
+  "baseCommit": "d22eb1560e52f7d57dab8be392ef0089dbdcd376",
+  "branch": "codex/ai-retrieval-evaluation",
+  "files": {
+    "docs/screenshots/milestone3-rag-desktop.png": {
+      "sha256": "ff60837ca8f94cc6193ff239e57aa44487a2ad3cefa6a83bfa1595d59a275358",
+      "bytes": 205285,
+      "visuallyInspected": true
+    },
+    "docs/screenshots/milestone3-rag-mobile.png": {
+      "sha256": "5c460bbc3bb710b84f07dbd245855ddd33a3b6181a45c8386829b66b5b6ccb3e",
+      "bytes": 154131,
+      "visuallyInspected": true
+    },
+    "backend/src/main/java/dev/knowledge/LlamaRagModels.java": {
+      "sha256": "0adef8d1eabead301edc787b5f48821b534ae3725721774e40fa053d660c7210",
+      "bytes": 7406
+    },
+    "config/local-rag-artifacts.json": {
+      "sha256": "f47c03a57438374ea715dc07514dad1785a6909210bc68215066e4ef657c5265",
+      "bytes": 2224
+    },
+    "eval/rag-questions.json": {
+      "sha256": "bbde112be155177b3e1455051a1329f5dcd14ab115c2028a8197aae3e5b42c06",
+      "bytes": 1647
+    },
+    "eval/rag-results.json": {
+      "sha256": "856404b816d947abed0e47563d2b5711accf050154054515955e27e975f9921b",
+      "bytes": 44402
+    },
+    "eval/rag-initial-results.json": {
+      "sha256": "3dfbae7452c495f0ec45ab9213807df4778f6597d7b81c0e9982000df216cc92",
+      "bytes": 43236
+    },
+    "work/runtime/demo-6b3014cbd6982bc7.jar": {
+      "sha256": "6b3014cbd6982bc725a7235310155cf13cf222856b8b045636dea8badfc3cd7a",
+      "bytes": 26672194
+    },
+    "work/runtime/rag-development.jar": {
+      "sha256": "0c79b7541c3c03c64cd444d6864284f9ec0b80d9d7fabfd2bba814d307069aac",
+      "bytes": 26672120
+    }
+  },
+  "supervisorRecovery": {
+    "terminatedFrontendPid": 6915,
+    "restartedFrontendPid": 7121,
+    "proxyStatusAfterRecovery": "READY",
+    "mode": "LOCAL_RAG_GENERATION"
+  },
+  "historicalArtifactsPreserved": true,
+  "paidModelApiCost": 0,
+  "modelRuntime": {
+    "embedding": {
+      "pid": 4313,
+      "exit": null
+    },
+    "reranker": {
+      "pid": 4314,
+      "exit": null
+    },
+    "llm": {
+      "pid": 4315,
+      "exit": null
+    },
+    "qdrant": {
+      "pid": 4319,
+      "exit": null
+    }
+  },
+  "demoRuntime": {
+    "supervisorPid": 6913,
+    "rag": true,
+    "runtimeJar": "/workspace/ai-knowledge-assistant/work/runtime/demo-6b3014cbd6982bc7.jar",
+    "children": {
+      "backend": {
+        "pid": 6914,
+        "exit": null
+      },
+      "frontend": {
+        "pid": 7121,
+        "exit": null
+      },
+      "tunnel": {
+        "pid": 6994,
+        "exit": null
+      }
+    }
+  },
+  "networkPolicy": {
+    "specRevision": "17",
+    "observationsCurrent": true,
+    "httpMode": "unrestricted",
+    "httpState": "enforced",
+    "tcpDomains": [],
+    "tcpIpRanges": [],
+    "proxyPreserved": true,
+    "tlsVerification": true
+  }
+}

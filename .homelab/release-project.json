@@ -1,0 +1,14 @@
+{
+  "project": "atlas",
+  "repository": "ai-knowledge-assistant",
+  "accepted_main": "6e6180c96015ec043c1f116d50da9c1ef1ee51ea",
+  "accepted_ci": 39040813571,
+  "source_paths": [
+    "backend",
+    "frontend",
+    "config",
+    "scripts/local-deploy.py",
+    "scripts/local-model-runtime.py"
+  ],
+  "github_repository": "atlas-rag"
+}

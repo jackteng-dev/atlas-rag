@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-05T08:41:08.441Z",
+  "base": "https://uhfeqs-ip-90-96-179-66.tunnelmole.net",
+  "result": "PASS",
+  "profile": "reader",
+  "unscopedQuestion": true,
+  "status": "INSUFFICIENT_EVIDENCE",
+  "noPrivateDocumentInSources": true,
+  "noPrivateAmountInResponse": true,
+  "sourceDocumentIds": [],
+  "modelInputTokens": null,
+  "modelOutputTokens": null,
+  "requestId": "cecda98e-b06f-4cee-9a2a-932d15fcbf16",
+  "realModelPipeline": true,
+  "paidApiCalls": 0,
+  "realRetrievalServices": true,
+  "llmGenerationPerformed": false,
+  "generationSkippedByEvidenceGate": true
+}

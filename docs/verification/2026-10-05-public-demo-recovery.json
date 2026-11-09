@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-05T02:23:14.304Z",
+  "base": "https://odw9kt-ip-90-96-179-66.tunnelmole.net",
+  "pageHttpStatus": 200,
+  "mode": "OFFLINE_EXTRACTIVE",
+  "embedding": "NONE",
+  "question": "What backend and frontend ports are used?",
+  "questionStatus": "EXTRACTS_FOUND",
+  "requestId": "a50acdb6-dced-456e-a484-7deeb1ace3d7",
+  "citationChecks": 5,
+  "noEvidenceStatus": "INSUFFICIENT_EVIDENCE",
+  "browserQuestion": "PASS",
+  "browserSourceVerification": "PASS",
+  "mobileLayout": "PASS",
+  "pageErrors": [],
+  "configuration": {
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1",
+    "bm25B": 0.75,
+    "bm25K1": 1.2,
+    "topK": 5,
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "coverageThreshold": 0.6
+  },
+  "commit": "d22eb1560e52f7d57dab8be392ef0089dbdcd376",
+  "runtimePolicy": {
+    "specRevision": "7",
+    "httpMode": "unrestricted",
+    "httpState": "enforced"
+  },
+  "processManagement": {
+    "independentSessionSupervisor": true,
+    "restartFrontendCheck": "PASS",
+    "websocketHeartbeatSeconds": 20,
+    "telemetry": false,
+    "debugLogging": false
+  },
+  "processSnapshot": {
+    "supervisorPid": 3198,
+    "children": {
+      "backend": {
+        "pid": 3199,
+        "exit": null
+      },
+      "frontend": {
+        "pid": 3297,
+        "exit": null
+      },
+      "tunnel": {
+        "pid": 3255,
+        "exit": null
+      }
+    }
+  }
+}

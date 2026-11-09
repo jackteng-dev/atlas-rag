@@ -1,0 +1,21 @@
+{
+  "instance": "atlas",
+  "port": 18081,
+  "jar": "backend/target/knowledge-assistant-0.1.0.jar",
+  "store": "data/local-rag-store.json",
+  "accountsFile": null,
+  "collection": "atlas_local_v4",
+  "rag": { "candidateK": 10, "minimumLogit": -8.0, "maximumLogitGap": 5.0 },
+  "models": {
+    "reuse": false,
+    "workDirectory": "work/local-model-runtime",
+    "llamaServer": "work/tools/llama/llama-b11401/llama-server",
+    "qdrantBinary": "work/tools/qdrant/qdrant",
+    "llmFile": "work/models/qwen3-4b-q4.gguf",
+    "llmModel": "qwen3-4b-instruct-2507",
+    "embeddingFile": "work/models/bge-m3-q8.gguf",
+    "rerankerFile": "work/models/bge-reranker-v2-m3-q8.gguf",
+    "threads": null,
+    "ports": { "llm": 18111, "embedding": 18112, "reranker": 18113, "qdrant": 16333, "grpc": 16334 }
+  }
+}

@@ -1,0 +1,11 @@
+✔ gate-only status improvement cannot conceal lost selected evidence or missing candidate recall (2.811503ms)
+✔ latency uses median and nearest-rank p95 over all measured samples (0.393024ms)
+✔ API measurement rejects effective-setting drift and forged citation provenance (198.102269ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 706.402803

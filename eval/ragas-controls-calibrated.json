@@ -1,0 +1,492 @@
+{
+  "measuredAt": "2026-10-05T06:46:52.068480+00:00",
+  "ragasVersion": "0.4.3",
+  "judgeModel": "qwen3-4b-instruct-2507",
+  "embeddingModel": "BGE-M3",
+  "localOnly": true,
+  "telemetryDisabled": true,
+  "sourceArtifactSha256": null,
+  "adapterSha256": "82310f1b47ffaa24725a7b31033152eb97485b455475968573f479dd23903b15",
+  "configuration": {
+    "shortChinesePrompts": true,
+    "fewShotExamples": 0,
+    "relevanceStrictness": 1,
+    "temperature": 0,
+    "judgeMaxTokens": 768,
+    "contextPrecisionPromptVersion": "partial-evidence-v2"
+  },
+  "selection": {
+    "requestedSamples": 5,
+    "completedSamples": 5,
+    "requestedIds": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "complete": true
+  },
+  "totals": {
+    "averages": {
+      "contextPrecision": {
+        "mean": 0.79999999993,
+        "scored": 5,
+        "requested": 5
+      },
+      "faithfulness": {
+        "mean": 0.6,
+        "scored": 5,
+        "requested": 5
+      },
+      "answerRelevance": {
+        "mean": 0.894272369969711,
+        "scored": 5,
+        "requested": 5
+      }
+    },
+    "judgeRequests": 8,
+    "judgeCacheHits": 13,
+    "judgeInputTokens": 2751,
+    "judgeOutputTokens": 336,
+    "paidModelApiCost": 0
+  },
+  "controls": {
+    "faithfulnessAndPrecisionPasses": 5,
+    "samples": 5,
+    "relevanceOrdersOnTopicAboveOffTopic": true
+  },
+  "results": [
+    {
+      "id": "C01",
+      "question": "課程在哪間教室？",
+      "referenceAnswer": "課程在 B203 教室。",
+      "response": "課程在 B203 教室。",
+      "contexts": [
+        "課程地點是 B203 教室。"
+      ],
+      "expectedFaithfulness": 1,
+      "expectedContextPrecision": 1,
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9892524820657771
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "90745a9e362ea8f0c44be8bad15f28ecb4b1a30dd3f330b124d888613383b0e8",
+          "cacheHit": false,
+          "elapsedMs": 30376,
+          "usage": {
+            "completion_tokens": 41,
+            "prompt_tokens": 341,
+            "total_tokens": 382,
+            "prompt_tokens_details": {
+              "cached_tokens": 60
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確提到課程地點是 B203 教室，與問題直接相關，答案正確反映此事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "c2d8977be90bc5875e60f7f33247153879ee7a9cbd1f45adaed7155c26d50909",
+          "cacheHit": true,
+          "elapsedMs": 1,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "課程在 B203 教室。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "301e927db3cbc222fab481e3f1cb4e42be948e8b7382ddfb73715f4c2bcbef7f",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "課程在 B203 教室。",
+                "reason": "context 中「課程地點是 B203 教室」與 statement 內容一致，僅用詞略有差異，但意涵相同。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "a0ac2cb3f6569692ad45d07a14db946a8155340241bad93c2171e4d78b957075",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "課程在什麼教室？",
+            "noncommittal": 0
+          }
+        }
+      ],
+      "controlPass": true
+    },
+    {
+      "id": "C02",
+      "question": "課程在哪間教室？",
+      "referenceAnswer": "課程在 B203 教室。",
+      "response": "課程在 B204 教室。",
+      "contexts": [
+        "課程地點是 B203 教室。"
+      ],
+      "expectedFaithfulness": 0,
+      "expectedContextPrecision": 1,
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 0.0,
+        "answerRelevance": 0.9892524820657771
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "90745a9e362ea8f0c44be8bad15f28ecb4b1a30dd3f330b124d888613383b0e8",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "reason": "context 中明確提到課程地點是 B203 教室，與問題直接相關，答案正確反映此事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "a3b348f22904229a686bf950472264a05e1eb7463a29c010cf76816e264d047d",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "課程在 B204 教室。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "2d3cb062eeadee55843a2913f9225966b09b604734e0a39ff33432511af025b0",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "課程在 B204 教室。",
+                "reason": "context 為 B203 教室，與 statement 矛盾",
+                "verdict": 0
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "d63722c321c1cda1c4fbb89d6a84fcc598e88f753d777627f40fb3e8e0b8556f",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "課程在什麼教室？",
+            "noncommittal": 0
+          }
+        }
+      ],
+      "controlPass": true
+    },
+    {
+      "id": "C03",
+      "question": "課程在哪間教室？",
+      "referenceAnswer": "課程在 B203 教室。",
+      "response": "課程在 B203 教室。",
+      "contexts": [
+        "客服於平日上午九點至下午六點服務。"
+      ],
+      "expectedFaithfulness": 0,
+      "expectedContextPrecision": 0,
+      "scores": {
+        "contextPrecision": 0.0,
+        "faithfulness": 0.0,
+        "answerRelevance": 0.9892524820657771
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "9e6e4d624d11221d972fce5a984b65f464e145208812b511552500a6efd86c38",
+          "cacheHit": false,
+          "elapsedMs": 15040,
+          "usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 341,
+            "total_tokens": 379,
+            "prompt_tokens_details": {
+              "cached_tokens": 304
+            }
+          },
+          "judgment": {
+            "reason": "context 中未提及教室或課程相關資訊，與 answer 中的「B203 教室」無關",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "c2d8977be90bc5875e60f7f33247153879ee7a9cbd1f45adaed7155c26d50909",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "課程在 B203 教室。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "38d17dda88d0211006a3d695b78a88e4b265c4b72173c4f564b630e975feeaf1",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "課程在 B203 教室。",
+                "reason": "context 未提及教室或課程資訊",
+                "verdict": 0
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "a0ac2cb3f6569692ad45d07a14db946a8155340241bad93c2171e4d78b957075",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "課程在什麼教室？",
+            "noncommittal": 0
+          }
+        }
+      ],
+      "controlPass": true
+    },
+    {
+      "id": "C04",
+      "question": "課程在哪間教室？",
+      "referenceAnswer": "課程在 B203 教室。",
+      "response": "客服於平日上午九點至下午六點服務。",
+      "contexts": [
+        "課程地點是 B203 教室。客服於平日上午九點至下午六點服務。"
+      ],
+      "expectedFaithfulness": 1,
+      "expectedContextPrecision": 1,
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.5436662779543066
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "b6936f5c5680426d17d92e374c2ce1fd7737b3769961aefa1af4fcee49fd4a00",
+          "cacheHit": false,
+          "elapsedMs": 20120,
+          "usage": {
+            "completion_tokens": 40,
+            "prompt_tokens": 353,
+            "total_tokens": 393,
+            "prompt_tokens_details": {
+              "cached_tokens": 304
+            }
+          },
+          "judgment": {
+            "reason": "context 中明確提到課程地點是 B203 教室，與 answer 中的資訊一致，直接相關。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "6b18e04532bafd65bf8e284ba4eece6178d00174ec2ac0c590674f6d41750c81",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              "客服於平日上午九點至下午六點服務。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "d626b3e2995155b8ada3173b329461fd759d2db05ed886f4b6a1ed8e9c8328fd",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "statements": [
+              {
+                "statement": "客服於平日上午九點至下午六點服務。",
+                "reason": "context 中明確提及客服服務時間，與 statement 一致",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "9b979c41f0fcb168f1231a4f66cbcacfd12fce07802f6435ea0664efab6d6791",
+          "cacheHit": true,
+          "elapsedMs": 0,
+          "usage": null,
+          "judgment": {
+            "question": "客服的服務時間是什麼？",
+            "noncommittal": 0
+          }
+        }
+      ],
+      "controlPass": true
+    },
+    {
+      "id": "C05",
+      "question": "課程在哪間教室，幾點開始？",
+      "referenceAnswer": "課程在 B203 教室，上午十點開始。",
+      "response": "課程在 B203 教室，上午十點開始。",
+      "contexts": [
+        "課程地點是 B203 教室。",
+        "課程上午十點開始。"
+      ],
+      "expectedFaithfulness": 1,
+      "expectedContextPrecision": 1,
+      "scores": {
+        "contextPrecision": 0.99999999995,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9599381256969173
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "4b1c13125d30bf37863c5fa35769ee34e3c64093e74af936a19437884da45559",
+          "cacheHit": false,
+          "elapsedMs": 18592,
+          "usage": {
+            "completion_tokens": 44,
+            "prompt_tokens": 350,
+            "total_tokens": 394,
+            "prompt_tokens_details": {
+              "cached_tokens": 297
+            }
+          },
+          "judgment": {
+            "reason": "context 提供了教室地點 B203，與 answer 中的教室部分相符；但未提及開始時間，故僅部分支持。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "293080d0c0264639f84a025f44b9e741f19a8a6147f29ff8b307d20ee1c81dd5",
+          "cacheHit": false,
+          "elapsedMs": 16851,
+          "usage": {
+            "completion_tokens": 48,
+            "prompt_tokens": 344,
+            "total_tokens": 392,
+            "prompt_tokens_details": {
+              "cached_tokens": 309
+            }
+          },
+          "judgment": {
+            "reason": "context 提到課程上午十點開始，與 answer 中的時間部分一致，雖未提及教室，但時間事實直接相關，故支持至少一個相關事實。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "354bddf51b100808ac2fcf819d9ecb873282904dd810a08171e16f0df7d285a2",
+          "cacheHit": false,
+          "elapsedMs": 9620,
+          "usage": {
+            "completion_tokens": 23,
+            "prompt_tokens": 264,
+            "total_tokens": 287,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "課程在 B203 教室",
+              "課程在上午十點開始"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "a476026788a23c907a95ae347917db516ff7c35a393a78691b1abb0c1adab04f",
+          "cacheHit": false,
+          "elapsedMs": 32801,
+          "usage": {
+            "completion_tokens": 82,
+            "prompt_tokens": 456,
+            "total_tokens": 538,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "課程在 B203 教室",
+                "reason": "context 中提到課程地點是 B203 教室，內容一致",
+                "verdict": 1
+              },
+              {
+                "statement": "課程在上午十點開始",
+                "reason": "context 中提到課程上午十點開始，內容一致",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "4fd93df040627452ca3994ec5110df83b22a6a946331e958335a10daab4f261c",
+          "cacheHit": false,
+          "elapsedMs": 10271,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 302,
+            "total_tokens": 322,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "課程的教室和開始時間是什麼？",
+            "noncommittal": 0
+          }
+        }
+      ],
+      "controlPass": true
+    }
+  ],
+  "limitations": [
+    "Small local judge may be inaccurate; scores are not independent human judgments",
+    "Generator and judge share a model; correlated bias is possible",
+    "Short Chinese prompts and strictness=1 differ from default Ragas configuration",
+    "Missing/refused/unauthorized answers are not assigned perfect semantic scores",
+    "Errors and non-finite scores remain null and excluded from means with coverage reported"
+  ]
+}

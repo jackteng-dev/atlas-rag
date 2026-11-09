@@ -1,0 +1,1 @@
+{"output":"work/job-auth-verification-1791189626853.json","checkedAt":"2026-10-05T08:40:26.852Z","result":"PASS","realHttp":{"anonymousPost":401,"creation":202,"otherOwnerGet":404,"ownerFailedError":404,"noStore":true},"browserDelayedPrivateResponseDiscarded":true,"browserQuestionAndPollResponsesAreExplicitStubs":true}

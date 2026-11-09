@@ -1,0 +1,649 @@
+{
+  "measuredAt": "2026-10-05T06:43:47.286059+00:00",
+  "ragasVersion": "0.4.3",
+  "judgeModel": "qwen3-4b-instruct-2507",
+  "embeddingModel": "BGE-M3",
+  "localOnly": true,
+  "telemetryDisabled": true,
+  "sourceArtifactSha256": "7450a40c32b42a95a8cf12822a06a7eeb80a95eb2c3b40fe102b7dcaf8f90df2",
+  "adapterSha256": "732c689c6cbde22ff850c18f8d8229c346e71ac64129c4bf60318d2039e7b783",
+  "configuration": {
+    "shortChinesePrompts": true,
+    "fewShotExamples": 0,
+    "relevanceStrictness": 1,
+    "temperature": 0,
+    "judgeMaxTokens": 768
+  },
+  "totals": {
+    "averages": {
+      "contextPrecision": {
+        "mean": 0.7666666665983333,
+        "scored": 5,
+        "requested": 5
+      },
+      "faithfulness": {
+        "mean": 1.0,
+        "scored": 5,
+        "requested": 5
+      },
+      "answerRelevance": {
+        "mean": 0.7751248167227969,
+        "scored": 5,
+        "requested": 5
+      }
+    },
+    "judgeRequests": 26,
+    "judgeCacheHits": 0,
+    "judgeInputTokens": 9729,
+    "judgeOutputTokens": 1356,
+    "paidModelApiCost": 0
+  },
+  "controls": null,
+  "results": [
+    {
+      "id": "D01",
+      "question": "這套文件助理的前後端分別用哪些技術？",
+      "referenceAnswer": "後端是 Java / Spring Boot，前端是 Vue 3 / TypeScript。",
+      "response": "後端使用 Java / Spring Boot\n前端使用 Vue 3 / TypeScript",
+      "contexts": [
+        "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.686703310977867
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "cb352495398f79c93e9403771ef0fb566da0ff08bb7d2df90df138aa3e89d87a",
+          "cacheHit": false,
+          "elapsedMs": 30669,
+          "usage": {
+            "completion_tokens": 50,
+            "prompt_tokens": 357,
+            "total_tokens": 407,
+            "prompt_tokens_details": {
+              "cached_tokens": 261
+            }
+          },
+          "judgment": {
+            "reason": "context 明確提到後端為 Java / Spring Boot、前端為 Vue 3 / TypeScript，與 answer 完全一致，且提供完整且正確的技術資訊。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "4a814d8089482f593899fc8533fb8034683bced2c21d3462a70a5f2e71131a5f",
+          "cacheHit": false,
+          "elapsedMs": 76573,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 268,
+            "total_tokens": 288,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "後端使用 Java / Spring Boot",
+              "前端使用 Vue 3 / TypeScript"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "b22742835d16964dbc77214390b1bb562e6d098bd8c74593d069c46240286210",
+          "cacheHit": false,
+          "elapsedMs": 32728,
+          "usage": {
+            "completion_tokens": 84,
+            "prompt_tokens": 482,
+            "total_tokens": 566,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "後端使用 Java / Spring Boot",
+                "reason": "context 中明確提到後端是 Java / Spring Boot 後端",
+                "verdict": 1
+              },
+              {
+                "statement": "前端使用 Vue 3 / TypeScript",
+                "reason": "context 中明確提到前端是 Vue 3 / TypeScript 前端",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "5ee08bc641e1532a3b8012fd0a3e78a4e4d9a93b71e46541ea6d9c22453f087d",
+          "cacheHit": false,
+          "elapsedMs": 7714,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 302,
+            "total_tokens": 322,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "後端和前端分別使用什麼技術？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "question": "向量資料是存進哪個資料庫？",
+      "referenceAnswer": "BGE-M3 產生的 1024 維向量存進 Qdrant。",
+      "response": "向量資料存進 Qdrant",
+      "contexts": [
+        "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+        "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。",
+        "從專案根目錄執行 python3 scripts/local-model-runtime.py，啟動本專案獨立的 Qdrant、BGE-M3 embedding、BGE reranker 及 Qwen2.5 模型。所有服務只監聽 loopback，不使用全域資料庫服務或 Docker。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.8333333332916666,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9355116607884949
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "4b06dfbcc435b81ebb2371dfd68ca24bd69e41a832cc583082ee2307ee82700d",
+          "cacheHit": false,
+          "elapsedMs": 38258,
+          "usage": {
+            "completion_tokens": 85,
+            "prompt_tokens": 415,
+            "total_tokens": 500,
+            "prompt_tokens_details": {
+              "cached_tokens": 261
+            }
+          },
+          "judgment": {
+            "reason": "context 明確指出「BGE-M3 產生 1024 維多語向量並存進自架 Qdrant」，與 answer 中「BGE-M3 產生的 1024 維向量存進 Qdrant」內容一致，且資訊完整且無誤解。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "a308cda0c260b607fcce683ad3ceaa03b72ceae4692a2099e12f43d34aecb27c",
+          "cacheHit": false,
+          "elapsedMs": 30892,
+          "usage": {
+            "completion_tokens": 75,
+            "prompt_tokens": 392,
+            "total_tokens": 467,
+            "prompt_tokens_details": {
+              "cached_tokens": 278
+            }
+          },
+          "judgment": {
+            "reason": "context 中提到向量會同步到 Qdrant，並排除舊版本，但未說明向量資料是存進哪個資料庫，也未提及 BGE-M3 或 1024 維向量的細節，資訊不完整且與 answer 不一致。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "b7deebc09346f9c9f6f37f7fcd22d0113cc37e39d7f8f9309d5bfe9eabca85b5",
+          "cacheHit": false,
+          "elapsedMs": 27889,
+          "usage": {
+            "completion_tokens": 64,
+            "prompt_tokens": 379,
+            "total_tokens": 443,
+            "prompt_tokens_details": {
+              "cached_tokens": 278
+            }
+          },
+          "judgment": {
+            "reason": "context 提到向量資料存進 Qdrant，且明確指出 BGE-M3 產生的 1024 維向量存進 Qdrant，與 answer 一致，資訊完整且無誤解。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "cd9af0926496e6b66badc10f26aefecf8c56024668724e4b6cb5beeff6fd8223",
+          "cacheHit": false,
+          "elapsedMs": 7378,
+          "usage": {
+            "completion_tokens": 14,
+            "prompt_tokens": 259,
+            "total_tokens": 273,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "向量資料存進Qdrant"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "32b9b60df683481a1f5024bcd22be8868cdee2a4c8ae96dd01bbe51d96c50290",
+          "cacheHit": false,
+          "elapsedMs": 44676,
+          "usage": {
+            "completion_tokens": 72,
+            "prompt_tokens": 667,
+            "total_tokens": 739,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "向量資料存進Qdrant",
+                "reason": "context 中提到 \"BGE-M3 產生 1024 維多語向量並存進自架 Qdrant\"，明確說明向量存進 Qdrant",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "67e7ba945d3b8d6df0da94b5801cdacdb82f35812eb40457e7e1e27903c40048",
+          "cacheHit": false,
+          "elapsedMs": 8158,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 295,
+            "total_tokens": 314,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "向量資料存進什麼系統？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "question": "填好候補登記就確定拿到課程名額了嗎？",
+      "referenceAnswer": "候補登記不代表錄取；正式錄取通知且完成付款後才取得名額。",
+      "response": "候補登記不代表錄取。",
+      "contexts": [
+        "候補登記不代表錄取。學員收到正式錄取通知且完成付款後，才取得課程名額。上課當天請提前十五分鐘報到。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.7108370666329479
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "4c843f564c5f3f1b706b5536bf382411d9203b00a73d887a4087aa63864b0cdd",
+          "cacheHit": false,
+          "elapsedMs": 29019,
+          "usage": {
+            "completion_tokens": 64,
+            "prompt_tokens": 355,
+            "total_tokens": 419,
+            "prompt_tokens_details": {
+              "cached_tokens": 261
+            }
+          },
+          "judgment": {
+            "reason": "context 明確指出候補登記不等同於錄取，且只有在收到正式錄取通知並完成付款後才取得課程名額，與 answer 內容一致，且無推測或關鍵字誤用。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "454fb517109a36f92bb49eebc3a84a7f6a0661f09bb6a87ea42a4424168c7652",
+          "cacheHit": false,
+          "elapsedMs": 7209,
+          "usage": {
+            "completion_tokens": 13,
+            "prompt_tokens": 263,
+            "total_tokens": 276,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "候補登記不代表錄取。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "6b09195c7b2fe6c2db8f5bb2526548bd22115669c27733d4b7e3495f1ab16ab2",
+          "cacheHit": false,
+          "elapsedMs": 23149,
+          "usage": {
+            "completion_tokens": 49,
+            "prompt_tokens": 464,
+            "total_tokens": 513,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "候補登記不代表錄取。",
+                "reason": "context 中明確提到「候補登記不代表錄取」，與原文一致。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "cefab2615ba40fa5b094e3039250679aa801ddefae636ea5408a3efd12c0b642",
+          "cacheHit": false,
+          "elapsedMs": 7416,
+          "usage": {
+            "completion_tokens": 19,
+            "prompt_tokens": 295,
+            "total_tokens": 314,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "候補登記代表什麼意思？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "question": "尚未啟用的課程退費要在多久內申請，通過後多久退款？",
+      "referenceAnswer": "付款後七天內申請，審核通過後五個工作天內退回原付款方式。",
+      "response": "尚未啟用的課程，需在付款後七天內申請退費。\n退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+      "contexts": [
+        "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+        "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "calibration",
+      "scores": {
+        "contextPrecision": 0.0,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.9213664836826799
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "803ef001080ab4af831a9d9ac82bd51b8c17e7f8265bb955671a769257e9a16b",
+          "cacheHit": false,
+          "elapsedMs": 26371,
+          "usage": {
+            "completion_tokens": 68,
+            "prompt_tokens": 357,
+            "total_tokens": 425,
+            "prompt_tokens_details": {
+              "cached_tokens": 261
+            }
+          },
+          "judgment": {
+            "reason": "context 提供了未啟用課程退款的申請期限（付款後七天內），但未提及審核通過後的退款時間，與 answer 中「五個工作天內退回原付款方式」不一致，因此資訊不完整且不一致。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "b8c8fcdc34e23dd8376c4d59cf46743ce4604636e46d210f86ab513219ca957a",
+          "cacheHit": false,
+          "elapsedMs": 23683,
+          "usage": {
+            "completion_tokens": 60,
+            "prompt_tokens": 350,
+            "total_tokens": 410,
+            "prompt_tokens_details": {
+              "cached_tokens": 284
+            }
+          },
+          "judgment": {
+            "reason": "context 提供了審核通過後五個工作天內退款的資訊，與 answer 中的退款時間一致，但未提及「付款後七天內申請」的條件，因此缺少回答問題所需完整資訊。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "ed88c29cedd806497265e57b9de2d4b8b68a30ab3189518dfc4cb95c3878ec4b",
+          "cacheHit": false,
+          "elapsedMs": 19738,
+          "usage": {
+            "completion_tokens": 45,
+            "prompt_tokens": 295,
+            "total_tokens": 340,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "尚未啟用的課程，需在付款後七天內申請退費。",
+              "退款申請審核通過後，款項於五個工作天內退回原付款方式。"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "3de10acbc626b8886fa7fca2519a36ac44d81eba7012d599ce0c2fec6c1bcae4",
+          "cacheHit": false,
+          "elapsedMs": 56640,
+          "usage": {
+            "completion_tokens": 137,
+            "prompt_tokens": 526,
+            "total_tokens": 663,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "尚未啟用的課程，需在付款後七天內申請退費。",
+                "reason": "context 中明確提到「未啟用課程的訂單，可在付款後七天內申請全額退款」，語意一致。",
+                "verdict": 1
+              },
+              {
+                "statement": "退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+                "reason": "context 中明確提到「退款申請審核通過後，款項於五個工作天內退回原付款方式」，語意一致。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "3928f41500cb4bec3a23e4d65b9bd7bc432b8401734a4b25de769878c1caed75",
+          "cacheHit": false,
+          "elapsedMs": 9614,
+          "usage": {
+            "completion_tokens": 21,
+            "prompt_tokens": 325,
+            "total_tokens": 346,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "尚未啟用的課程如何申請退費？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "H01",
+      "question": "可以介紹一下這個系統底層用的程式語言與框架嗎？",
+      "referenceAnswer": "Java / Spring Boot 後端，Vue 3 / TypeScript 前端。",
+      "response": "後端使用 Java / Spring Boot。\n前端使用 Vue 3 / TypeScript。",
+      "contexts": [
+        "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。",
+        "從專案根目錄執行 python3 scripts/local-model-runtime.py，啟動本專案獨立的 Qdrant、BGE-M3 embedding、BGE reranker 及 Qwen2.5 模型。所有服務只監聽 loopback，不使用全域資料庫服務或 Docker。",
+        "設定 AKA_RAG_ENABLED=true、AKA_CHUNK_STRATEGY=semantic 與獨立 AKA_STORE，再啟動 packaged Java jar。前端使用 npm --prefix frontend run preview；/api 代理至 loopback 18081。"
+      ],
+      "status": "ANSWER_GENERATED",
+      "split": "holdout",
+      "scores": {
+        "contextPrecision": 0.9999999999,
+        "faithfulness": 1.0,
+        "answerRelevance": 0.6212055615319947
+      },
+      "errors": {},
+      "traces": [
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "44a707a192deac57fe2b4204ad111aa9952ae3a4345ea386804cd110e036f526",
+          "cacheHit": false,
+          "elapsedMs": 22230,
+          "usage": {
+            "completion_tokens": 53,
+            "prompt_tokens": 361,
+            "total_tokens": 414,
+            "prompt_tokens_details": {
+              "cached_tokens": 261
+            }
+          },
+          "judgment": {
+            "reason": "context 明確提到後端使用 Java / Spring Boot、前端使用 Vue 3 / TypeScript，與 answer 完全一致，且直接回答問題所問的程式語言與框架。",
+            "verdict": 1
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "13621395d8da0953621693afde67f7486a126c04ab07bf3b81bc89a14b128048",
+          "cacheHit": false,
+          "elapsedMs": 24248,
+          "usage": {
+            "completion_tokens": 59,
+            "prompt_tokens": 378,
+            "total_tokens": 437,
+            "prompt_tokens_details": {
+              "cached_tokens": 282
+            }
+          },
+          "judgment": {
+            "reason": "context 中未提及任何關於底層程式語言或框架的資訊，僅描述了執行命令與服務啟動內容，與 answer 中的 Java/Spring Boot 和 Vue 3/TypeScript 無關。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "ContextPrecisionOutput",
+          "promptSha256": "85f7deaa42c4e2cb7d3cfd8fa921700fdb8089c9f40aa9e53af7e7c0d804a06a",
+          "cacheHit": false,
+          "elapsedMs": 22459,
+          "usage": {
+            "completion_tokens": 57,
+            "prompt_tokens": 368,
+            "total_tokens": 425,
+            "prompt_tokens_details": {
+              "cached_tokens": 282
+            }
+          },
+          "judgment": {
+            "reason": "context 提到後端使用 Java jar 與前端使用 npm，暗示 Java 和 Vue/TypeScript，但未明確提及 Spring Boot 或 TypeScript，資訊不完整且不一致，無法確認與 answer 一致。",
+            "verdict": 0
+          }
+        },
+        {
+          "responseModel": "StatementGeneratorOutput",
+          "promptSha256": "7fd74c0877d1d14dd769dc34f3767571404cc41cbd7672a19322b0f5455b5a4c",
+          "cacheHit": false,
+          "elapsedMs": 9649,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 272,
+            "total_tokens": 292,
+            "prompt_tokens_details": {
+              "cached_tokens": 224
+            }
+          },
+          "judgment": {
+            "statements": [
+              "後端使用 Java / Spring Boot",
+              "前端使用 Vue 3 / TypeScript"
+            ]
+          }
+        },
+        {
+          "responseModel": "NLIStatementOutput",
+          "promptSha256": "5e6e49b5d536d92ae4155cea110cb81e131e4d10ede5a7e7599de305941533dc",
+          "cacheHit": false,
+          "elapsedMs": 46425,
+          "usage": {
+            "completion_tokens": 93,
+            "prompt_tokens": 600,
+            "total_tokens": 693,
+            "prompt_tokens_details": {
+              "cached_tokens": 400
+            }
+          },
+          "judgment": {
+            "statements": [
+              {
+                "statement": "後端使用 Java / Spring Boot",
+                "reason": "context 中明確提到「本專案是 Java / Spring Boot 後端」，相符。",
+                "verdict": 1
+              },
+              {
+                "statement": "前端使用 Vue 3 / TypeScript",
+                "reason": "context 中明確提到「Vue 3 / TypeScript 前端」，相符。",
+                "verdict": 1
+              }
+            ]
+          }
+        },
+        {
+          "responseModel": "AnswerRelevanceOutput",
+          "promptSha256": "b82e5f51c30dd9ba061180a933826f42f35468c48d2ed54b4a4efc1d5f746604",
+          "cacheHit": false,
+          "elapsedMs": 8333,
+          "usage": {
+            "completion_tokens": 20,
+            "prompt_tokens": 304,
+            "total_tokens": 324,
+            "prompt_tokens_details": {
+              "cached_tokens": 277
+            }
+          },
+          "judgment": {
+            "question": "後端和前端分別使用什麼技術？",
+            "noncommittal": 0
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Small local judge may be inaccurate; scores are not independent human judgments",
+    "Generator and judge share a model; correlated bias is possible",
+    "Short Chinese prompts and strictness=1 differ from default Ragas configuration",
+    "Missing/refused/unauthorized answers are not assigned perfect semantic scores",
+    "Errors and non-finite scores remain null and excluded from means with coverage reported"
+  ]
+}

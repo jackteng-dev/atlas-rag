@@ -1,0 +1,65 @@
+{
+  "platform": "linux-x64",
+  "artifacts": [
+    {
+      "name": "qwen2.5-1.5b-q4.gguf",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/91cad51170dc346986eccefdc2dd33a9da36ead9/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+      "path": "work/models/qwen2.5-1.5b-q4.gguf",
+      "sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+      "bytes": 1117320736,
+      "upstreamLicense": "Apache-2.0",
+      "profile": "legacy"
+    },
+    {
+      "name": "bge-m3-q8.gguf",
+      "url": "https://huggingface.co/gpustack/bge-m3-GGUF/resolve/2d48f1737679ad900d5c26c5aad5410e9c70fdca/bge-m3-Q8_0.gguf",
+      "path": "work/models/bge-m3-q8.gguf",
+      "sha256": "950f4a8e5e19477a6d3c26d2f162233c20002c601f75e4b002e3239997821167",
+      "bytes": 634553760,
+      "upstreamLicense": "MIT"
+    },
+    {
+      "name": "bge-reranker-v2-m3-q8.gguf",
+      "url": "https://huggingface.co/gpustack/bge-reranker-v2-m3-GGUF/resolve/3093af03b1a635e67b084b1d8c03c5f5e020fd05/bge-reranker-v2-m3-Q8_0.gguf",
+      "path": "work/models/bge-reranker-v2-m3-q8.gguf",
+      "sha256": "a43c7c9b11a4c1517e5bf95151960e1621d1b72f7a493364b01e386cf1aaa1d3",
+      "bytes": 635676416,
+      "upstreamLicense": "Apache-2.0"
+    },
+    {
+      "name": "llama.tar.gz",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b11401/llama-b11401-bin-ubuntu-x64.tar.gz",
+      "path": "work/tools/llama.tar.gz",
+      "sha256": "5c1c37cb6782dc01766c1059ec8d1465d2082a19b1dedad19112b2dc0d0dbba1",
+      "bytes": 17679234,
+      "upstreamLicense": "MIT"
+    },
+    {
+      "name": "qdrant.tar.gz",
+      "url": "https://github.com/qdrant/qdrant/releases/download/v1.19.1/qdrant-x86_64-unknown-linux-gnu.tar.gz",
+      "path": "work/tools/qdrant.tar.gz",
+      "sha256": "eef986e769d4d3e806dd2d546e1b4ecdd416211e54d34b4ed764fac7c58e1085",
+      "bytes": 32172790,
+      "upstreamLicense": "Apache-2.0"
+    },
+    {
+      "name": "qwen3-4b-q4.gguf",
+      "url": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/a06e946bb6b655725eafa393f4a9745d460374c9/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+      "path": "work/models/qwen3-4b-q4.gguf",
+      "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+      "bytes": 2497281120,
+      "upstreamLicense": "Apache-2.0",
+      "profile": "current"
+    }
+  ],
+  "executables": [
+    {
+      "path": "work/tools/llama/llama-b11401/llama-server",
+      "sha256": "dc312bcb73ea8d6eebe8b7710a3edbf62fcbf85e3220e01da1664ae42e0b2897"
+    },
+    {
+      "path": "work/tools/qdrant/qdrant",
+      "sha256": "f1823c24376c4a5f2f665d42dc2f52fe4e537e7c2b070b8ae7da575d83327e3a"
+    }
+  ]
+}

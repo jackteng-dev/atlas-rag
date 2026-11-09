@@ -1,0 +1,1304 @@
+{
+  "measuredAt": "2026-10-05T04:32:44.490Z",
+  "datasetSha256": "bbde112be155177b3e1455051a1329f5dcd14ab115c2028a8197aae3e5b42c06",
+  "configuration": {
+    "coverageThreshold": 0.6,
+    "bm25K1": 1.2,
+    "bm25B": 0.75,
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1",
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "topK": 5,
+    "rag": {
+      "fusion": "RRF_K60",
+      "llm": "QWEN2_5_1_5B_INSTRUCT",
+      "vectorStore": "QDRANT",
+      "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+      "embedding": "BGE_M3",
+      "candidateK": 10,
+      "enabled": true,
+      "paidApiCalls": 0,
+      "reranker": "BGE_RERANKER_V2_M3",
+      "rerankerMinLogit": -6
+    }
+  },
+  "corpus": [
+    {
+      "id": "architecture",
+      "version": 2,
+      "contentHash": "68fae4f97495ecbc2d4a6ed80e0c213f78d4d1bf140e3904ac67e6c26f2eedfd",
+      "metadata": {
+        "department": "public",
+        "owner": "public-demo",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "rag",
+          "current-architecture"
+        ]
+      },
+      "chunkCount": 5
+    },
+    {
+      "id": "data-policy",
+      "version": 1,
+      "contentHash": "d7397cdf7afc9dcaa1ace7941143276c89b9a355f562f6b6d2c3644678d80a6e",
+      "metadata": {
+        "department": "public",
+        "owner": "public-demo",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": []
+      },
+      "chunkCount": 5
+    },
+    {
+      "id": "operations",
+      "version": 2,
+      "contentHash": "6b735622a48eb1d12fae3d780e9f7e673c87554855378a75dcb89e3efd1d7b37",
+      "metadata": {
+        "department": "public",
+        "owner": "public-demo",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "rag",
+          "current-architecture"
+        ]
+      },
+      "chunkCount": 4
+    },
+    {
+      "id": "security-fixture",
+      "version": 1,
+      "contentHash": "7529b9519397ca55d19d11edda63bb045881d24147fe3c863a2e86e1c516cac9",
+      "metadata": {
+        "department": "public",
+        "owner": "public-demo",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": []
+      },
+      "chunkCount": 2
+    }
+  ],
+  "totals": {
+    "questions": 8,
+    "expectedStatusMatches": 7,
+    "citedSourceProvenanceChecks": 7,
+    "generatedCitationReferences": 7,
+    "faithfulness": null,
+    "answerRelevance": null,
+    "paidModelApiCost": 0,
+    "generationInputTokens": 2211,
+    "generationOutputTokens": 436
+  },
+  "latency": {
+    "samples": 8,
+    "medianMs": 20766.5,
+    "p95Ms": 51065
+  },
+  "results": [
+    {
+      "id": "R01",
+      "question": "你用什麼架構",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "architecture::技術架構"
+      ],
+      "requiredTerms": [
+        "Java",
+        "Spring Boot",
+        "Vue"
+      ],
+      "actualStatus": "ANSWER_GENERATED",
+      "statusPass": true,
+      "referenceHits": 1,
+      "selectedContextPrecisionByHeadingLabel": 0.2,
+      "requiredTermsPresent": true,
+      "citationCount": 1,
+      "validCitations": 1,
+      "roundTripMs": 51065,
+      "answer": {
+        "requestId": "8b33bc8f-1e37-4333-9af9-2f8eb5244650",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-bde2102d34ebcc93-1",
+            "quote": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-1f78bf31234305ef-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "模型回答",
+            "excerpt": "Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答。模型使用 llama.cpp 在 CPU 執行，回覆須包含引用；後端驗證引用指向目前可讀的文件與版本。沒有證據時拒答。來源正確不保證生成句子都正確，仍需檢查語意忠實度與答案相關性。",
+            "lineStart": 13,
+            "lineEnd": 13,
+            "score": -2.507768392562866,
+            "href": "/api/documents/architecture/chunks/architecture-1f78bf31234305ef-1?version=2"
+          },
+          {
+            "chunkId": "architecture-bde2102d34ebcc93-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "技術架構",
+            "excerpt": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": -2.714465379714966,
+            "href": "/api/documents/architecture/chunks/architecture-bde2102d34ebcc93-1?version=2"
+          },
+          {
+            "chunkId": "architecture-706473c77dfcdaf7-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "執行與費用",
+            "excerpt": "前端監聽 loopback port 4175，後端展示使用 loopback port 18081。Qdrant 16333，LLM 18111，embedding 18112，reranker 18113。使用本地開源模型，沒有付費模型 API 呼叫；執行環境本身的成本不由模型 API 計費。",
+            "lineStart": 16,
+            "lineEnd": 16,
+            "score": -2.767815113067627,
+            "href": "/api/documents/architecture/chunks/architecture-706473c77dfcdaf7-1?version=2"
+          },
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "混合搜尋與重排",
+            "excerpt": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -3.4586739540100098,
+            "href": "/api/documents/architecture/chunks/architecture-686fdd63dbd6f8f8-1?version=2"
+          },
+          {
+            "chunkId": "architecture-cf667d975fa5abac-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "文件攝取",
+            "excerpt": "文件先保留 Markdown 標題與段落，再以 BGE-M3 embedding 比較相鄰段落，合併同一標題內相近的概念。文件具有部門、擁有者、允許角色、到期日、標籤與版本 metadata。權限由伺服器認證帳號決定，過期內容在搜尋之前就排除。",
+            "lineStart": 7,
+            "lineEnd": 7,
+            "score": -3.531355381011963,
+            "href": "/api/documents/architecture/chunks/architecture-cf667d975fa5abac-1?version=2"
+          }
+        ],
+        "coverage": 0,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 50913,
+        "modelInputTokens": 698,
+        "modelOutputTokens": 69,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [
+          {
+            "text": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。",
+            "chunkIds": [
+              "architecture-bde2102d34ebcc93-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 14116,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 9,
+            "inputCount": 4,
+            "outputCount": 0
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 105,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 1,
+            "inputCount": 10,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 14638,
+            "inputCount": 10,
+            "outputCount": 5
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 22038,
+            "inputCount": 5,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R02",
+      "question": "使用哪種向量資料庫？",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "architecture::混合搜尋與重排",
+        "operations::模型與服務"
+      ],
+      "requiredTerms": [
+        "Qdrant"
+      ],
+      "actualStatus": "ANSWER_GENERATED",
+      "statusPass": true,
+      "referenceHits": 1,
+      "selectedContextPrecisionByHeadingLabel": 1,
+      "requiredTermsPresent": true,
+      "citationCount": 1,
+      "validCitations": 1,
+      "roundTripMs": 21518,
+      "answer": {
+        "requestId": "7e0b9bc9-63eb-495a-a19c-fa00f5f3e2ae",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "quote": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "混合搜尋與重排",
+            "excerpt": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -5.024691581726074,
+            "href": "/api/documents/architecture/chunks/architecture-686fdd63dbd6f8f8-1?version=2"
+          }
+        ],
+        "coverage": 0.5,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 21502,
+        "modelInputTokens": 287,
+        "modelOutputTokens": 53,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [
+          {
+            "text": "使用 Qdrant 作為向量資料庫。",
+            "chunkIds": [
+              "architecture-686fdd63dbd6f8f8-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 4,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 273,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 20,
+            "outputCount": 13
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 12116,
+            "inputCount": 13,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 9105,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R03",
+      "question": "為什麼同時使用關鍵字和向量搜尋？",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "architecture::混合搜尋與重排"
+      ],
+      "requiredTerms": [
+        "BM25"
+      ],
+      "actualStatus": "ANSWER_GENERATED",
+      "statusPass": true,
+      "referenceHits": 1,
+      "selectedContextPrecisionByHeadingLabel": 1,
+      "requiredTermsPresent": true,
+      "citationCount": 3,
+      "validCitations": 3,
+      "roundTripMs": 39394,
+      "answer": {
+        "requestId": "614ad2e5-0566-4889-aaba-0cd8925af5b5",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "quote": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "混合搜尋與重排",
+            "excerpt": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -3.595470905303955,
+            "href": "/api/documents/architecture/chunks/architecture-686fdd63dbd6f8f8-1?version=2"
+          }
+        ],
+        "coverage": 0.35714285714285715,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 39376,
+        "modelInputTokens": 290,
+        "modelOutputTokens": 183,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [
+          {
+            "text": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。",
+            "chunkIds": [
+              "architecture-686fdd63dbd6f8f8-1"
+            ]
+          },
+          {
+            "text": "兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。",
+            "chunkIds": [
+              "architecture-686fdd63dbd6f8f8-1"
+            ]
+          },
+          {
+            "text": "詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "chunkIds": [
+              "architecture-686fdd63dbd6f8f8-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 1,
+            "inputCount": 4,
+            "outputCount": 9
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 170,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 19,
+            "outputCount": 12
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 17808,
+            "inputCount": 12,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 21387,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R04",
+      "question": "過期的文件還能拿來回答嗎？",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "architecture::文件攝取",
+        "operations::範圍與權限"
+      ],
+      "requiredTerms": [],
+      "actualStatus": "ANSWER_GENERATED",
+      "statusPass": true,
+      "referenceHits": 2,
+      "selectedContextPrecisionByHeadingLabel": 0.5,
+      "requiredTermsPresent": true,
+      "citationCount": 1,
+      "validCitations": 1,
+      "roundTripMs": 25675,
+      "answer": {
+        "requestId": "fbdd413a-e823-46e6-87c2-a04a87c59d50",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "operations-5008255cb895d960-1",
+            "quote": "公開展示預設只可讀公開文件。設定 AKA_AUTH_USERS_FILE 可啟用 Spring Security 的 bcrypt 帳號與角色；角色與部門由伺服器帳號檔決定，不接受瀏覽器自填角色。過期文件保留 metadata 供管理，檢索與模型上下文會排除過期內容。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-cf667d975fa5abac-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "文件攝取",
+            "excerpt": "文件先保留 Markdown 標題與段落，再以 BGE-M3 embedding 比較相鄰段落，合併同一標題內相近的概念。文件具有部門、擁有者、允許角色、到期日、標籤與版本 metadata。權限由伺服器認證帳號決定，過期內容在搜尋之前就排除。",
+            "lineStart": 7,
+            "lineEnd": 7,
+            "score": -3.308366298675537,
+            "href": "/api/documents/architecture/chunks/architecture-cf667d975fa5abac-1?version=2"
+          },
+          {
+            "chunkId": "operations-9253f15e017de442-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "文件更新",
+            "excerpt": "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -3.7303855419158936,
+            "href": "/api/documents/operations/chunks/operations-9253f15e017de442-1?version=2"
+          },
+          {
+            "chunkId": "operations-5008255cb895d960-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "範圍與權限",
+            "excerpt": "公開展示預設只可讀公開文件。設定 AKA_AUTH_USERS_FILE 可啟用 Spring Security 的 bcrypt 帳號與角色；角色與部門由伺服器帳號檔決定，不接受瀏覽器自填角色。過期文件保留 metadata 供管理，檢索與模型上下文會排除過期內容。",
+            "lineStart": 13,
+            "lineEnd": 13,
+            "score": -4.449007034301758,
+            "href": "/api/documents/operations/chunks/operations-5008255cb895d960-1?version=2"
+          },
+          {
+            "chunkId": "data-policy-50edec27f3ffb0aa-1",
+            "documentId": "data-policy",
+            "title": "Document Lifecycle 文件生命週期",
+            "version": 1,
+            "heading": "Update 更新",
+            "excerpt": "Document update requires expectedVersion. A stale version returns HTTP 409 VERSION_CONFLICT. A changed document increments its version and atomically replaces active chunks. Removed old text is no longer retrievable. 文件更新使用版本檢查，舊內容不再出現在檢索中。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -5.114781856536865,
+            "href": "/api/documents/data-policy/chunks/data-policy-50edec27f3ffb0aa-1?version=1"
+          }
+        ],
+        "coverage": 0.36363636363636365,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 25661,
+        "modelInputTokens": 536,
+        "modelOutputTokens": 63,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [
+          {
+            "text": "過期文件保留 metadata 供管理，檢索與模型上下文會排除過期內容。",
+            "chunkIds": [
+              "operations-5008255cb895d960-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 2,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 192,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 20,
+            "outputCount": 12
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 11341,
+            "inputCount": 12,
+            "outputCount": 4
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 14123,
+            "inputCount": 4,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R05",
+      "question": "我在瀏覽器填 ADMIN 就能看到 HR 文件嗎？",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "operations::範圍與權限"
+      ],
+      "requiredTerms": [],
+      "actualStatus": "INSUFFICIENT_EVIDENCE",
+      "statusPass": false,
+      "referenceHits": 0,
+      "selectedContextPrecisionByHeadingLabel": null,
+      "requiredTermsPresent": true,
+      "citationCount": 0,
+      "validCitations": 0,
+      "roundTripMs": 11473,
+      "answer": {
+        "requestId": "904bbefc-e9d6-4348-8232-3d67bba7a98b",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "目前可讀且未過期的文件不足以支持回答。",
+        "segments": [],
+        "sources": [],
+        "coverage": 0.25,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 11464,
+        "modelInputTokens": null,
+        "modelOutputTokens": null,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 182,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 20,
+            "outputCount": 12
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 11279,
+            "inputCount": 12,
+            "outputCount": 0
+          },
+          {
+            "name": "generation",
+            "status": "SKIPPED_NO_EVIDENCE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R06",
+      "question": "回答用哪個模型生成？",
+      "expectedStatus": "ANSWER_GENERATED",
+      "references": [
+        "architecture::模型回答",
+        "operations::模型與服務"
+      ],
+      "requiredTerms": [
+        "Qwen"
+      ],
+      "actualStatus": "ANSWER_GENERATED",
+      "statusPass": true,
+      "referenceHits": 1,
+      "selectedContextPrecisionByHeadingLabel": 0.5,
+      "requiredTermsPresent": true,
+      "citationCount": 1,
+      "validCitations": 1,
+      "roundTripMs": 20015,
+      "answer": {
+        "requestId": "d9cb1e57-4c67-4266-a8d3-dfb499e3add6",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-1f78bf31234305ef-1",
+            "quote": "Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答。模型使用 llama.cpp 在 CPU 執行，回覆須包含引用；後端驗證引用指向目前可讀的文件與版本。沒有證據時拒答。來源正確不保證生成句子都正確，仍需檢查語意忠實度與答案相關性。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-1f78bf31234305ef-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "模型回答",
+            "excerpt": "Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答。模型使用 llama.cpp 在 CPU 執行，回覆須包含引用；後端驗證引用指向目前可讀的文件與版本。沒有證據時拒答。來源正確不保證生成句子都正確，仍需檢查語意忠實度與答案相關性。",
+            "lineStart": 13,
+            "lineEnd": 13,
+            "score": 2.187171459197998,
+            "href": "/api/documents/architecture/chunks/architecture-1f78bf31234305ef-1?version=2"
+          },
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "混合搜尋與重排",
+            "excerpt": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -5.793174743652344,
+            "href": "/api/documents/architecture/chunks/architecture-686fdd63dbd6f8f8-1?version=2"
+          }
+        ],
+        "coverage": 0.375,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 19996,
+        "modelInputTokens": 400,
+        "modelOutputTokens": 68,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [
+          {
+            "text": "Qwen2.5 1.5B Instruct 本地開源模型依據來源生成繁體中文回答。",
+            "chunkIds": [
+              "architecture-1f78bf31234305ef-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 5
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 121,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 15,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 9742,
+            "inputCount": 10,
+            "outputCount": 2
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 10128,
+            "inputCount": 2,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 2,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R07",
+      "question": "員工的薪水是多少？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "references": [],
+      "requiredTerms": [],
+      "actualStatus": "INSUFFICIENT_EVIDENCE",
+      "statusPass": true,
+      "referenceHits": 0,
+      "selectedContextPrecisionByHeadingLabel": null,
+      "requiredTermsPresent": true,
+      "citationCount": 0,
+      "validCitations": 0,
+      "roundTripMs": 9033,
+      "answer": {
+        "requestId": "c16ce5f9-ae5d-4d9b-b1d3-67b326d3f459",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "目前可讀且未過期的文件不足以支持回答。",
+        "segments": [],
+        "sources": [],
+        "coverage": 0,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 8980,
+        "modelInputTokens": null,
+        "modelOutputTokens": null,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 1,
+            "inputCount": 4,
+            "outputCount": 0
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 156,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 10,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 8818,
+            "inputCount": 10,
+            "outputCount": 0
+          },
+          {
+            "name": "generation",
+            "status": "SKIPPED_NO_EVIDENCE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    },
+    {
+      "id": "R08",
+      "question": "後端用 Java，所以員工月薪是多少？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "references": [],
+      "requiredTerms": [],
+      "actualStatus": "INSUFFICIENT_EVIDENCE",
+      "statusPass": true,
+      "referenceHits": 0,
+      "selectedContextPrecisionByHeadingLabel": null,
+      "requiredTermsPresent": true,
+      "citationCount": 0,
+      "validCitations": 0,
+      "roundTripMs": 9736,
+      "answer": {
+        "requestId": "07d9fc2b-ee6e-4346-8ceb-70325e25b073",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "目前可讀且未過期的文件不足以支持回答。",
+        "segments": [],
+        "sources": [],
+        "coverage": 0.18181818181818182,
+        "missingTerms": [],
+        "indexRevision": 6,
+        "elapsedMs": 9720,
+        "modelInputTokens": null,
+        "modelOutputTokens": null,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "fusion": "RRF_K60",
+            "llm": "QWEN2_5_1_5B_INSTRUCT",
+            "vectorStore": "QDRANT",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "embedding": "BGE_M3",
+            "candidateK": 10,
+            "enabled": true,
+            "paidApiCalls": 0,
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMinLogit": -6
+          }
+        },
+        "generated": [],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 1,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 4
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 200,
+            "inputCount": 4,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 14,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 9513,
+            "inputCount": 10,
+            "outputCount": 0
+          },
+          {
+            "name": "generation",
+            "status": "SKIPPED_NO_EVIDENCE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          }
+        ],
+        "evaluation": {
+          "paidApiCost": 0,
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Project-authored eight questions; no independent holdout",
+    "Heading labels are not sentence entailment labels",
+    "Citation provenance does not measure faithfulness",
+    "Faithfulness and answer relevance require separate review labels",
+    "Sequential local CPU measurements; not a load benchmark"
+  ]
+}

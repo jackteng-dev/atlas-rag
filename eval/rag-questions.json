@@ -1,0 +1,13 @@
+{
+  "description": "Eight project-authored local RAG checks against the separate current-architecture demo corpus. Not an independent holdout or semantic accuracy benchmark.",
+  "questions": [
+    {"id":"R01","question":"你用什麼架構","expectedStatus":"ANSWER_GENERATED","references":["architecture::技術架構"],"requiredTerms":["Java","Spring Boot","Vue"]},
+    {"id":"R02","question":"使用哪種向量資料庫？","expectedStatus":"ANSWER_GENERATED","references":["architecture::混合搜尋與重排","operations::模型與服務"],"requiredTerms":["Qdrant"]},
+    {"id":"R03","question":"為什麼同時使用關鍵字和向量搜尋？","expectedStatus":"ANSWER_GENERATED","references":["architecture::混合搜尋與重排"],"requiredTerms":["BM25"]},
+    {"id":"R04","question":"過期的文件還能拿來回答嗎？","expectedStatus":"ANSWER_GENERATED","references":["architecture::文件攝取","operations::範圍與權限"],"requiredTerms":[]},
+    {"id":"R05","question":"我在瀏覽器填 ADMIN 就能看到 HR 文件嗎？","expectedStatus":"ANSWER_GENERATED","references":["operations::範圍與權限"],"requiredTerms":[]},
+    {"id":"R06","question":"回答用哪個模型生成？","expectedStatus":"ANSWER_GENERATED","references":["architecture::模型回答","operations::模型與服務"],"requiredTerms":["Qwen"]},
+    {"id":"R07","question":"員工的薪水是多少？","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[],"requiredTerms":[]},
+    {"id":"R08","question":"後端用 Java，所以員工月薪是多少？","expectedStatus":"INSUFFICIENT_EVIDENCE","references":[],"requiredTerms":[]}
+  ]
+}

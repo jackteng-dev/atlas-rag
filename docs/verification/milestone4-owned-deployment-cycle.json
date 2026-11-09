@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-05T07:04:10.083688+00:00",
+  "oldOwnedPids": [
+    14796,
+    14712,
+    14713,
+    14714,
+    14715,
+    14716
+  ],
+  "ownedComponentsAllStopped": true,
+  "allSixListeningPortsClosedAfterStop": true,
+  "independentTunnelSupervisorPreserved": true,
+  "newSupervisorPid": 22173,
+  "newChildren": {
+    "models": 22174,
+    "app": 22247
+  },
+  "health": {
+    "llm": true,
+    "embedding": true,
+    "reranker": true,
+    "qdrant": true,
+    "app": true,
+    "web": true,
+    "ready": true
+  },
+  "jarSha256": "92566636a127ea071efe28aeff9017f40b73e7b8ab4051d64a76dff664e882e9",
+  "configuredArtifactHashesVerifiedBeforeStartup": true,
+  "reusesModels": false
+}

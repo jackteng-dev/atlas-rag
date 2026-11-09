@@ -1,0 +1,15 @@
+
+> knowledge-assistant-ui@0.1.0 test:e2e
+> playwright test
+
+
+Running 4 tests using 1 worker
+
+(node:5935) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/assistant.spec.ts:7:1 › real baseline answer, canonical source verification and no-evidence state (3.3s)
+  ✓  2 e2e/assistant.spec.ts:34:1 › import update delete through Vue and backend; old text disappears (2.6s)
+  ✓  3 e2e/assistant.spec.ts:66:1 › malicious HTML remains text; fake citation is never a link (1.2s)
+  ✓  4 e2e/assistant.spec.ts:80:1 › scoped queries, backend error, loading and mobile layout (1.8s)
+
+  4 passed (10.1s)

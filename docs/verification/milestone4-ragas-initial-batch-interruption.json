@@ -1,0 +1,8 @@
+{
+  "interruptedAt": "2026-10-05T06:43:45.363830+00:00",
+  "pid": 17078,
+  "reason": "Context precision required each chunk to contain the complete cross-section answer; calibrated using D10 only. Existing diagnostic artifact is preserved.",
+  "sourceArtifact": "work/evaluation/ragas-v4-preselected-batch.json",
+  "completedRowsBeforeSignal": 5,
+  "generatorAndHoldoutResultsUnchanged": true
+}

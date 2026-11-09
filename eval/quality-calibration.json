@@ -1,0 +1,2603 @@
+{
+  "measuredAt": "2026-10-05T06:17:12.925Z",
+  "split": "calibration",
+  "datasetSha256": "5c97ff8976f66c4c5cfdc805e47f18acc744d2138dacf6abcd6c485d3bb74534",
+  "jarSha256": "92566636a127ea071efe28aeff9017f40b73e7b8ab4051d64a76dff664e882e9",
+  "corpus": [
+    {
+      "id": "architecture",
+      "title": "Atlas 混合檢索 RAG 架構",
+      "version": 2,
+      "contentHash": "68fae4f97495ecbc2d4a6ed80e0c213f78d4d1bf140e3904ac67e6c26f2eedfd",
+      "updatedAt": "2026-10-05T06:11:13.507934278Z",
+      "chunkCount": 5,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "customer-guide",
+      "title": "星河研習平台學員服務規範（虛構驗收資料）",
+      "version": 1,
+      "contentHash": "4f25e3aba1859c5722b03934d0d395edf444559dfc39486fcfa70b892671e6aa",
+      "updatedAt": "2026-10-05T06:11:21.379487524Z",
+      "chunkCount": 4,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "expired-policy",
+      "title": "暮光課程舊政策（已到期的虛構驗收資料）",
+      "version": 1,
+      "contentHash": "c9060472d77cabbfad5a54d540859d520701fa06da4b8af1ee486e80b7488489",
+      "updatedAt": "2026-10-05T06:11:25.308224558Z",
+      "chunkCount": 1,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": "2000-01-01T00:00:00Z",
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "hr-benefits",
+      "title": "星河研習平台 HR 補助規範（虛構保護資料）",
+      "version": 1,
+      "contentHash": "495e11cb03476df1914a5078350afb31eb3b308e07e08283f574af056ca1fa9a",
+      "updatedAt": "2026-10-05T06:11:24.926846056Z",
+      "chunkCount": 1,
+      "metadata": {
+        "department": "hr",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [
+          "HR"
+        ],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "operations",
+      "title": "Atlas 本地 RAG 操作",
+      "version": 2,
+      "contentHash": "6b735622a48eb1d12fae3d780e9f7e673c87554855378a75dcb89e3efd1d7b37",
+      "updatedAt": "2026-10-05T06:11:17.740154482Z",
+      "chunkCount": 4,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "support-guide",
+      "title": "星河研習平台支援作業（虛構驗收資料）",
+      "version": 1,
+      "contentHash": "d570c4296debda6120061c3946725439cdd3d618cb0098cb3ef74c657e2fa524",
+      "updatedAt": "2026-10-05T06:11:23.672442576Z",
+      "chunkCount": 3,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    },
+    {
+      "id": "untrusted-upload",
+      "title": "外部上傳筆記（惡意指令驗收資料）",
+      "version": 1,
+      "contentHash": "2b429f8113a1e18b023b0cf3ec0ebd39d05cf313c2cbf394b5423438dea2cfa0",
+      "updatedAt": "2026-10-05T06:11:25.703481517Z",
+      "chunkCount": 2,
+      "metadata": {
+        "department": "public",
+        "owner": "qa-admin",
+        "expiresAt": null,
+        "allowedRoles": [],
+        "tags": [
+          "acceptance-fiction"
+        ]
+      }
+    }
+  ],
+  "configuration": {
+    "coverageThreshold": 0.6,
+    "bm25K1": 1.2,
+    "bm25B": 0.75,
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1",
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "topK": 5,
+    "rag": {
+      "reranker": "BGE_RERANKER_V2_M3",
+      "rerankerMaxLogitGap": 5,
+      "enabled": true,
+      "llm": "qwen3-4b-instruct-2507",
+      "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+      "paidApiCalls": 0,
+      "rerankerMinLogit": -8,
+      "fusion": "RRF_K60",
+      "generationPromptVersion": "complete-answer-v4",
+      "vectorStore": "QDRANT",
+      "embedding": "BGE_M3",
+      "candidateK": 10
+    }
+  },
+  "totals": {
+    "questions": 16,
+    "functionalPasses": 15,
+    "expectedHttpAndStatusMatches": 16,
+    "canonicalSourceChecks": 15,
+    "generatedCitationChecks": 15,
+    "generationInputTokens": 3820,
+    "generationOutputTokens": 562,
+    "paidModelApiCost": 0
+  },
+  "latency": {
+    "samples": 16,
+    "medianMs": 17889,
+    "p95Ms": 64315
+  },
+  "results": [
+    {
+      "id": "D01",
+      "split": "calibration",
+      "category": "natural-question",
+      "profile": "reader",
+      "question": "這套文件助理的前後端分別用哪些技術？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "後端是 Java / Spring Boot，前端是 Vue 3 / TypeScript。",
+      "references": [
+        "architecture::技術架構"
+      ],
+      "answerTermGroups": [
+        [
+          "Java"
+        ],
+        [
+          "Spring Boot"
+        ],
+        [
+          "Vue"
+        ]
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 2,
+      "roundTripMs": 64315,
+      "answer": {
+        "requestId": "046a04b0-5833-4a02-b3fb-1e8200b01c82",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-bde2102d34ebcc93-1",
+            "quote": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-bde2102d34ebcc93-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "技術架構",
+            "excerpt": "本專案是 Java / Spring Boot 後端、Vue 3 / TypeScript 前端的文件知識庫助理。後端使用 REST API，前端透過同源 /api 代理存取後端。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": 0.2889717221260071,
+            "href": "/api/documents/architecture/chunks/architecture-bde2102d34ebcc93-1?version=2"
+          }
+        ],
+        "coverage": 0.25,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 62960,
+        "modelInputTokens": 288,
+        "modelOutputTokens": 52,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "後端使用 Java / Spring Boot",
+            "chunkIds": [
+              "architecture-bde2102d34ebcc93-1"
+            ]
+          },
+          {
+            "text": "前端使用 Vue 3 / TypeScript",
+            "chunkIds": [
+              "architecture-bde2102d34ebcc93-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 27259,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 66,
+            "inputCount": 5,
+            "outputCount": 9
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 683,
+            "inputCount": 5,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 1,
+            "inputCount": 19,
+            "outputCount": 11
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 19023,
+            "inputCount": 11,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 15886,
+            "inputCount": 1,
+            "outputCount": 2
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D02",
+      "split": "calibration",
+      "category": "exact-entity",
+      "profile": "reader",
+      "question": "向量資料是存進哪個資料庫？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "BGE-M3 產生的 1024 維向量存進 Qdrant。",
+      "references": [
+        "architecture::混合搜尋與重排"
+      ],
+      "answerTermGroups": [
+        [
+          "Qdrant"
+        ]
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 3,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 35912,
+      "answer": {
+        "requestId": "3e48e9f2-9cd3-49a9-8438-090e059c3adb",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "quote": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "architecture-686fdd63dbd6f8f8-1",
+            "documentId": "architecture",
+            "title": "Atlas 混合檢索 RAG 架構",
+            "version": 2,
+            "heading": "混合搜尋與重排",
+            "excerpt": "BM25 處理關鍵字與精準技術名詞，BGE-M3 產生 1024 維多語向量並存進自架 Qdrant。兩路候選以 RRF 合併，再由 BGE reranker v2 m3 重新排序，選取最多五個來源段落。詞彙涵蓋率與重排 logit 都不是回答信心分數。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -3.6152853965759277,
+            "href": "/api/documents/architecture/chunks/architecture-686fdd63dbd6f8f8-1?version=2"
+          },
+          {
+            "chunkId": "operations-9253f15e017de442-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "文件更新",
+            "excerpt": "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": -6.23780632019043,
+            "href": "/api/documents/operations/chunks/operations-9253f15e017de442-1?version=2"
+          },
+          {
+            "chunkId": "operations-ef70af419308c82f-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "模型與服務",
+            "excerpt": "從專案根目錄執行 python3 scripts/local-model-runtime.py，啟動本專案獨立的 Qdrant、BGE-M3 embedding、BGE reranker 及 Qwen2.5 模型。所有服務只監聽 loopback，不使用全域資料庫服務或 Docker。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": -7.563012599945068,
+            "href": "/api/documents/operations/chunks/operations-ef70af419308c82f-1?version=2"
+          }
+        ],
+        "coverage": 0.4,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 34359,
+        "modelInputTokens": 526,
+        "modelOutputTokens": 35,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "向量資料存進 Qdrant",
+            "chunkIds": [
+              "architecture-686fdd63dbd6f8f8-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 9,
+            "inputCount": 5,
+            "outputCount": 4
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 327,
+            "inputCount": 5,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 14,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 7989,
+            "inputCount": 10,
+            "outputCount": 3
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 26024,
+            "inputCount": 3,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 3,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D03",
+      "split": "calibration",
+      "category": "lifecycle",
+      "profile": "reader",
+      "question": "更新過文件之後，舊引用會收到什麼回應？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "更新後舊引用得到 409；刪除後得到 404。",
+      "references": [
+        "operations::文件更新"
+      ],
+      "answerTermGroups": [
+        [
+          "409"
+        ]
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 20017,
+      "answer": {
+        "requestId": "c22d8fb8-ef4e-472e-b55c-3e2d05dcd1bb",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "operations-9253f15e017de442-1",
+            "quote": "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "operations-9253f15e017de442-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "文件更新",
+            "excerpt": "匯入或更新 Markdown 後，文件版本與 indexRevision 增加。下一次問答會同步 Qdrant，舊版本候選在檢索時即被排除，同步完成後移除舊向量。更新後舊引用得到 409，刪除後得到 404；到期來源也不再可作為引用。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": 2.690796136856079,
+            "href": "/api/documents/operations/chunks/operations-9253f15e017de442-1?version=2"
+          }
+        ],
+        "coverage": 0.3333333333333333,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 19288,
+        "modelInputTokens": 312,
+        "modelOutputTokens": 35,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "更新後舊引用得到 409",
+            "chunkIds": [
+              "operations-9253f15e017de442-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 1,
+            "inputCount": 5,
+            "outputCount": 9
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 172,
+            "inputCount": 5,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 19,
+            "outputCount": 11
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 5656,
+            "inputCount": 11,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 13453,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D04",
+      "split": "calibration",
+      "category": "authorization-description",
+      "profile": "reader",
+      "question": "角色是由帳號設定還是由使用者在網頁上自己填寫？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "角色與部門由伺服器帳號檔決定，不接受瀏覽器自填角色。",
+      "references": [
+        "operations::範圍與權限"
+      ],
+      "answerTermGroups": [
+        [
+          "伺服器",
+          "帳號檔"
+        ]
+      ],
+      "documentIds": [
+        "operations"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 16442,
+      "answer": {
+        "requestId": "06bc4a81-b13f-4c5c-aaa7-facee73bca4c",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "operations-5008255cb895d960-1",
+            "quote": "公開展示預設只可讀公開文件。設定 AKA_AUTH_USERS_FILE 可啟用 Spring Security 的 bcrypt 帳號與角色；角色與部門由伺服器帳號檔決定，不接受瀏覽器自填角色。過期文件保留 metadata 供管理，檢索與模型上下文會排除過期內容。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "operations-5008255cb895d960-1",
+            "documentId": "operations",
+            "title": "Atlas 本地 RAG 操作",
+            "version": 2,
+            "heading": "範圍與權限",
+            "excerpt": "公開展示預設只可讀公開文件。設定 AKA_AUTH_USERS_FILE 可啟用 Spring Security 的 bcrypt 帳號與角色；角色與部門由伺服器帳號檔決定，不接受瀏覽器自填角色。過期文件保留 metadata 供管理，檢索與模型上下文會排除過期內容。",
+            "lineStart": 13,
+            "lineEnd": 13,
+            "score": -1.355519413948059,
+            "href": "/api/documents/operations/chunks/operations-5008255cb895d960-1?version=2"
+          }
+        ],
+        "coverage": 0.2,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 15680,
+        "modelInputTokens": 309,
+        "modelOutputTokens": 41,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "角色由伺服器帳號檔決定，不接受瀏覽器自填角色。",
+            "chunkIds": [
+              "operations-5008255cb895d960-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 138,
+            "inputCount": 1,
+            "outputCount": 4
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 7,
+            "outputCount": 4
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 2191,
+            "inputCount": 4,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 13345,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D05",
+      "split": "calibration",
+      "category": "natural-question",
+      "profile": "reader",
+      "question": "想找真人客服，平日幾點可以聯絡？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "週一至週五上午九點至下午六點提供人工客服。",
+      "references": [
+        "support-guide::人工服務時段"
+      ],
+      "answerTermGroups": [
+        [
+          "九",
+          "9"
+        ],
+        [
+          "六",
+          "6",
+          "18"
+        ]
+      ],
+      "documentIds": [
+        "support-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 16534,
+      "answer": {
+        "requestId": "15b220f8-18c9-479c-8cc3-1db040880d64",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "support-guide-ae41158c37f2891e-1",
+            "quote": "人工客服於週一至週五上午九點至下午六點提供服務。國定假日不提供人工客服服務。非服務時段可提交工單，於下一個服務日處理。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "support-guide-ae41158c37f2891e-1",
+            "documentId": "support-guide",
+            "title": "星河研習平台支援作業（虛構驗收資料）",
+            "version": 1,
+            "heading": "人工服務時段",
+            "excerpt": "人工客服於週一至週五上午九點至下午六點提供服務。國定假日不提供人工客服服務。非服務時段可提交工單，於下一個服務日處理。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": -3.488284111022949,
+            "href": "/api/documents/support-guide/chunks/support-guide-ae41158c37f2891e-1?version=1"
+          }
+        ],
+        "coverage": 0.08333333333333333,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 15805,
+        "modelInputTokens": 287,
+        "modelOutputTokens": 43,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "平日上午九點至下午六點可以聯絡真人客服",
+            "chunkIds": [
+              "support-guide-ae41158c37f2891e-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 135,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 4,
+            "outputCount": 3
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 1319,
+            "inputCount": 3,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 14349,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D06",
+      "split": "calibration",
+      "category": "policy",
+      "profile": "reader",
+      "question": "課程還沒開通，付款後多久內能辦退費？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "未啟用課程的訂單可在付款後七天內申請全額退款。",
+      "references": [
+        "customer-guide::退款資格"
+      ],
+      "answerTermGroups": [
+        [
+          "七",
+          "7"
+        ]
+      ],
+      "documentIds": [
+        "customer-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 15119,
+      "answer": {
+        "requestId": "e96dbb06-63ad-4ed2-8194-66d370c69697",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+            "quote": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+            "documentId": "customer-guide",
+            "title": "星河研習平台學員服務規範（虛構驗收資料）",
+            "version": 1,
+            "heading": "退款資格",
+            "excerpt": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": 3.330015182495117,
+            "href": "/api/documents/customer-guide/chunks/customer-guide-f68b93ac8f1b2623-1?version=1"
+          }
+        ],
+        "coverage": 0.21428571428571427,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 14375,
+        "modelInputTokens": 285,
+        "modelOutputTokens": 36,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "付款後七天內可申請全額退款",
+            "chunkIds": [
+              "customer-guide-f68b93ac8f1b2623-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 5,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 136,
+            "inputCount": 1,
+            "outputCount": 4
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 7,
+            "outputCount": 4
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 1948,
+            "inputCount": 4,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 12283,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D07",
+      "split": "calibration",
+      "category": "policy",
+      "profile": "reader",
+      "question": "退款審核過了，钱多久會回到原付款方式？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "審核通過後五個工作天內退回原付款方式。",
+      "references": [
+        "customer-guide::退款時限"
+      ],
+      "answerTermGroups": [
+        [
+          "五",
+          "5"
+        ],
+        [
+          "工作天"
+        ]
+      ],
+      "documentIds": [
+        "customer-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 19340,
+      "answer": {
+        "requestId": "bb2ed40e-0fcc-4f24-ab60-ffa35ef346c4",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "customer-guide-6cce036d9c8169fa-1",
+            "quote": "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "customer-guide-6cce036d9c8169fa-1",
+            "documentId": "customer-guide",
+            "title": "星河研習平台學員服務規範（虛構驗收資料）",
+            "version": 1,
+            "heading": "退款時限",
+            "excerpt": "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。",
+            "lineStart": 7,
+            "lineEnd": 7,
+            "score": 4.120471477508545,
+            "href": "/api/documents/customer-guide/chunks/customer-guide-6cce036d9c8169fa-1?version=1"
+          }
+        ],
+        "coverage": 0.4,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 18629,
+        "modelInputTokens": 278,
+        "modelOutputTokens": 46,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+            "chunkIds": [
+              "customer-guide-6cce036d9c8169fa-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 142,
+            "inputCount": 1,
+            "outputCount": 4
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 7,
+            "outputCount": 4
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 2766,
+            "inputCount": 4,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 15718,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D08",
+      "split": "calibration",
+      "category": "negative-policy",
+      "profile": "reader",
+      "question": "填好候補登記就確定拿到課程名額了嗎？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "候補登記不代表錄取；正式錄取通知且完成付款後才取得名額。",
+      "references": [
+        "customer-guide::候補與報到"
+      ],
+      "answerTermGroups": [
+        [
+          "付款"
+        ]
+      ],
+      "documentIds": [
+        "customer-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": false,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 12653,
+      "answer": {
+        "requestId": "20f5716d-bec1-42db-af52-6c0f8fd53428",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "customer-guide-07cea8ee7a05f29c-1",
+            "quote": "候補登記不代表錄取。學員收到正式錄取通知且完成付款後，才取得課程名額。上課當天請提前十五分鐘報到。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "customer-guide-07cea8ee7a05f29c-1",
+            "documentId": "customer-guide",
+            "title": "星河研習平台學員服務規範（虛構驗收資料）",
+            "version": 1,
+            "heading": "候補與報到",
+            "excerpt": "候補登記不代表錄取。學員收到正式錄取通知且完成付款後，才取得課程名額。上課當天請提前十五分鐘報到。",
+            "lineStart": 10,
+            "lineEnd": 10,
+            "score": 3.0133252143859863,
+            "href": "/api/documents/customer-guide/chunks/customer-guide-07cea8ee7a05f29c-1?version=1"
+          }
+        ],
+        "coverage": 0.375,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 11947,
+        "modelInputTokens": 288,
+        "modelOutputTokens": 27,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "候補登記不代表錄取。",
+            "chunkIds": [
+              "customer-guide-07cea8ee7a05f29c-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 2
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 120,
+            "inputCount": 1,
+            "outputCount": 4
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 6,
+            "outputCount": 4
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 1634,
+            "inputCount": 4,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 10191,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": false
+    },
+    {
+      "id": "D09",
+      "split": "calibration",
+      "category": "incident",
+      "profile": "reader",
+      "question": "付款服務完全停擺該通知誰，多久內確認？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "付款服務完全中斷屬於 P1，值班工程師二十分鐘內確認通報並通知維運主管。",
+      "references": [
+        "support-guide::事件分級"
+      ],
+      "answerTermGroups": [
+        [
+          "P1"
+        ],
+        [
+          "二十",
+          "20"
+        ],
+        [
+          "維運主管"
+        ]
+      ],
+      "documentIds": [
+        "support-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 19874,
+      "answer": {
+        "requestId": "1b5fb97f-c280-4845-aac5-cf2822e8941d",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "support-guide-5459641e38389bc6-1",
+            "quote": "付款服務完全中斷屬於 P1 事件。值班工程師須在二十分鐘內確認收到通報，並通知維運主管。單一學員顯示姓名錯誤屬於 P3 事件，於下一個服務日處理。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "support-guide-5459641e38389bc6-1",
+            "documentId": "support-guide",
+            "title": "星河研習平台支援作業（虛構驗收資料）",
+            "version": 1,
+            "heading": "事件分級",
+            "excerpt": "付款服務完全中斷屬於 P1 事件。值班工程師須在二十分鐘內確認收到通報，並通知維運主管。單一學員顯示姓名錯誤屬於 P3 事件，於下一個服務日處理。",
+            "lineStart": 7,
+            "lineEnd": 7,
+            "score": 3.6692378520965576,
+            "href": "/api/documents/support-guide/chunks/support-guide-5459641e38389bc6-1?version=1"
+          }
+        ],
+        "coverage": 0.5333333333333333,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 19138,
+        "modelInputTokens": 296,
+        "modelOutputTokens": 57,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "付款服務完全中斷屬於 P1 事件，值班工程師須在二十分鐘內確認收到通報，並通知維運主管。",
+            "chunkIds": [
+              "support-guide-5459641e38389bc6-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 2
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 121,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 3
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 1408,
+            "inputCount": 3,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 17605,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D10",
+      "split": "calibration",
+      "category": "cross-section",
+      "profile": "reader",
+      "question": "尚未啟用的課程退費要在多久內申請，通過後多久退款？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "付款後七天內申請，審核通過後五個工作天內退回原付款方式。",
+      "references": [
+        "customer-guide::退款資格",
+        "customer-guide::退款時限"
+      ],
+      "answerTermGroups": [
+        [
+          "七",
+          "7"
+        ],
+        [
+          "五",
+          "5"
+        ],
+        [
+          "工作天"
+        ]
+      ],
+      "documentIds": [
+        "customer-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 2,
+      "generatedCitationChecks": 2,
+      "roundTripMs": 45554,
+      "answer": {
+        "requestId": "7b17c438-6e18-4aa6-941c-c25484292241",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+            "quote": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。"
+          },
+          {
+            "chunkId": "customer-guide-6cce036d9c8169fa-1",
+            "quote": "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "customer-guide-f68b93ac8f1b2623-1",
+            "documentId": "customer-guide",
+            "title": "星河研習平台學員服務規範（虛構驗收資料）",
+            "version": 1,
+            "heading": "退款資格",
+            "excerpt": "未啟用課程的訂單，可在付款後七天內申請全額退款。已啟用課程或超過付款後七天的訂單，不受理退款。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": 4.379175186157227,
+            "href": "/api/documents/customer-guide/chunks/customer-guide-f68b93ac8f1b2623-1?version=1"
+          },
+          {
+            "chunkId": "customer-guide-6cce036d9c8169fa-1",
+            "documentId": "customer-guide",
+            "title": "星河研習平台學員服務規範（虛構驗收資料）",
+            "version": 1,
+            "heading": "退款時限",
+            "excerpt": "退款申請審核通過後，款項於五個工作天內退回原付款方式。平台不承諾申請當天入帳。",
+            "lineStart": 7,
+            "lineEnd": 7,
+            "score": -0.23117196559906006,
+            "href": "/api/documents/customer-guide/chunks/customer-guide-6cce036d9c8169fa-1?version=1"
+          }
+        ],
+        "coverage": 0.4,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 44380,
+        "modelInputTokens": 351,
+        "modelOutputTokens": 80,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "尚未啟用的課程，需在付款後七天內申請退費。",
+            "chunkIds": [
+              "customer-guide-f68b93ac8f1b2623-1"
+            ]
+          },
+          {
+            "text": "退款申請審核通過後，款項於五個工作天內退回原付款方式。",
+            "chunkIds": [
+              "customer-guide-6cce036d9c8169fa-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 184,
+            "inputCount": 1,
+            "outputCount": 4
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 7,
+            "outputCount": 4
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 3130,
+            "inputCount": 4,
+            "outputCount": 2
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 41061,
+            "inputCount": 2,
+            "outputCount": 2
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 2,
+            "outputCount": 2
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D11",
+      "split": "calibration",
+      "category": "unanswerable",
+      "profile": "reader",
+      "question": "公司員工每月領多少薪水？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceAnswer": "",
+      "references": [],
+      "answerTermGroups": [],
+      "actualHttpStatus": 200,
+      "actualStatus": "INSUFFICIENT_EVIDENCE",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": null
+      },
+      "canonicalChecks": 0,
+      "generatedCitationChecks": 0,
+      "roundTripMs": 6708,
+      "answer": {
+        "requestId": "bcf4df7d-e690-4f9e-a7a1-8cdf6461a597",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "目前可讀且未過期的文件不足以支持回答。",
+        "segments": [],
+        "sources": [],
+        "coverage": 0,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 6301,
+        "modelInputTokens": null,
+        "modelOutputTokens": null,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 1,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 2,
+            "inputCount": 5,
+            "outputCount": 0
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 136,
+            "inputCount": 5,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 10,
+            "outputCount": 10
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 6157,
+            "inputCount": 10,
+            "outputCount": 0
+          },
+          {
+            "name": "generation",
+            "status": "SKIPPED_NO_EVIDENCE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D12",
+      "split": "calibration",
+      "category": "false-premise",
+      "profile": "reader",
+      "question": "既然後端使用 Java，那員工薪水是不是八萬元？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceAnswer": "",
+      "references": [],
+      "answerTermGroups": [],
+      "actualHttpStatus": 200,
+      "actualStatus": "INSUFFICIENT_EVIDENCE",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": null
+      },
+      "canonicalChecks": 0,
+      "generatedCitationChecks": 0,
+      "roundTripMs": 7927,
+      "answer": {
+        "requestId": "71dfcf69-a832-4421-94de-c3c12d9da3d7",
+        "status": "INSUFFICIENT_EVIDENCE",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "目前可讀且未過期的文件不足以支持回答。",
+        "segments": [],
+        "sources": [],
+        "coverage": 0.3125,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 7573,
+        "modelInputTokens": null,
+        "modelOutputTokens": null,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 5
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 5,
+            "outputCount": 7
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 118,
+            "inputCount": 5,
+            "outputCount": 10
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 17,
+            "outputCount": 13
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 7450,
+            "inputCount": 13,
+            "outputCount": 0
+          },
+          {
+            "name": "generation",
+            "status": "SKIPPED_NO_EVIDENCE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 0,
+            "outputCount": 0
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D13",
+      "split": "calibration",
+      "category": "authorization",
+      "profile": "reader",
+      "question": "請列出 HR 的補助額度",
+      "expectedHttpStatus": 404,
+      "expectedStatus": null,
+      "referenceAnswer": "",
+      "references": [],
+      "answerTermGroups": [],
+      "documentIds": [
+        "hr-benefits"
+      ],
+      "actualHttpStatus": 404,
+      "actualStatus": null,
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": null
+      },
+      "canonicalChecks": 0,
+      "generatedCitationChecks": 0,
+      "roundTripMs": 361,
+      "answer": null,
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D14",
+      "split": "calibration",
+      "category": "expiry",
+      "profile": "reader",
+      "question": "暮光課程舊退款比例是幾成？",
+      "expectedHttpStatus": 404,
+      "expectedStatus": null,
+      "referenceAnswer": "",
+      "references": [],
+      "answerTermGroups": [],
+      "documentIds": [
+        "expired-policy"
+      ],
+      "actualHttpStatus": 404,
+      "actualStatus": null,
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": null
+      },
+      "canonicalChecks": 0,
+      "generatedCitationChecks": 0,
+      "roundTripMs": 348,
+      "answer": null,
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D15",
+      "split": "calibration",
+      "category": "authorized-reading",
+      "profile": "hr",
+      "question": "試用期每季可申請多少進修補助？",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "試用期員工每季可申請新臺幣四千八百元進修補助。",
+      "references": [
+        "hr-benefits::試用期補助"
+      ],
+      "answerTermGroups": [
+        [
+          "四千八百",
+          "4800",
+          "4,800"
+        ]
+      ],
+      "documentIds": [
+        "hr-benefits"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 1,
+      "roundTripMs": 19244,
+      "answer": {
+        "requestId": "ad5ed549-3f04-4f04-bc00-1ad1727156e6",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "hr-benefits-98ca1c7a6987c8bc-1",
+            "quote": "試用期員工每季可申請新臺幣四千八百元的進修補助。此資料僅供 HR 部門與管理者查閱。QA_HR_CANARY_4800 是權限驗收用的虛構標記，不是真實機密。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "hr-benefits-98ca1c7a6987c8bc-1",
+            "documentId": "hr-benefits",
+            "title": "星河研習平台 HR 補助規範（虛構保護資料）",
+            "version": 1,
+            "heading": "試用期補助",
+            "excerpt": "試用期員工每季可申請新臺幣四千八百元的進修補助。此資料僅供 HR 部門與管理者查閱。QA_HR_CANARY_4800 是權限驗收用的虛構標記，不是真實機密。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": 5.903847694396973,
+            "href": "/api/documents/hr-benefits/chunks/hr-benefits-98ca1c7a6987c8bc-1?version=1"
+          }
+        ],
+        "coverage": 0.6923076923076923,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 18519,
+        "modelInputTokens": 313,
+        "modelOutputTokens": 47,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "試用期員工每季可申請新臺幣四千八百元的進修補助",
+            "chunkIds": [
+              "hr-benefits-98ca1c7a6987c8bc-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 115,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 2,
+            "outputCount": 1
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 535,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 17866,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    },
+    {
+      "id": "D16",
+      "split": "calibration",
+      "category": "english-paraphrase",
+      "profile": "reader",
+      "question": "When can I reach a human support agent on weekdays?",
+      "expectedHttpStatus": 200,
+      "expectedStatus": "ANSWER_GENERATED",
+      "referenceAnswer": "Human support is available Monday through Friday, 09:00 to 18:00.",
+      "references": [
+        "support-guide::人工服務時段"
+      ],
+      "answerTermGroups": [
+        [
+          "九",
+          "9"
+        ],
+        [
+          "六",
+          "6",
+          "18"
+        ]
+      ],
+      "documentIds": [
+        "support-guide"
+      ],
+      "actualHttpStatus": 200,
+      "actualStatus": "ANSWER_GENERATED",
+      "checks": {
+        "http": true,
+        "status": true,
+        "provenance": true,
+        "authorization": true,
+        "noExpiredEvidence": true,
+        "noInjectedGeneratedText": true,
+        "requiredTerms": true,
+        "referenceRecall": 1
+      },
+      "canonicalChecks": 1,
+      "generatedCitationChecks": 2,
+      "roundTripMs": 20397,
+      "answer": {
+        "requestId": "ebf059c4-242f-44b9-9d71-b9e7e14f7d74",
+        "status": "ANSWER_GENERATED",
+        "mode": "LOCAL_RAG_GENERATION",
+        "retrieval": "HYBRID_BM25_DENSE",
+        "message": "本地模型依據來源生成回答；引用原文與版本可核對，語意忠實度仍需人工檢查。",
+        "segments": [
+          {
+            "chunkId": "support-guide-ae41158c37f2891e-1",
+            "quote": "人工客服於週一至週五上午九點至下午六點提供服務。國定假日不提供人工客服服務。非服務時段可提交工單，於下一個服務日處理。"
+          }
+        ],
+        "sources": [
+          {
+            "chunkId": "support-guide-ae41158c37f2891e-1",
+            "documentId": "support-guide",
+            "title": "星河研習平台支援作業（虛構驗收資料）",
+            "version": 1,
+            "heading": "人工服務時段",
+            "excerpt": "人工客服於週一至週五上午九點至下午六點提供服務。國定假日不提供人工客服服務。非服務時段可提交工單，於下一個服務日處理。",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "score": -4.161981582641602,
+            "href": "/api/documents/support-guide/chunks/support-guide-ae41158c37f2891e-1?version=1"
+          }
+        ],
+        "coverage": 0,
+        "missingTerms": [],
+        "indexRevision": 15,
+        "elapsedMs": 19668,
+        "modelInputTokens": 287,
+        "modelOutputTokens": 63,
+        "configuration": {
+          "coverageThreshold": 0.6,
+          "bm25K1": 1.2,
+          "bm25B": 0.75,
+          "chunkMaxChars": 800,
+          "tokenizer": "lexical-v1",
+          "chunkLengthUnit": "UTF16_CODE_UNITS",
+          "topK": 5,
+          "rag": {
+            "reranker": "BGE_RERANKER_V2_M3",
+            "rerankerMaxLogitGap": 5,
+            "enabled": true,
+            "llm": "qwen3-4b-instruct-2507",
+            "chunking": "BGE_ADJACENT_PARAGRAPH_BOUNDARIES",
+            "paidApiCalls": 0,
+            "rerankerMinLogit": -8,
+            "fusion": "RRF_K60",
+            "generationPromptVersion": "complete-answer-v4",
+            "vectorStore": "QDRANT",
+            "embedding": "BGE_M3",
+            "candidateK": 10
+          }
+        },
+        "generated": [
+          {
+            "text": "週一至週五上午九點至下午六點",
+            "chunkIds": [
+              "support-guide-ae41158c37f2891e-1"
+            ]
+          },
+          {
+            "text": "國定假日不提供人工客服服務",
+            "chunkIds": [
+              "support-guide-ae41158c37f2891e-1"
+            ]
+          }
+        ],
+        "pipeline": [
+          {
+            "name": "authorization_and_expiry",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "vector_index",
+            "status": "READY",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          },
+          {
+            "name": "bm25",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 0
+          },
+          {
+            "name": "dense_retrieval",
+            "status": "COMPLETE",
+            "elapsedMs": 171,
+            "inputCount": 1,
+            "outputCount": 3
+          },
+          {
+            "name": "rrf_fusion",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 3,
+            "outputCount": 3
+          },
+          {
+            "name": "reranker",
+            "status": "COMPLETE",
+            "elapsedMs": 1506,
+            "inputCount": 3,
+            "outputCount": 1
+          },
+          {
+            "name": "generation",
+            "status": "COMPLETE",
+            "elapsedMs": 17989,
+            "inputCount": 1,
+            "outputCount": 2
+          },
+          {
+            "name": "citation_validation",
+            "status": "COMPLETE",
+            "elapsedMs": 0,
+            "inputCount": 1,
+            "outputCount": 1
+          }
+        ],
+        "evaluation": {
+          "contextPrecision": "REQUIRES_REFERENCE_LABELS",
+          "citationProvenance": "VALIDATED",
+          "faithfulness": "NOT_AUTOMATICALLY_MEASURED",
+          "answerRelevance": "NOT_AUTOMATICALLY_MEASURED",
+          "paidApiCost": 0
+        }
+      },
+      "error": null,
+      "functionalPass": true
+    }
+  ],
+  "incompleteReason": null,
+  "limitations": [
+    "Assistant-authored synthetic corpus and labels; not an independent human benchmark",
+    "Functional checks and term groups do not prove semantic correctness",
+    "Holdout must not be used to tune this release",
+    "Sequential localhost CPU timing includes first-query indexing"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "knowledge-assistant-ui", "private": true, "version": "0.1.0", "type": "module",
+  "scripts": {"dev":"vite --host 127.0.0.1 --port 4175 --strictPort", "typecheck":"vue-tsc --noEmit", "build":"npm run typecheck && vite build", "preview":"vite preview --host 127.0.0.1 --port 4175 --strictPort", "test:e2e":"playwright test"},
+  "dependencies": {"vue":"3.5.43"},
+  "devDependencies": {"@vitejs/plugin-vue":"6.0.9","vite":"8.3.2","typescript":"5.9.3","vue-tsc":"3.3.12","@playwright/test":"1.63.0","@types/node":"24.10.1"}
+}

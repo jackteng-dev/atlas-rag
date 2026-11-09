@@ -1,0 +1,35 @@
+{
+  "description": "Actual milestone-2 Playwright captures; files remain in ignored work/screenshots, historical committed screenshots preserved. Desktop answer and mobile capture visually inspected.",
+  "screenshots": [
+    {
+      "path": "work/screenshots/01-workspace.png",
+      "bytes": 138055,
+      "sha256": "a8623df4b242a14bf71a6dc06f8ee41f04409b144d0a6acd9ed5ffa4cf0aba9b"
+    },
+    {
+      "path": "work/screenshots/02-answer-sources.png",
+      "bytes": 219906,
+      "sha256": "3841cdf829eeea01ac11e7b85bcd3f2e78a0d4f830c83915749ec3733d12b62b"
+    },
+    {
+      "path": "work/screenshots/03-insufficient-evidence.png",
+      "bytes": 134894,
+      "sha256": "f4759bc609d6d0a506a0a826cef01bdd0bd7b14b7e6f0da3f66a50f3db217d05"
+    },
+    {
+      "path": "work/screenshots/04-document-library.png",
+      "bytes": 133472,
+      "sha256": "6cabce4e6c9f623aecac554da679e89c646ad9670ac9be47f305fa989f85bb21"
+    },
+    {
+      "path": "work/screenshots/05-untrusted-document.png",
+      "bytes": 157630,
+      "sha256": "efb75566de647930985ca5084c21d0f6800ec06ea0b3dfb308e0917ad3fcc5a2"
+    },
+    {
+      "path": "work/screenshots/06-mobile.png",
+      "bytes": 92924,
+      "sha256": "9c99a8ca3525b578a1c900e8d7274427a03a8bc4c83abe3c076b750e4add879a"
+    }
+  ]
+}

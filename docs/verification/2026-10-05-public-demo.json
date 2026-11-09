@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-05T02:00:27.025Z",
+  "base": "https://frn0vn-ip-90-96-179-66.tunnelmole.net",
+  "pageHttpStatus": 200,
+  "mode": "OFFLINE_EXTRACTIVE",
+  "embedding": "NONE",
+  "question": "What backend and frontend ports are used?",
+  "questionStatus": "EXTRACTS_FOUND",
+  "requestId": "75fd4da4-fa4c-4c29-8e65-890d047bfe74",
+  "citationChecks": 5,
+  "noEvidenceStatus": "INSUFFICIENT_EVIDENCE",
+  "browserQuestion": "PASS",
+  "browserSourceVerification": "PASS",
+  "mobileLayout": "PASS",
+  "pageErrors": [],
+  "configuration": {
+    "bm25B": 0.75,
+    "bm25K1": 1.2,
+    "topK": 5,
+    "chunkLengthUnit": "UTF16_CODE_UNITS",
+    "coverageThreshold": 0.6,
+    "chunkMaxChars": 800,
+    "tokenizer": "lexical-v1"
+  },
+  "commit": "d22eb1560e52f7d57dab8be392ef0089dbdcd376",
+  "externalEvaluation": {
+    "measuredAt": "2026-10-05T01:58:30.675Z",
+    "totals": {
+      "questions": 16,
+      "statusPass": 14,
+      "referenceHits": 13,
+      "referenceCount": 14,
+      "selectedReferenceHits": 13,
+      "allReferencesFound": 11,
+      "answerableQuestions": 12,
+      "correctRefusals": 3,
+      "unanswerableQuestions": 4,
+      "falseAccepts": 1,
+      "falseRefusals": 1,
+      "validCitations": 49,
+      "citationCount": 49
+    },
+    "artifact": "work/evaluation/single-1791165510675.json"
+  },
+  "tests": {
+    "backend": {
+      "passed": 26,
+      "failed": 0
+    },
+    "evaluationScripts": {
+      "passed": 3,
+      "failed": 0
+    },
+    "localBrowser": {
+      "passed": 4,
+      "failed": 0
+    },
+    "frontendTypecheckAndBuild": "PASS"
+  },
+  "screenshots": [
+    {
+      "path": "work/screenshots/public-answer-sources.png",
+      "bytes": 220105,
+      "sha256": "bea3f8302b6505b54d30725299f32e7bf9a139cf2c5a01833340f821db85cf2d"
+    },
+    {
+      "path": "work/screenshots/public-mobile.png",
+      "bytes": 93083,
+      "sha256": "066e9e56e3166d41e7ec0e7b4ce982e3aca56e0e4c853b78adbdab0bc912c5f5"
+    }
+  ]
+}
