@@ -51,7 +51,7 @@ public class AnswerService {
         StoreState authorized=new StoreState(snapshot.schemaVersion(),snapshot.revision(),Map.of(),scoped);
         int topK=request.topK()==null?configuration.topK():request.topK();
         if(rag!=null && rag.enabled()) {
-            var result=rag.run(snapshot,authorized,retriever,request.question(),topK);
+            var result=rag.run(snapshot,authorized,retriever,request.question(),topK,request.quality());
             long validationStart=System.nanoTime();
             validate(result.excerpts(),result.sources());
             checkCurrent(snapshot,result.sources(),actor);

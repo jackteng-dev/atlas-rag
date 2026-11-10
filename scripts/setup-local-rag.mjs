@@ -25,6 +25,7 @@ function run(command, args) {
 }
 for (const artifact of manifest.artifacts) {
   if (artifact.profile === 'legacy' && !legacy) continue
+  if (artifact.profile === 'optional' && !process.argv.includes('--quality')) continue
   if (artifact.profile === 'current' && legacy) continue
   let valid = false
   try { valid = (await stat(artifact.path)).size === artifact.bytes && await digest(artifact.path) === artifact.sha256 } catch {}

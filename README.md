@@ -14,6 +14,7 @@ Atlas 是以 Java／Spring Boot 與 Vue 建置的本地文件知識助理，適�
 
 - Markdown 匯入、更新與刪除，保存文件版本、內容雜湊、穩定段落 ID 與原文行號。
 - 本地 RAG：BGE-M3 向量檢索與 BM25 經 RRF 合併，再由 BGE reranker 重排、Qwen3 4B 生成附引用的回答。
+- 回答模型可選：預設「快速」Qwen3 4B；選配「高品質」Qwen3 8B 由 llama.cpp router 按需載入、閒置後自動釋放記憶體（CPU 上約 2–5 分鐘一題，不使用付費 API）。
 - 來源面板核對引用原文與當前版本；證據不足時明確拒答，文件改版或刪除後拒絕舊引用。
 - 登入與角色／部門權限，於檢索、模型上下文及來源端點排除未授權或已過期文件。
 - 背景提問與結果輪詢、處理狀態與錯誤顯示；切換帳號後清除工作區並丟棄舊身分回應。
@@ -28,6 +29,7 @@ Atlas 是以 Java／Spring Boot 與 Vue 建置的本地文件知識助理，適�
 | 原文與版本 | 本地 JSON、不可變快照、檔案鎖與原子替換 |
 | 檢索與重排 | BM25、BGE-M3、Qdrant、RRF、BGE-reranker-v2-m3 |
 | 本地生成 | llama.cpp CPU、Qwen3-4B-Instruct-2507 GGUF Q4_K_M |
+| 選配高品質生成 | Qwen3-8B GGUF Q4_K_M（`models.quality`，`setup-local-rag.mjs --quality` 下載；router 按需載入／閒置卸載） |
 | 驗證 | JUnit、Playwright、Node 測試、Ragas 離線評分 |
 
 以下為啟用 RAG 時的流程；預設離線模式僅使用 BM25 與原文摘錄，不呼叫模型。

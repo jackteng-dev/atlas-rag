@@ -9,6 +9,8 @@ public final class LlamaRagModels implements RagModels {
     private final LocalJsonHttp embedding,reranker,llm;
     private final ObjectMapper mapper;
     private final String model;
+    private LocalJsonHttp qualityLlm;
+    private String qualityModel;
     public LlamaRagModels(String embeddingUrl,String rerankerUrl,String llmUrl,ObjectMapper mapper) {
         this(embeddingUrl,rerankerUrl,llmUrl,"qwen2.5-1.5b-instruct",mapper);
     }
@@ -16,6 +18,12 @@ public final class LlamaRagModels implements RagModels {
         embedding=new LocalJsonHttp(embeddingUrl,mapper);reranker=new LocalJsonHttp(rerankerUrl,mapper);
         llm=new LocalJsonHttp(llmUrl,mapper);this.mapper=mapper;this.model=model;
     }
+    /** Optional larger model behind an on-demand llama.cpp router: first use loads it, idle unloads it, so allow a long CPU answer. */
+    public LlamaRagModels withQuality(String url,String alias) {
+        if(!alias.matches("[a-zA-Z0-9._-]{1,100}")) throw new IllegalArgumentException("Invalid local model alias");
+        qualityLlm=new LocalJsonHttp(url,mapper,java.time.Duration.ofSeconds(600));qualityModel=alias;return this;
+    }
+    @Override public boolean hasQuality() { return qualityLlm!=null; }
     public List<List<Double>> embed(List<String> texts) {
         var result=new ArrayList<List<Double>>();
         // Small batches bound inference memory and HTTP response sizes on this CPU demo.
@@ -55,7 +63,9 @@ public final class LlamaRagModels implements RagModels {
         ranked.sort(Comparator.comparingDouble(Ranked::score).reversed().thenComparingInt(Ranked::index));
         return List.copyOf(ranked);
     }
-    public Generation generate(String question,List<Source> sources) {
+    public Generation generate(String question,List<Source> sources) { return generate(question,sources,false); }
+    @Override public Generation generate(String question,List<Source> sources,boolean quality) {
+        var client=quality && qualityLlm!=null?qualityLlm:llm;var alias=quality && qualityLlm!=null?qualityModel:model;
         var evidence=new ArrayList<Map<String,Object>>();
         for(int i=0;i<sources.size();i++) {
             Source s=sources.get(i);evidence.add(Map.of("source",i+1,"title",s.title(),"heading",s.heading(),"text",s.excerpt()));
@@ -75,7 +85,7 @@ public final class LlamaRagModels implements RagModels {
                 """);
             var schema=mapper.createObjectNode();
             schema.set("oneOf",mapper.createArrayNode().add(answerSchema).add(refusalSchema));
-            var response=llm.request("POST","/v1/chat/completions",Map.of("model",model,"stream",false,
+            var response=client.request("POST","/v1/chat/completions",Map.of("model",alias,"stream",false,
                     "temperature",0,"max_tokens",384,"response_format",Map.of("type","json_schema","json_schema",Map.of("name","grounded_answer","strict",true,"schema",schema)),
                     "messages",List.of(Map.of("role","system","content",system),Map.of("role","user","content",
                             "來源資料：\n"+mapper.writeValueAsString(evidence)+"\n\n使用者問題："+question+"\n請只回答問題所需的資訊。"))));

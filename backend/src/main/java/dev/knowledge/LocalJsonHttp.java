@@ -11,9 +11,13 @@ import java.util.Set;
 public final class LocalJsonHttp {
     private final URI origin;
     private final ObjectMapper mapper;
+    private final Duration timeout;
     private final HttpClient client=HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3))
             .followRedirects(HttpClient.Redirect.NEVER).build();
-    public LocalJsonHttp(String origin,ObjectMapper mapper) {
+    public LocalJsonHttp(String origin,ObjectMapper mapper) { this(origin,mapper,Duration.ofSeconds(120)); }
+    public LocalJsonHttp(String origin,ObjectMapper mapper,Duration timeout) {
+        if(timeout.isNegative() || timeout.isZero() || timeout.toSeconds()>900) throw new IllegalArgumentException("Local request timeout must be 1–900 seconds");
+        this.timeout=timeout;
         this.origin=URI.create(origin.endsWith("/")?origin.substring(0,origin.length()-1):origin);
         if(!Set.of("http","https").contains(this.origin.getScheme()) || this.origin.getUserInfo()!=null
                 || this.origin.getQuery()!=null || this.origin.getFragment()!=null
@@ -25,7 +29,7 @@ public final class LocalJsonHttp {
     public JsonNode request(String method,String path,Object body) { return request(method,path,body,false); }
     public JsonNode request(String method,String path,Object body,boolean allowMissing) {
         try {
-            var builder=HttpRequest.newBuilder(URI.create(origin+path)).timeout(Duration.ofSeconds(120))
+            var builder=HttpRequest.newBuilder(URI.create(origin+path)).timeout(timeout)
                     .header("Content-Type","application/json");
             builder.method(method,body==null?HttpRequest.BodyPublishers.noBody():HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(body)));
             var response=client.send(builder.build(),HttpResponse.BodyHandlers.ofInputStream());

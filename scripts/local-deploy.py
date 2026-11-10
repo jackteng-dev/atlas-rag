@@ -38,6 +38,17 @@ def read_config(path):
     if not config['instance'].replace('-', '').isalnum():
         raise ValueError('Invalid instance name')
     ports = [config['port'], *config['models']['ports'].values()]
+    quality = config['models'].get('quality')
+    if quality is not None:
+        # Optional on-demand larger model (owner decision 2026-11-11). Older releases ignore this key.
+        if set(quality) - {'file', 'model', 'port', 'idleSeconds'} or not {'file', 'model', 'port'} <= set(quality):
+            raise ValueError('models.quality needs file, model, port (and optional idleSeconds)')
+        if not quality['model'].replace('-', '').replace('.', '').replace('_', '').isalnum() or len(quality['model']) > 100:
+            raise ValueError('Invalid quality model alias')
+        if type(quality.get('idleSeconds', 180)) is not int or not 30 <= quality.get('idleSeconds', 180) <= 3600:
+            raise ValueError('models.quality.idleSeconds must be 30–3600')
+        project_path(quality['file'])
+        ports.append(quality['port'])
     if len(ports) != len(set(ports)) or any(type(port) is not int or not 1024 <= port <= 65535 for port in ports):
         raise ValueError('Distinct unprivileged loopback ports required')
     for name in ('jar', 'store'):
@@ -53,10 +64,12 @@ def verify_configured_artifacts(config):
     expected = {'llmFile':by_name['qwen3-4b-q4.gguf'], 'embeddingFile':by_name['bge-m3-q8.gguf'],
                 'rerankerFile':by_name['bge-reranker-v2-m3-q8.gguf'],
                 'llamaServer':manifest['executables'][0]['sha256'], 'qdrantBinary':manifest['executables'][1]['sha256']}
+    quality = config['models'].get('quality')
     overrides = config['models'].get('artifactSha256', {})
-    if set(overrides)-set(expected):
+    if set(overrides)-set(expected)-({'qualityFile'} if quality is not None else set()):
         raise ValueError('Unknown model artifact hash override')
-    expected.update(overrides)
+    quality_required = overrides.get('qualityFile', by_name['qwen3-8b-q4.gguf'])
+    expected.update({k:v for k,v in overrides.items() if k!='qualityFile'})
     verified = {}
     for name, required in expected.items():
         if not isinstance(required,str) or len(required)!=64 or any(c not in '0123456789abcdef' for c in required):
@@ -67,6 +80,13 @@ def verify_configured_artifacts(config):
         verified[name] = digest.hexdigest()
         if verified[name]!=required:
             raise ValueError('Configured model/runtime checksum mismatch: '+name+'; no component was started')
+    if quality is not None:
+        digest = hashlib.sha256()
+        with project_path(quality['file']).open('rb') as file:
+            for block in iter(lambda:file.read(1024*1024), b''):digest.update(block)
+        verified['qualityFile'] = digest.hexdigest()
+        if verified['qualityFile'] != quality_required:
+            raise ValueError('Configured model/runtime checksum mismatch: qualityFile; no component was started')
     return verified
 
 
@@ -116,6 +136,13 @@ def health(config):
         result['llm'] = result['llm'] and config['models']['llmModel'] in model_ids
     except Exception:
         result['llm'] = False
+    quality = config['models'].get('quality')
+    if quality is not None:
+        # The router answers without loading the model; only check that it lists the configured alias.
+        try:
+            result['quality'] = quality['model'] in [item['id'] for item in get_json(f"http://127.0.0.1:{quality['port']}/v1/models")['data']]
+        except Exception:
+            result['quality'] = False
     result['ready'] = all(result.values())
     return result
 
@@ -159,6 +186,11 @@ def supervise(config, config_path, state_path, token):
         environment[variable] = str(ports[name])
     if models.get('threads') is not None:
         environment['AKA_MODEL_THREADS'] = str(models['threads'])
+    if models.get('quality') is not None:
+        quality = models['quality']
+        environment.update(AKA_LLM_QUALITY_MODEL_PATH=str(project_path(quality['file'])), AKA_LLM_QUALITY_PORT=str(quality['port']),
+            AKA_LLM_QUALITY_MODEL=quality['model'], AKA_LLM_QUALITY_IDLE_SECONDS=str(quality.get('idleSeconds', 180)),
+            AKA_QUALITY_LLM_URL=f"http://127.0.0.1:{quality['port']}", AKA_QUALITY_LLM_MODEL=quality['model'])
     def launch(name, command):
         with open(directory / f'{name}.log', 'ab', buffering=0) as log:
             children[name] = subprocess.Popen(command, cwd=ROOT, env=environment, stdin=subprocess.DEVNULL,
@@ -173,7 +205,7 @@ def supervise(config, config_path, state_path, token):
             if stopping:
                 return
             ready = health(config)
-            if all(ready[name] for name in ('llm','embedding','reranker','qdrant')):
+            if all(ready[name] for name in ('llm','embedding','reranker','qdrant')) and ready.get('quality', True):
                 break
             if any(child.poll() is not None for child in children.values()):
                 raise RuntimeError('Owned model runtime exited; inspect logs')
