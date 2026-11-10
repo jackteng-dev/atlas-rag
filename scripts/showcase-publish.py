@@ -148,6 +148,8 @@ def build(project,repo,out,source):
                 config=json.loads((BASE/'config/local-deployment.example.json').read_text())
                 config.update(instance='homelab',accountsFile='work/accounts.json',store='data/store.json',collection='atlas_homelab_v4')
                 config['models'].update(threads=2,workDirectory='work/runtime')
+                # Optional on-demand Qwen3 8B (owner 2026-11-11); the host provides the pinned file in the read-only models mount.
+                config['models']['quality']={'file':'work/models/qwen3-8b-q4.gguf','model':'qwen3-8b','port':18114,'idleSeconds':180}
                 (ctx/'config/homelab.json').write_text(json.dumps(config))
                 dest=ctx/'backend/target'/jar.name;dest.parent.mkdir(parents=True);shutil.copyfile(jar,dest)
             else:
