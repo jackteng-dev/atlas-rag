@@ -6,7 +6,7 @@ export interface Source { chunkId: string; documentId: string; title: string; ve
 export interface RetrievalConfiguration { chunkMaxChars: number; topK: number; coverageThreshold: number; bm25K1: number; bm25B: number; chunkLengthUnit: string; tokenizer: string }
 export interface PipelineStage { name: string; status: string; elapsedMs: number; inputCount: number; outputCount: number }
 export interface Answer { requestId: string; status: string; mode: string; retrieval: string; message: string; segments: {chunkId: string; quote: string}[]; sources: Source[]; coverage: number; missingTerms: string[]; indexRevision: number; elapsedMs: number; modelInputTokens: number | null; modelOutputTokens: number | null; configuration: RetrievalConfiguration; generated: {text: string; chunkIds: string[]}[]; pipeline: PipelineStage[]; evaluation: Record<string, string | number> }
-export interface RagConfiguration { enabled: boolean; embedding?: string; reranker?: string; llm?: string; vectorStore?: string; chunking?: string }
+export interface RagConfiguration { enabled: boolean; embedding?: string; reranker?: string; llm?: string; vectorStore?: string; chunking?: string; llmOptions?: { id: 'fast' | 'quality'; model: string }[] }
 export interface Status { status: string; mode: string; retrieval: string; embedding: string; indexRevision: number; documentCount: number; chunkCount: number; coverageThreshold: number; chunkMaxChars: number; configuration: RetrievalConfiguration; rag: RagConfiguration; authentication: string; actor: string; roles?: string[]; departments?: string[] }
 let authorization = ''
 let authorizationVersion = 0
@@ -38,10 +38,11 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 interface QuestionJob { id: string; status: string; answer: Answer | null; error: {code: string; message: string} | null; elapsedMs: number }
-export async function askInBackground(request: {question: string; documentIds: string[]}, progress: (seconds: number) => void): Promise<Answer> {
+export async function askInBackground(request: {question: string; documentIds: string[]; model?: 'fast' | 'quality'}, progress: (seconds: number) => void): Promise<Answer> {
   const identity = authorizationVersion
   const job = await api<QuestionJob>('/question-jobs', { method: 'POST', body: JSON.stringify(request) })
-  const deadline = performance.now() + 300000
+  // The optional larger CPU model loads on first use and answers slowly; allow it more time.
+  const deadline = performance.now() + (request.model === 'quality' ? 900000 : 300000)
   while (performance.now() < deadline) {
     if (identity !== authorizationVersion) throw new Error('IDENTITY_CHANGED · 登入身分已變更，請重新提問。')
     const current = await api<QuestionJob>(`/question-jobs/${job.id}`)

@@ -18,6 +18,7 @@ public class RagEngine {
     private double maxRerankGap=5.0;
     private String llmModel="qwen2.5-1.5b-instruct";
     private String chunkStrategy="structural";
+    private String qualityModel="";
     private final ReentrantLock inference=new ReentrantLock();
     private String indexedSignature="";
     private final Map<String,List<Double>> embeddingCache=new HashMap<>();
@@ -34,9 +35,12 @@ public class RagEngine {
             @Value("${knowledge.rag.min-rerank-score:-8.0}") double threshold,
             @Value("${knowledge.rag.max-rerank-gap:5.0}") double maxRerankGap,
             @Value("${knowledge.rag.llm-model:qwen3-4b-instruct-2507}") String llmModel,
-            @Value("${knowledge.chunk-strategy:structural}") String chunkStrategy,ObjectMapper mapper) {
-        this(enabled,enabled?new LlamaRagModels(embeddingUrl,rerankerUrl,llmUrl,llmModel,mapper):null,
+            @Value("${knowledge.chunk-strategy:structural}") String chunkStrategy,
+            @Value("${knowledge.rag.quality-llm-url:}") String qualityUrl,
+            @Value("${knowledge.rag.quality-llm-model:}") String qualityModel,ObjectMapper mapper) {
+        this(enabled,enabled?withQuality(new LlamaRagModels(embeddingUrl,rerankerUrl,llmUrl,llmModel,mapper),qualityUrl,qualityModel):null,
                 enabled?new QdrantVectorIndex(qdrantUrl,collection,mapper):null,candidateK,threshold);
+        this.qualityModel=enabled && !qualityUrl.isBlank()?qualityModel:"";
         this.chunkStrategy=chunkStrategy;
         if(!Double.isFinite(maxRerankGap) || maxRerankGap<0 || maxRerankGap>20) throw new IllegalArgumentException("Invalid reranker score window");
         if(!llmModel.matches("[a-zA-Z0-9._-]{1,100}")) throw new IllegalArgumentException("Invalid local model alias");
@@ -46,15 +50,28 @@ public class RagEngine {
         if(candidateK<5 || candidateK>50 || !Double.isFinite(threshold)) throw new IllegalArgumentException("Invalid RAG candidate count or reranker threshold");
         this.enabled=enabled;this.models=models;this.vectors=vectors;this.candidateK=candidateK;minRerankScore=threshold;
     }
+    private static LlamaRagModels withQuality(LlamaRagModels models,String url,String alias) {
+        return url==null || url.isBlank()?models:models.withQuality(url,alias);
+    }
     public boolean enabled() { return enabled; }
+    public boolean hasQuality() { return enabled && models!=null && models.hasQuality(); }
     public Map<String,Object> configuration() {
-        return Map.ofEntries(Map.entry("enabled",enabled),Map.entry("embedding",enabled?"BGE_M3":"NONE"),Map.entry("reranker",enabled?"BGE_RERANKER_V2_M3":"NONE"),
+        var options=new ArrayList<Map<String,Object>>();
+        if(enabled) {
+            options.add(Map.of("id","fast","model",llmModel));
+            if(hasQuality()) options.add(Map.of("id","quality","model",qualityModel));
+        }
+        return Map.ofEntries(Map.entry("llmOptions",List.copyOf(options)),Map.entry("enabled",enabled),Map.entry("embedding",enabled?"BGE_M3":"NONE"),Map.entry("reranker",enabled?"BGE_RERANKER_V2_M3":"NONE"),
                 Map.entry("llm",enabled?llmModel:"NONE"),Map.entry("vectorStore",enabled?"QDRANT":"NONE"),
                 Map.entry("fusion","RRF_K60"),Map.entry("candidateK",candidateK),Map.entry("rerankerMinLogit",minRerankScore),
                 Map.entry("rerankerMaxLogitGap",maxRerankGap),Map.entry("generationPromptVersion","complete-answer-v4"),
                 Map.entry("chunking",chunkStrategy.equals("semantic")?"BGE_ADJACENT_PARAGRAPH_BOUNDARIES":"MARKDOWN_STRUCTURAL_BOUNDARIES"),Map.entry("paidApiCalls",0));
     }
     public Result run(StoreState all,StoreState authorized,KeywordRetriever retriever,String question,int topK) {
+        return run(all,authorized,retriever,question,topK,false);
+    }
+    public Result run(StoreState all,StoreState authorized,KeywordRetriever retriever,String question,int topK,boolean quality) {
+        if(quality && !hasQuality()) throw new ApiException(400,"MODEL_UNAVAILABLE","The quality model is not configured on this server.");
         if(!inference.tryLock()) throw new ApiException(503,"MODEL_BUSY","The local CPU model is processing another question. Retry shortly.");
         try {
             var stages=new ArrayList<PipelineStage>();
@@ -98,7 +115,7 @@ public class RagEngine {
                 return new Result(List.of(),List.of(),List.of(),List.copyOf(stages),null,null,false);
             }
             start=System.nanoTime();
-            var output=models.generate(question,List.copyOf(chosen));
+            var output=quality?models.generate(question,List.copyOf(chosen),true):models.generate(question,List.copyOf(chosen));
             var permitted=new HashSet<>(chosen.stream().map(Source::chunkId).toList());
             var cited=new LinkedHashSet<String>();
             if(output.statements()==null || output.statements().size()>3) throw new ApiException(502,"INVALID_CITATION","Invalid generated answer.");
@@ -108,7 +125,7 @@ public class RagEngine {
                 cited.addAll(statement.chunkIds());
             }
             var excerpts=chosen.stream().filter(s->cited.contains(s.chunkId())).map(s->new Segment(s.chunkId(),s.excerpt())).toList();
-            stages.add(stage("generation",output.statements().isEmpty()?"REFUSED":"COMPLETE",start,chosen.size(),output.statements().size()));
+            stages.add(stage(quality?"generation_quality":"generation",output.statements().isEmpty()?"REFUSED":"COMPLETE",start,chosen.size(),output.statements().size()));
             return new Result(List.copyOf(chosen),excerpts,List.copyOf(output.statements()),List.copyOf(stages),output.inputTokens(),output.outputTokens(),!output.statements().isEmpty());
         } finally { inference.unlock(); }
     }

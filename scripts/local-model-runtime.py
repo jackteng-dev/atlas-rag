@@ -14,7 +14,12 @@ WORK = ROOT / os.environ.get('AKA_MODEL_WORKDIR', 'work')
 ports = {name: int(os.environ.get(variable, default)) for name,variable,default in [
     ('llm','AKA_LLM_PORT','18111'),('embedding','AKA_EMBEDDING_PORT','18112'),
     ('reranker','AKA_RERANKER_PORT','18113'),('qdrant','AKA_QDRANT_PORT','16333'),('grpc','AKA_QDRANT_GRPC_PORT','16334')]}
-if len(set(ports.values())) != 5 or any(port < 1024 or port > 65535 for port in ports.values()):
+# Optional larger "quality" model: a llama.cpp router that loads it on the first request and unloads it after idling,
+# so it costs no memory until someone picks it (owner decision 2026-11-11: Qwen3 8B, local only).
+quality_path = os.environ.get('AKA_LLM_QUALITY_MODEL_PATH', '')
+if quality_path:
+    ports['quality'] = int(os.environ.get('AKA_LLM_QUALITY_PORT', '18114'))
+if len(set(ports.values())) != len(ports) or any(port < 1024 or port > 65535 for port in ports.values()):
     raise SystemExit('Model ports must be distinct unprivileged ports')
 for port in ports.values():
     with socket.socket() as probe:
@@ -56,6 +61,26 @@ commands = {
                      '--alias', os.environ.get('AKA_LLM_MODEL', 'qwen3-4b-instruct-2507'), '--batch-size', '128', '--ubatch-size', '128', '--n-predict', '768'],
     'qdrant': [str(ROOT / os.environ.get('AKA_QDRANT_BIN', 'work/tools/qdrant/qdrant')), '--config-path', str(config)],
 }
+if quality_path:
+    idle = int(os.environ.get('AKA_LLM_QUALITY_IDLE_SECONDS', '180'))
+    if not 30 <= idle <= 3600: raise SystemExit('Quality model idle unload must be 30–3600 seconds')
+    alias = os.environ.get('AKA_LLM_QUALITY_MODEL', 'qwen3-8b')
+    if not alias.replace('-', '').replace('.', '').replace('_', '').isalnum(): raise SystemExit('Invalid quality model alias')
+    preset = WORK / 'quality-preset.ini'
+    preset.write_text(f"""[{alias}]
+model = {ROOT / quality_path}
+ctx-size = 4096
+threads = {threads}
+threads-batch = {threads}
+parallel = 1
+batch-size = 128
+ubatch-size = 128
+n-predict = 768
+reasoning = off
+sleep-idle-seconds = {idle}
+""")
+    commands['quality'] = [str(llama), '--host', '127.0.0.1', '--port', str(ports['quality']), '--models-preset', str(preset),
+                           '--models-max', '1', '--no-webui']
 environment = os.environ.copy()
 environment['TMPDIR'] = str(WORK / 'tmp')
 children = {}

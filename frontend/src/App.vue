@@ -34,7 +34,10 @@ function canManageDocument(doc: DocumentSummary) {
 }
 const editingReadOnly = computed(() => !!editing.value && !canManageDocument(editing.value))
 const isRag = computed(() => status.value?.mode === 'LOCAL_RAG_GENERATION')
-const modelLabel = computed(() => status.value?.rag?.llm?.includes('qwen3') ? 'Qwen3 4B' : 'Qwen2.5 1.5B')
+const qualityAvailable = computed(() => !!status.value?.rag?.llmOptions?.some(option => option.id === 'quality'))
+const modelChoice = ref<'fast' | 'quality'>('fast')
+const modelLabel = computed(() => answer.value?.pipeline?.some(stage => stage.name === 'generation_quality') ? 'Qwen3 8B'
+  : status.value?.rag?.llm?.includes('qwen3') ? 'Qwen3 4B' : 'Qwen2.5 1.5B')
 const examples = computed(() => [
   { label: '架構與技術', question: isRag.value ? '你用什麼架構' : 'What backend and frontend ports are used?', hint: '架構文件 · 來源核對' },
   { label: '文件生命週期', question: 'How does document update handle expectedVersion?', hint: '版本衝突 · 舊段落移除' },
@@ -44,7 +47,7 @@ const examples = computed(() => [
 const selectionLabel = computed(() => selected.value.length ? `${selected.value.length} 份文件` : '所有文件')
 const sourceIndex = (id: string) => (answer.value?.sources.findIndex(s => s.chunkId === id) ?? -1) + 1
 const modeLabel = computed(() => isRag.value ? '本地 LLM / 混合檢索' : status.value?.mode === 'OFFLINE_EXTRACTIVE' ? '離線檢索 / 原文摘錄' : '本機模型選取摘錄')
-const stageLabels: Record<string, string> = { authorization_and_expiry: '權限與到期過濾', vector_index: '向量索引同步', bm25: '關鍵字搜尋', dense_retrieval: '向量搜尋', rrf_fusion: '合併候選', reranker: '模型重排', generation: '模型回答', citation_validation: '引用核對' }
+const stageLabels: Record<string, string> = { authorization_and_expiry: '權限與到期過濾', vector_index: '向量索引同步', bm25: '關鍵字搜尋', dense_retrieval: '向量搜尋', rrf_fusion: '合併候選', reranker: '模型重排', generation: '模型回答', generation_quality: '模型回答（高品質 8B）', citation_validation: '引用核對' }
 const stageName = (name: string) => stageLabels[name] ?? name
 const expired = (doc: DocumentSummary) => !!doc.metadata.expiresAt && Date.parse(doc.metadata.expiresAt) <= Date.now()
 function clearAnswer() { answer.value = null; activeSource.value = null; sourceVerified.value = ''; submittedQuestion.value = '' }
@@ -81,7 +84,7 @@ async function ask(sample?: string) {
   if (!question.value.trim()) return
   busy.value = true; questionSeconds.value = 0; error.value = ''; clearAnswer(); submittedQuestion.value = question.value.trim()
   try {
-    const request = { question: submittedQuestion.value, documentIds: selected.value }
+    const request = { question: submittedQuestion.value, documentIds: selected.value, ...(isRag.value && qualityAvailable.value ? { model: modelChoice.value } : {}) }
     answer.value = isRag.value ? await askInBackground(request, seconds => { questionSeconds.value = seconds })
       : await api<Answer>('/questions', { method: 'POST', body: JSON.stringify(request) })
     activeSource.value = answer.value.sources[0] ?? null
@@ -170,8 +173,8 @@ onMounted(reload)
         <template v-if="tab === 'ask' && !loading && !needsLogin">
           <div class="ask-layout">
             <section class="conversation">
-              <form class="question-box" @submit.prevent="ask()"><label for="question"><span>01</span> 向文件提問</label><textarea id="question" v-model="question" :disabled="busy" maxlength="1000" placeholder="例如：文件更新後，舊版本的引用會發生什麼事？" @keydown.ctrl.enter.prevent="ask()"></textarea><div class="question-footer"><span>▤ {{ selectionLabel }} <span class="keyboard">Ctrl + Enter</span></span><button class="primary" type="submit" :disabled="busy || !question.trim() || !documents.length">{{ busy ? '檢索中…' : '尋找證據' }} <span>↗</span></button></div></form>
-              <div v-if="busy" class="loading answer-loading" role="status"><span class="spinner"></span>{{ isRag ? '本地模型正在檢索與生成' : '檢索目前文件版本並核對引用' }}…<span v-if="isRag"> {{ questionSeconds }} 秒</span></div>
+              <form class="question-box" @submit.prevent="ask()"><label for="question"><span>01</span> 向文件提問</label><textarea id="question" v-model="question" :disabled="busy" maxlength="1000" placeholder="例如：文件更新後，舊版本的引用會發生什麼事？" @keydown.ctrl.enter.prevent="ask()"></textarea><div class="question-footer"><span>▤ {{ selectionLabel }} <span class="keyboard">Ctrl + Enter</span><select v-if="isRag && qualityAvailable" v-model="modelChoice" :disabled="busy" class="model-select" aria-label="回答模型"><option value="fast">快速 · Qwen3 4B</option><option value="quality">高品質 · Qwen3 8B（較慢，約 2–5 分鐘）</option></select></span><button class="primary" type="submit" :disabled="busy || !question.trim() || !documents.length">{{ busy ? '檢索中…' : '尋找證據' }} <span>↗</span></button></div></form>
+              <div v-if="busy" class="loading answer-loading" role="status"><span class="spinner"></span>{{ isRag ? (modelChoice === 'quality' && qualityAvailable ? '高品質模型載入與生成中（CPU，約 2–5 分鐘）' : '本地模型正在檢索與生成') : '檢索目前文件版本並核對引用' }}…<span v-if="isRag"> {{ questionSeconds }} 秒</span></div>
               <section v-else-if="answer" class="answer-panel" aria-label="回答結果">
                 <div class="answer-header"><span class="eyebrow">02 / EVIDENCE RESPONSE</span><span :class="['result-badge', { insufficient: answer.status === 'INSUFFICIENT_EVIDENCE' }]">{{ answer.status === 'INSUFFICIENT_EVIDENCE' ? '證據不足' : answer.generated.length ? '模型回答 · 附來源' : '找到原文摘錄' }}</span></div>
                 <h2>{{ submittedQuestion }}</h2><p class="answer-message">{{ answer.message }}</p>

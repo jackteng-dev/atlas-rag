@@ -38,6 +38,28 @@ class LocalModelContractsTest {
         } finally { server.stop(0); }
         assertThatThrownBy(()->new LocalJsonHttp("https://api.openai.com",mapper)).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("loopback");
     }
+    @Test void qualityGenerationUsesTheOptionalModelEndpointAndAlias() throws Exception {
+        String[] fast={chat("{\"answerable\":true,\"statements\":[{\"text\":\"fast\",\"citations\":[1]}]}")};
+        String[] quality={chat("{\"answerable\":true,\"statements\":[{\"text\":\"quality\",\"citations\":[1]}]}")};
+        var bodies=new ArrayList<String>();
+        var fastServer=stub(fast);var qualityServer=HttpServer.create(new InetSocketAddress("127.0.0.1",0),0);
+        qualityServer.createContext("/",exchange->{bodies.add(new String(exchange.getRequestBody().readAllBytes(),StandardCharsets.UTF_8));byte[] bytes=quality[0].getBytes(StandardCharsets.UTF_8);exchange.sendResponseHeaders(200,bytes.length);exchange.getResponseBody().write(bytes);exchange.close();});
+        qualityServer.start();
+        try {
+            var plain=models(fastServer);
+            assertThat(plain.hasQuality()).isFalse();
+            var source=new Source("canonical","guide","Guide",1,"Stack","Java",2,2,0,"/api/documents/guide/chunks/canonical?version=1");
+            assertThat(plain.generate("stack",List.of(source),true).statements().getFirst().text()).isEqualTo("fast");
+            var client=models(fastServer).withQuality(origin(qualityServer),"qwen3-8b");
+            assertThat(client.hasQuality()).isTrue();
+            assertThat(client.generate("stack",List.of(source)).statements().getFirst().text()).isEqualTo("fast");
+            assertThat(client.generate("stack",List.of(source),true).statements().getFirst().text()).isEqualTo("quality");
+            assertThat(mapper.readTree(bodies.getFirst()).path("model").asText()).isEqualTo("qwen3-8b");
+        } finally { fastServer.stop(0);qualityServer.stop(0); }
+        assertThatThrownBy(()->new LlamaRagModels("http://127.0.0.1:1","http://127.0.0.1:1","http://127.0.0.1:1",mapper).withQuality("https://api.openai.com","x"))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("loopback");
+        assertThatThrownBy(()->new LocalJsonHttp("http://127.0.0.1:1",mapper,java.time.Duration.ofSeconds(901))).isInstanceOf(IllegalArgumentException.class);
+    }
     @Test void qdrantQuerySendsCurrentAuthorizedVersionFilterAndCleanupFollowsUpsert() throws Exception {
         var requests=new ArrayList<JsonNode>();var paths=new ArrayList<String>();
         var server=HttpServer.create(new InetSocketAddress("127.0.0.1",0),0);

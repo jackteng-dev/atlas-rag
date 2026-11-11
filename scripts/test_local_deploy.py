@@ -83,5 +83,40 @@ class DeploymentSafety(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'no component was started'):
             deploy.verify_configured_artifacts({'models':models})
 
+    def test_optional_quality_model_is_validated_and_verified(self):
+        models = {'artifactSha256':{}}
+        for name in ('llmFile','embeddingFile','rerankerFile','llamaServer','qdrantBinary','qualityFile'):
+            path = self.root / name
+            path.write_bytes(('synthetic-'+name).encode())
+            models[name]=str(path)
+            models['artifactSha256'][name]=hashlib.sha256(path.read_bytes()).hexdigest()
+        quality_path = models.pop('qualityFile')
+        models['quality'] = {'file': quality_path, 'model': 'qwen3-8b', 'port': 18114, 'idleSeconds': 180}
+        self.assertEqual(deploy.verify_configured_artifacts({'models':models})['qualityFile'], models['artifactSha256']['qualityFile'])
+        pathlib.Path(quality_path).write_bytes(b'tampered')
+        with self.assertRaisesRegex(ValueError,'qualityFile'):
+            deploy.verify_configured_artifacts({'models':models})
+        del models['quality']
+        with self.assertRaisesRegex(ValueError,'Unknown model artifact hash override'):
+            deploy.verify_configured_artifacts({'models':models})
+
+    def test_quality_config_shape_and_port_are_checked(self):
+        base = {'instance':'atlas','port':18081,'jar':'backend/target/x.jar','store':'data/s.json',
+                'models':{'ports':{'llm':18111,'embedding':18112,'reranker':18113,'qdrant':16333,'grpc':16334}}}
+        path = self.root / 'config.json'
+        for quality, error in [({'file':'work/models/q.gguf','model':'qwen3-8b','port':18114}, None),
+                               ({'file':'work/models/q.gguf','model':'qwen3-8b','port':18111}, 'Distinct'),
+                               ({'file':'work/models/q.gguf','model':'bad model','port':18114}, 'alias'),
+                               ({'file':'work/models/q.gguf','model':'qwen3-8b','port':18114,'idleSeconds':5}, 'idleSeconds'),
+                               ({'file':'work/models/q.gguf','model':'qwen3-8b'}, 'needs'),
+                               ({'file':'../outside.gguf','model':'qwen3-8b','port':18114}, 'inside this project')]:
+            config = json.loads(json.dumps(base)); config['models']['quality'] = quality
+            path.write_text(json.dumps(config))
+            if error is None:
+                self.assertEqual(deploy.read_config(path)['models']['quality']['port'], 18114)
+            else:
+                with self.assertRaisesRegex(ValueError, error):
+                    deploy.read_config(path)
+
 
 if __name__ == '__main__': unittest.main()

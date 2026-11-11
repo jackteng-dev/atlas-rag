@@ -41,8 +41,12 @@ public final class Models {
                                 @NotBlank @Size(max=200000) String markdown, @Min(1) int expectedVersion, @Valid Metadata metadata) {
         public UpdateRequest(String title,String markdown,int expectedVersion) { this(title,markdown,expectedVersion,null); }
     }
+    /** model: "fast" (default local LLM) or "quality" (optional larger local LLM, loaded on demand). */
     public record AskRequest(@NotBlank @Size(max=1000) String question, @Size(max=50) List<String> documentIds,
-                             @Min(1) @Max(5) Integer topK) {}
+                             @Min(1) @Max(5) Integer topK, @Pattern(regexp="fast|quality") String model) {
+        public AskRequest(String question,List<String> documentIds,Integer topK) { this(question,documentIds,topK,null); }
+        public boolean quality() { return "quality".equals(model); }
+    }
     public record Source(String chunkId, String documentId, String title, int version, String heading,
                          String excerpt, int lineStart, int lineEnd, double score, String href) {}
     public record Segment(String chunkId, String quote) {}

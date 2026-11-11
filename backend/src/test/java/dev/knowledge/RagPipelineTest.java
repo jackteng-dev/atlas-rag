@@ -53,6 +53,16 @@ class RagPipelineTest {
         store.delete("guide",3);
         assertThat(answers.ask(new AskRequest("newtoken",null,5)).sources()).isEmpty();
     }
+    @Test void qualityModelIsRefusedWhenNotConfiguredAndUsedWhenAvailable() {
+        store.create(new ImportRequest("guide","Guide","public evidence"));
+        assertThatThrownBy(()->answers.ask(new AskRequest("public",null,5,"quality"))).isInstanceOf(ApiException.class).hasMessageContaining("not configured");
+        models.quality=true;
+        var result=answers.ask(new AskRequest("public",null,5,"quality"));
+        assertThat(models.usedQuality).isTrue();
+        assertThat(result.pipeline()).extracting(PipelineStage::name).contains("generation_quality");
+        models.usedQuality=false;answers.ask(new AskRequest("public",null,5,"fast"));
+        assertThat(models.usedQuality).isFalse();
+    }
     @Test void forgedGenerationAndRerankingFailClosed() {
         store.create(new ImportRequest("guide","Guide","public evidence"));
         models.forgeCitation=true;
@@ -99,7 +109,9 @@ class RagPipelineTest {
         assertThat(new SemanticBoundaryMerger(models,32).merge("semantic",chunks,markdown)).hasSize(3);
     }
     static class FixtureModels implements RagModels {
-        List<String> rerankTexts=List.of();List<Source> context=List.of();List<Double> rankScores=List.of();boolean forgeCitation,forgeRank;double score=0;
+        List<String> rerankTexts=List.of();List<Source> context=List.of();List<Double> rankScores=List.of();boolean forgeCitation,forgeRank,quality,usedQuality;double score=0;
+        @Override public boolean hasQuality() { return quality; }
+        @Override public Generation generate(String q,List<Source> sources,boolean useQuality) { usedQuality=useQuality;return generate(q,sources); }
         public List<List<Double>> embed(List<String> texts) { return texts.stream().map(t->List.of(1.0,0.0)).toList(); }
         public List<Ranked> rerank(String q,List<String> texts) {
             rerankTexts=texts;
