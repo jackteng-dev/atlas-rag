@@ -1,5 +1,20 @@
 # AI Knowledge Assistant
 
+## 部署限制（最優先，2026-11-12）
+
+本 repo 的 main 會由作者的自架伺服器自動部署（GitHub Actions 發布映像 → 伺服器 CD 自然輪詢、先備份與隔離演練再切換）。在本機或任何 AI 工具修改時，**下列規則優先於本檔其他內容**：
+
+1. **一律走 PR**：開功能分支、push、開 PR，`verify` CI 通過後才 merge。不可直接 push main、不可 force push（分支保護也會拒絕）。本檔較舊段落提到「push main」者，以本規則為準。
+2. **本機開發用本機資料庫**：用 repo 內的 docker compose／說明啟動全新空資料庫，不要連線或下載正式資料庫，不要把帳密、token、`.env` 寫進 Git。
+3. **受保護路徑（CD 資料契約）**：PR 若修改下列路徑，CD 會拒絕自動部署。請先停下，告知作者在伺服器端執行受控切換（contract switch）後才能 merge：
+   - `config/`（含 `local-rag-artifacts.json`）
+   - `scripts/local-deploy.py`、`scripts/local-model-runtime.py`
+   - `backend/src/main/resources/`
+4. 只在本機跑測試、編譯、啟動，不會修改上述檔案（Maven 會把 resources 複製到 `target/`，該目錄已被忽略）。
+5. 新增或更換模型需作者先在伺服器放好固定 SHA-256 的模型檔；Atlas 不公開。不使用付費模型 API。
+
+push 前請用 `git diff --stat origin/main` 確認是否動到受保護路徑，並在 PR 說明中註明。
+
 Build this independent Java backend / Vue portfolio project in this directory only.
 Do not change developer-portfolio, e-commerce-platform, shop, or other projects.
 
