@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import static dev.knowledge.Models.*;
 
 /** One admitted inference, bounded ephemeral results, captured server identity and publication checks. */
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Service
 public class QuestionJobs implements AutoCloseable {
     public record JobError(int httpStatus,String code,String message) {}

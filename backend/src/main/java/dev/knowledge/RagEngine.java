@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 import static dev.knowledge.Models.*;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Component
 public class RagEngine {
     private final boolean enabled;

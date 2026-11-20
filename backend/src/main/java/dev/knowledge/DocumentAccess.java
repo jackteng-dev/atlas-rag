@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import static dev.knowledge.Models.*;
 
 /** Claims come exclusively from Spring Security authentication, never request headers or documentIds. */
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Component
 public class DocumentAccess {
     private final boolean authenticatedMode;

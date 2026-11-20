@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.util.*;
 import static dev.knowledge.Models.*;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Service
 public class DocumentStore implements AutoCloseable {
     private final Path file;
