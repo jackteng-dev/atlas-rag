@@ -1,5 +1,50 @@
 # 開發交接 — AI Knowledge Assistant / Atlas
 
+## 2026-11-20：Atlas AI Platform v1 大型重構（功能分支 `feature/atlas-platform-v1`，未合併 main）
+
+**狀態**：本機開發與驗證完成，`READY_FOR_SERVER_PRECHECK`。沒有 merge `main`、沒有發布映像、沒有接觸任何伺服器或正式資料。
+正式切換由伺服器端 Claude 依 [SERVER_CLOUD_HANDOFF](platform/SERVER_CLOUD_HANDOFF.md) 先唯讀預檢、經 Owner 批准後一次執行。
+
+### 本次完成內容
+- 同一個 jar 兩種模式：預設 legacy（行為不變，47 項舊測試原樣通過）；`SPRING_PROFILES_ACTIVE=platform` 啟用新平台。
+- 平台：多租戶（組織／成員／邀請／工作區／知識庫 ACL）、Session + CSRF、PostgreSQL + Flyway、S3 物件儲存、Qdrant 租戶範圍向量、
+  MD/TXT/PDF/DOCX/XLSX 真解析與 `NEEDS_OCR`、持久化工作佇列（SKIP LOCKED、lease + heartbeat、重試、取消）、保留原 BM25 + BGE-M3 + RRF + reranker + Qwen3 的 RAG、
+  多輪對話與引用重新驗權、Agent／Workflow／人工審核／白名單工具／連接器（SSRF 防護、MCP adapter）、用量／配額／稽核／系統健康、legacy JSON 匯入工具。
+- 前端：Vue Router + Pinia 平台 UI（Codex T01/T03 實作、Claude 審查整合）；legacy UI 保留，啟動時依 `/api/status` 選擇。
+- 部署：`deploy/platform/`（compose：PostgreSQL 17、RustFS(S3)、Qdrant 1.19.1；Dockerfile；`.env.example`；backup.sh）。
+- 文件：`docs/platform/` 全套（PRD、ARCHITECTURE、SECURITY_MODEL、DB_SCHEMA、API、IMPLEMENTATION_REPORT、LOCAL_DEPLOYMENT、MIGRATION_PLAN、
+  DATA_COMPATIBILITY_MATRIX、ROLLBACK_PLAN、EVALUATION_REPORT、SERVER_CLOUD_HANDOFF、CODEX_DELEGATION_LOG）。
+
+### 重要修改檔案
+`backend/src/main/java/dev/knowledge/platform/**`（新）、`backend/src/platform/resources/**`（新；**不在**受保護路徑）、`backend/pom.xml`、
+legacy bean 加上 `@Profile("!platform")`、`ApiErrors.java`、`LocalJsonHttp.java`（新增可選 internal hosts 建構子）、`frontend/src/{legacy,platform}/**`、
+`frontend/e2e/platform.spec.ts`、`deploy/platform/**`、`scripts/platform-*.mjs`、`scripts/evaluate-platform.mjs`、`eval/platform-v1/**`。
+受保護路徑差異：`git diff origin/main...HEAD -- config backend/src/main/resources scripts/local-deploy.py scripts/local-model-runtime.py` = 0 行。
+
+### 本輪實測（2026-11-20，Windows 11 開發機，CPU llama.cpp b11401，固定 SHA 模型）
+- `mvn -f backend/pom.xml -B -ntp -Plocal-web verify`：**277 tests, 0 failures, BUILD SUCCESS**（含 Testcontainers PostgreSQL 平台整合測試；模型為確定性假模型，只驗證串接與授權）。
+- `npm --prefix frontend run build`（vue-tsc + vite）：PASS。
+- Playwright：legacy `e2e/assistant.spec.ts` 4/4（legacy 模式）；平台 `e2e/platform.spec.ts` 1/1（真實模型，UI 全流程）。
+- `scripts/platform-smoke.mjs`（真實 HTTP、真實模型）：11/11。
+- `scripts/evaluate-platform.mjs`：eval/platform-v1 **11/12** + OCR 檢查 PASS（P11 跨文件雙子題只答一半，已如實記錄）。
+- 併發：6 人同時提問 6/6 完成，p50 8.9 s、p95 17.7 s；重啟恢復：執行中被砍的 job 重啟後 attempt 2 完成。
+- 備份／還原演練：pg_dump + 物件庫 + SHA-256 manifest，還原至新資料庫筆數一致。
+- 未執行：伺服器環境、正式資料、HTTPS／反向代理、長時間 soak、GPU、外部 HTTP/MCP 連接器實連、獨立人工語意標註。
+
+### 尚未完成事項
+OCR 引擎、視覺化工作流程編輯器、OIDC/SSO/MFA、PostgreSQL RLS、防毒掃描、保留期限排程、持久化詞彙索引（大型語料）、多 Agent、GraphRAG、計費。
+Legacy 帳號不自動遷移（改用邀請）；legacy 非公開文件匯入後需 Owner 指定 RESTRICTED 知識庫成員。
+
+### 已知問題
+小模型跨文件多子題常只答一部分；引用有效不等於語意正確。BM25 每次查詢掃描授權 chunk（上限 5 萬）。CPU 同時 1 個推論位，佇列只保證公平不增加吞吐。
+
+### 下一步建議
+1. 伺服器端 Claude 依 SERVER_CLOUD_HANDOFF B 節唯讀盤點，結果填入 G 節「伺服器結果」。
+2. 隔離 STAGE 環境部署 platform、對正式 store 複本做 dry-run 匯入並驗證，再由 Owner 決定切換窗口。
+3. 切換前不要 merge 本分支到 `main`（會觸發既有 CD）；Draft PR 只用於審查與 CI。
+4. 續作：在同一分支補上述「尚未完成事項」，以 eval/platform-v1 與 smoke 回歸。
+
+
 ## 2026-11-08：自動更新端到端驗證（Atlas）
 
 本次只增加此交接段落；不變更應用邏輯、資料庫、帳號、映像 recipe、CI 或部署契約。
