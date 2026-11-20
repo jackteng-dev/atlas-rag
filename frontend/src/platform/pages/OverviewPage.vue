@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { api } from '../api/client'
@@ -18,18 +18,19 @@ const counts = ref<{ label: string; count: number | null; path: string }[]>([])
 const recent = ref<DocumentItem[]>([])
 async function load() {
   await run(async () => {
-    const [kbs, docs, conversations, approvals] = await Promise.allSettled([
+    const [kbs, docs, conversations, approvals, agents] = await Promise.allSettled([
       api.knowledgeBases(org), api.documents(org), api.conversations(org),
-      session.canApprove ? api.approvals(org) : Promise.resolve(null),
+      session.canApprove ? api.approvals(org, 'PENDING') : Promise.resolve(null), api.agents(org),
     ])
     counts.value = [
       { label: '可讀知識庫', count: kbs.status === 'fulfilled' ? kbs.value.length : null, path: 'knowledge-bases' },
       { label: '可讀文件', count: docs.status === 'fulfilled' ? docs.value.length : null, path: 'documents' },
+      { label: 'Agents', count: agents.status === 'fulfilled' ? agents.value.length : null, path: 'agents' },
       { label: '我的對話', count: conversations.status === 'fulfilled' ? conversations.value.length : null, path: 'chat' },
       ...(session.canApprove ? [{ label: '待處理審核', count: approvals.status === 'fulfilled' ? approvals.value?.filter(a => a.status === 'PENDING').length ?? null : null, path: 'approvals' }] : []),
     ]
     if (docs.status === 'fulfilled') recent.value = [...docs.value].sort((a,b) => b.updatedAt.localeCompare(a.updatedAt)).slice(0,5)
-    const failed = [kbs, docs, conversations, approvals].find(r => r.status === 'rejected')
+    const failed = [kbs, docs, conversations, approvals, agents].find(r => r.status === 'rejected')
     if (failed?.status === 'rejected') throw failed.reason
   })
 }
