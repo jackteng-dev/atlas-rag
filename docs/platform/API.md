@@ -52,6 +52,12 @@ export interface UsageSummary { from: string; to: string; totals: { requests: nu
 export interface Quota { monthlyTokenLimit: number; monthlyRequestLimit: number; requestsPerMinute: number; usedTokens: number; usedRequests: number }
 export interface AuditEvent { id: number; actorId: string | null; actorEmail: string | null; action: string; resourceType: string | null; resourceId: string | null; result: 'SUCCESS' | 'DENIED' | 'FAILURE'; traceId: string | null; detail: Record<string, unknown>; createdAt: string }
 export interface Health { status: 'UP' | 'DEGRADED' | 'DOWN'; components: { name: string; status: 'UP' | 'DOWN' | 'DISABLED'; detail: string }[] }
+export interface KbMember { userId: string; email: string; displayName: string; role: 'EDITOR' | 'VIEWER' }
+export interface WorkspaceMember { userId: string; email: string; displayName: string; role: 'MANAGER' | 'EDITOR' | 'VIEWER' }
+export interface EvaluationSummary { reports: { file: string; frozen: boolean; summary?: unknown; metrics?: unknown; conditions?: unknown; generatedAt?: string; configuration?: unknown; totals?: unknown; error?: string }[]; note: string }
+export interface AdminOrg { id: string; name: string; slug: string; status: string; plan: string; createdAt: string; members: number; documents: number }
+export interface AdminUser { id: string; email: string; displayName: string; status: 'ACTIVE' | 'DISABLED'; systemRole: 'NONE' | 'SYSTEM_ADMIN' }
+export interface AdminJob { id: string; orgId: string; type: string; state: JobState; attempts: number; lastError: string; createdAt: string; updatedAt: string; traceId: string }
 export interface PlatformStatus { mode: 'PLATFORM'; version: string; registrationOpen: boolean; models: { id: 'fast' | 'quality'; model: string; available: boolean }[]; ocr: 'DISABLED' | 'AVAILABLE' }
 ```
 
@@ -81,20 +87,22 @@ export interface PlatformStatus { mode: 'PLATFORM'; version: string; registratio
 | GET/POST | `/api/v2/orgs/{orgId}/invitations` | POST `{email,role}` → `Invitation` incl. one-time `token` [ADMIN] |
 | DELETE | `/api/v2/orgs/{orgId}/invitations/{id}` | revoke [ADMIN] |
 | GET/POST | `/api/v2/orgs/{orgId}/workspaces` | POST `{name,description}` [ADMIN] |
-| GET/PUT/DELETE | `/api/v2/orgs/{orgId}/workspaces/{wsId}/members/{userId}` | PUT `{role:'MANAGER'|'EDITOR'|'VIEWER'}` [ADMIN] |
+| GET | `/api/v2/orgs/{orgId}/workspaces/{wsId}/members` | → `WorkspaceMember[]` [member] |
+| PUT/DELETE | `/api/v2/orgs/{orgId}/workspaces/{wsId}/members/{userId}` | PUT `{role:'MANAGER'|'EDITOR'|'VIEWER'}` [ADMIN] |
 
 ### Knowledge bases and documents
 | Method | Path | Notes |
 |---|---|---|
 | GET/POST | `/api/v2/orgs/{orgId}/knowledge-bases` | POST `{workspaceId,name,description,visibility}` [ADMIN or workspace MANAGER] |
 | GET/PATCH/DELETE | `/api/v2/orgs/{orgId}/knowledge-bases/{kbId}` | PATCH `{name?,description?,visibility?}` [MANAGE] |
-| GET/PUT/DELETE | `/api/v2/orgs/{orgId}/knowledge-bases/{kbId}/members/{userId}` | GET on `/members` lists; PUT `{role:'EDITOR'|'VIEWER'}` [MANAGE] |
+| GET | `/api/v2/orgs/{orgId}/knowledge-bases/{kbId}/members` | → `KbMember[]` [READ] |
+| PUT/DELETE | `/api/v2/orgs/{orgId}/knowledge-bases/{kbId}/members/{userId}` | PUT `{role:'EDITOR'|'VIEWER'}` [MANAGE] |
 | GET | `/api/v2/orgs/{orgId}/documents?kbId=` | → `DocumentItem[]` (only readable KBs) |
 | POST | `/api/v2/orgs/{orgId}/knowledge-bases/{kbId}/documents` | multipart `file`, optional `title` → 202 `DocumentItem` [EDIT] |
 | GET | `/api/v2/orgs/{orgId}/documents/{docId}` | → `DocumentItem` with `versions` |
 | PATCH | `/api/v2/orgs/{orgId}/documents/{docId}` | `{title?,tags?,expiresAt?}` [EDIT] |
 | DELETE | `/api/v2/orgs/{orgId}/documents/{docId}` | → 202; immediately unreadable, vectors purged by a job [EDIT] |
-| POST | `/api/v2/orgs/{orgId}/documents/{docId}/versions` | multipart `file` → 202 new version [EDIT] |
+| POST | `/api/v2/orgs/{orgId}/documents/{docId}/versions` | multipart `file` → 202 `DocumentItem` (with versions) [EDIT]; 409 `DUPLICATE_CONTENT` |
 | POST | `/api/v2/orgs/{orgId}/documents/{docId}/versions/{n}/retry` · `/cancel` | [EDIT] |
 | POST | `/api/v2/orgs/{orgId}/documents/{docId}/reindex` | re-embed current version [EDIT] |
 | GET | `/api/v2/orgs/{orgId}/documents/{docId}/versions/{n}/file` | original bytes, `Content-Disposition: attachment` |
@@ -135,7 +143,7 @@ Citations are re-authorized on every read: a citation whose document was deleted
 | GET | `/api/v2/orgs/{orgId}/usage?from=&to=` | → `UsageSummary` [ADMIN] |
 | GET/PUT | `/api/v2/orgs/{orgId}/quota` | → `Quota`; PUT [OWNER or SYSTEM_ADMIN] |
 | GET | `/api/v2/orgs/{orgId}/audit?limit=&before=&action=` | → `AuditEvent[]` [ADMIN] |
-| GET | `/api/v2/orgs/{orgId}/evaluation` | → frozen and new evaluation summaries (read-only) |
+| GET | `/api/v2/orgs/{orgId}/evaluation` | → `EvaluationSummary` (read-only) |
 | GET | `/api/v2/admin/health` | → `Health` [SYSTEM_ADMIN] |
-| GET | `/api/v2/admin/orgs` · `/admin/users` · `/admin/jobs` | [SYSTEM_ADMIN] |
+| GET | `/api/v2/admin/orgs` → `AdminOrg[]` · `/admin/users` → `AdminUser[]` · `/admin/jobs` → `AdminJob[]` | [SYSTEM_ADMIN] |
 | PATCH | `/api/v2/admin/users/{id}` | `{status}` disables + revokes sessions [SYSTEM_ADMIN] |
