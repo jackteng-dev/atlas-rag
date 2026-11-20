@@ -40,12 +40,12 @@ class LoginThrottleTest {
     }
 
     @Test
-    void fiveFailuresFromDifferentEmailsBlockSharedIp() {
-        for (int i = 1; i <= 4; i++) {
+    void fiftyFailuresFromDifferentEmailsBlockSharedIp() {
+        for (int i = 1; i < LoginThrottle.IP_LIMIT; i++) {
             throttle.failure("member" + i + "@example.test", "192.0.2.1");
             assertThat(throttle.blocked("new@example.test", "192.0.2.1")).isFalse();
         }
-        throttle.failure("member5@example.test", "192.0.2.1");
+        throttle.failure("member50@example.test", "192.0.2.1");
         assertThat(throttle.blocked("new@example.test", "192.0.2.1")).isTrue();
         assertThat(throttle.blocked("new@example.test", "192.0.2.2")).isFalse();
     }
@@ -53,6 +53,7 @@ class LoginThrottleTest {
     @Test
     void successDoesNotClearSharedIpBlockOrAnotherEmailsCounter() {
         for (int i = 0; i < 5; i++) throttle.failure("other@example.test", "192.0.2.1");
+        for (int i = 5; i < LoginThrottle.IP_LIMIT; i++) throttle.failure("spray" + i + "@example.test", "192.0.2.1");
         throttle.success("member@example.test");
         assertThat(throttle.blocked("other@example.test", "192.0.2.2")).isTrue();
         throttle.success("other@example.test");
@@ -63,6 +64,7 @@ class LoginThrottleTest {
     @Test
     void emailAndIpBlocksExpireAtFifteenMinutes() {
         for (int i = 0; i < 5; i++) throttle.failure("member@example.test", "192.0.2.1");
+        for (int i = 5; i < LoginThrottle.IP_LIMIT; i++) throttle.failure("spray" + i + "@example.test", "192.0.2.1");
         clock.advance(Duration.ofMinutes(15).minusNanos(1));
         assertThat(throttle.blocked("member@example.test", "192.0.2.2")).isTrue();
         assertThat(throttle.blocked("other@example.test", "192.0.2.1")).isTrue();
@@ -80,7 +82,7 @@ class LoginThrottleTest {
             assertThat(throttle.blocked("member@example.test", "192.0.2.1")).isFalse();
         }
         throttle.failure("member@example.test", "192.0.2.1");
-        assertThat(throttle.blocked("member@example.test", "192.0.2.1")).isTrue();
+        assertThat(throttle.blocked("member@example.test", "192.0.2.2")).isTrue();
     }
 
     private static final class MutableClock extends Clock {
