@@ -26,7 +26,10 @@ public class TenantAccess {
     private final JdbcClient db;
     private final CurrentUser current;
     private final AuditService audit;
-    public TenantAccess(JdbcClient db, CurrentUser current, AuditService audit) { this.db = db; this.current = current; this.audit = audit; }
+    private final dev.knowledge.platform.identity.UserRepository users;
+    public TenantAccess(JdbcClient db, CurrentUser current, AuditService audit, dev.knowledge.platform.identity.UserRepository users) {
+        this.db = db; this.current = current; this.audit = audit; this.users = users;
+    }
 
     public OrgContext require(String orgIdText) {
         var user = current.require();
@@ -41,6 +44,19 @@ public class TenantAccess {
             throw Errors.notFound("organization");
         }
         return new OrgContext(orgId, user, Role.valueOf(role.get()));
+    }
+    /**
+     * Rebuilds a tenant context for background work at execution time (not at enqueue time): a member who was removed,
+     * disabled or lost KB access after queuing a job no longer gets results.
+     */
+    public Optional<OrgContext> contextFor(UUID orgId, UUID userId) {
+        var user = users.byId(userId).filter(dev.knowledge.platform.identity.UserRepository.User::active);
+        if (user.isEmpty()) return Optional.empty();
+        return db.sql("""
+                select m.role from memberships m join organizations o on o.id = m.org_id
+                where m.org_id = :org and m.user_id = :user and m.status = 'ACTIVE' and o.status = 'ACTIVE'""")
+                .param("org", orgId).param("user", userId).query(String.class).optional()
+                .map(role -> new OrgContext(orgId, user.get(), Role.valueOf(role)));
     }
     public OrgContext require(String orgIdText, Role minimum) {
         var ctx = require(orgIdText);

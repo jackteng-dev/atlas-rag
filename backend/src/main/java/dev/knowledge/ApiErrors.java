@@ -37,6 +37,9 @@ public class ApiErrors {
     @ExceptionHandler(NoResourceFoundException.class) ResponseEntity<?> missing(Exception e) {
         return ResponseEntity.status(404).body(body("NOT_FOUND","No such endpoint."));
     }
+    @ExceptionHandler(org.springframework.web.HttpMediaTypeNotSupportedException.class) ResponseEntity<?> mediaType(Exception e) {
+        return ResponseEntity.status(415).body(body("UNSUPPORTED_MEDIA_TYPE","This endpoint does not accept that content type."));
+    }
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class) ResponseEntity<?> method(Exception e) {
         return ResponseEntity.status(405).body(body("METHOD_NOT_ALLOWED","This method is not supported here."));
     }
