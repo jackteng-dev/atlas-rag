@@ -129,6 +129,7 @@ create table document_versions (
     error_message varchar(500),
     page_count int,
     chunk_count int not null default 0,
+    job_id uuid,
     created_by uuid not null references users(id),
     created_at timestamptz not null default now(),
     ready_at timestamptz,
