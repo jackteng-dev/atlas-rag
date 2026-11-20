@@ -1,4 +1,4 @@
-﻿import type * as T from './types'
+import type * as T from './types'
 
 export class ApiError extends Error {
   constructor(public status: number, public code: string, message: string, public traceId = '') {
@@ -63,7 +63,7 @@ async function upload<R>(path: string, file: File, progress?: (percent: number) 
 }
 type KbInput = Pick<T.KnowledgeBase, 'workspaceId' | 'name' | 'description' | 'visibility'>
 type AgentInput = Pick<T.Agent, 'name' | 'template' | 'description' | 'definition'>
-// Unknown responses deliberately preserve unspecified contract shapes.
+
 export const api = {
   status: () => request<T.PlatformStatus>('/api/status'), csrf,
   me: () => request<T.Me>(base + '/auth/me'),
@@ -83,7 +83,7 @@ export const api = {
   revokeInvitation: (o: string, key: string) => request<void>(r(o, 'invitations', key), 'DELETE'),
   workspaces: (o: string) => request<T.Workspace[]>(r(o, 'workspaces')),
   createWorkspace: (o: string, b: { name: string; description: string }) => request<T.Workspace>(r(o, 'workspaces'), 'POST', b),
-  workspaceMember: (o: string, ws: string, u: string) => request<unknown>(r(o, 'workspaces', ws) + '/members/' + id(u)),
+  workspaceMembers: (o: string, ws: string) => request<T.WorkspaceMember[]>(r(o, 'workspaces', ws) + '/members'),
   putWorkspaceMember: (o: string, ws: string, u: string, role: 'MANAGER' | 'EDITOR' | 'VIEWER') => request<void>(r(o, 'workspaces', ws) + '/members/' + id(u), 'PUT', { role }),
   removeWorkspaceMember: (o: string, ws: string, u: string) => request<void>(r(o, 'workspaces', ws) + '/members/' + id(u), 'DELETE'),
   knowledgeBases: (o: string) => request<T.KnowledgeBase[]>(r(o, 'knowledge-bases')),
@@ -91,7 +91,7 @@ export const api = {
   knowledgeBase: (o: string, kb: string) => request<T.KnowledgeBase>(r(o, 'knowledge-bases', kb)),
   updateKnowledgeBase: (o: string, kb: string, b: Partial<Pick<KbInput, 'name' | 'description' | 'visibility'>>) => request<void>(r(o, 'knowledge-bases', kb), 'PATCH', b),
   deleteKnowledgeBase: (o: string, kb: string) => request<void>(r(o, 'knowledge-bases', kb), 'DELETE'),
-  kbMembers: (o: string, kb: string) => request<unknown>(r(o, 'knowledge-bases', kb) + '/members'),
+  kbMembers: (o: string, kb: string) => request<T.KbMember[]>(r(o, 'knowledge-bases', kb) + '/members'),
   putKbMember: (o: string, kb: string, u: string, role: 'EDITOR' | 'VIEWER') => request<void>(r(o, 'knowledge-bases', kb) + '/members/' + id(u), 'PUT', { role }),
   removeKbMember: (o: string, kb: string, u: string) => request<void>(r(o, 'knowledge-bases', kb) + '/members/' + id(u), 'DELETE'),
   documents: (o: string, kbId?: string) => request<T.DocumentItem[]>(r(o, 'documents') + q({ kbId })),
@@ -99,7 +99,7 @@ export const api = {
   document: (o: string, doc: string) => request<T.DocumentItem>(r(o, 'documents', doc)),
   updateDocument: (o: string, doc: string, b: { title?: string; tags?: string[]; expiresAt?: string | null }) => request<void>(r(o, 'documents', doc), 'PATCH', b),
   deleteDocument: (o: string, doc: string) => request<void>(r(o, 'documents', doc), 'DELETE'),
-  uploadVersion: (o: string, doc: string, file: File, progress?: (n: number) => void) => upload<unknown>(r(o, 'documents', doc) + '/versions', file, progress),
+  uploadVersion: (o: string, doc: string, file: File, progress?: (n: number) => void) => upload<T.DocumentItem>(r(o, 'documents', doc) + '/versions', file, progress),
   retryVersion: (o: string, doc: string, n: number) => request<void>(r(o, 'documents', doc) + '/versions/' + n + '/retry', 'POST'),
   cancelVersion: (o: string, doc: string, n: number) => request<void>(r(o, 'documents', doc) + '/versions/' + n + '/cancel', 'POST'),
   reindexDocument: (o: string, doc: string) => request<void>(r(o, 'documents', doc) + '/reindex', 'POST'),
@@ -123,7 +123,7 @@ export const api = {
   agents: (o: string) => request<T.Agent[]>(r(o, 'agents')),
   createAgent: (o: string, b: AgentInput) => request<T.Agent>(r(o, 'agents'), 'POST', b),
   agent: (o: string, key: string) => request<T.Agent>(r(o, 'agents', key)),
-  updateAgent: (o: string, key: string, b: AgentInput) => request<T.Agent>(r(o, 'agents', key), 'PUT', b),
+  updateAgent: (o: string, key: string, b: AgentInput & { enabled?: boolean }) => request<T.Agent>(r(o, 'agents', key), 'PUT', b),
   deleteAgent: (o: string, key: string) => request<void>(r(o, 'agents', key), 'DELETE'),
   createRun: (o: string, key: string, input: Record<string, unknown>) => request<T.Run>(r(o, 'agents', key) + '/runs', 'POST', { input }),
   runs: (o: string, agentId?: string) => request<T.Run[]>(r(o, 'runs') + q({ agentId })),
@@ -143,11 +143,11 @@ export const api = {
   quota: (o: string) => request<T.Quota>(r(o, 'quota')),
   updateQuota: (o: string, b: Pick<T.Quota, 'monthlyTokenLimit' | 'monthlyRequestLimit' | 'requestsPerMinute'>) => request<T.Quota>(r(o, 'quota'), 'PUT', b),
   audit: (o: string, filters: { limit?: number; before?: string; action?: string } = {}) => request<T.AuditEvent[]>(r(o, 'audit') + q(filters)),
-  evaluation: (o: string) => request<unknown>(r(o, 'evaluation')),
+  evaluation: (o: string) => request<T.EvaluationSummary>(r(o, 'evaluation')),
   adminHealth: () => request<T.Health>(base + '/admin/health'),
-  adminOrgs: () => request<unknown>(base + '/admin/orgs'),
-  adminUsers: () => request<unknown>(base + '/admin/users'),
-  adminJobs: () => request<unknown>(base + '/admin/jobs'),
+  adminOrgs: () => request<T.AdminOrg[]>(base + '/admin/orgs'),
+  adminUsers: () => request<T.AdminUser[]>(base + '/admin/users'),
+  adminJobs: () => request<T.AdminJob[]>(base + '/admin/jobs'),
   updateAdminUser: (key: string, status: T.Member['status']) => request<void>(base + '/admin/users/' + id(key), 'PATCH', { status }),
 }
 

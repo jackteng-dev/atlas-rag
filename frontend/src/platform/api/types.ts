@@ -36,4 +36,10 @@ export interface UsageSummary { from: string; to: string; totals: { requests: nu
 export interface Quota { monthlyTokenLimit: number; monthlyRequestLimit: number; requestsPerMinute: number; usedTokens: number; usedRequests: number }
 export interface AuditEvent { id: number; actorId: string | null; actorEmail: string | null; action: string; resourceType: string | null; resourceId: string | null; result: 'SUCCESS' | 'DENIED' | 'FAILURE'; traceId: string | null; detail: Record<string, unknown>; createdAt: string }
 export interface Health { status: 'UP' | 'DEGRADED' | 'DOWN'; components: { name: string; status: 'UP' | 'DOWN' | 'DISABLED'; detail: string }[] }
+export interface KbMember { userId: string; email: string; displayName: string; role: 'EDITOR' | 'VIEWER' }
+export interface WorkspaceMember { userId: string; email: string; displayName: string; role: 'MANAGER' | 'EDITOR' | 'VIEWER' }
+export interface EvaluationSummary { reports: { file: string; frozen: boolean; summary?: unknown; metrics?: unknown; conditions?: unknown; generatedAt?: string; configuration?: unknown; totals?: unknown; error?: string }[]; note: string }
+export interface AdminOrg { id: string; name: string; slug: string; status: string; plan: string; createdAt: string; members: number; documents: number }
+export interface AdminUser { id: string; email: string; displayName: string; status: 'ACTIVE' | 'DISABLED'; systemRole: 'NONE' | 'SYSTEM_ADMIN' }
+export interface AdminJob { id: string; orgId: string; type: string; state: JobState; attempts: number; lastError: string; createdAt: string; updatedAt: string; traceId: string }
 export interface PlatformStatus { mode: 'PLATFORM'; version: string; registrationOpen: boolean; models: { id: 'fast' | 'quality'; model: string; available: boolean }[]; ocr: 'DISABLED' | 'AVAILABLE' }

@@ -135,3 +135,22 @@
 @media(prefers-reduced-motion:reduce){:where(.atlas-platform) .spinner{animation:none}}
 
 :where(.atlas-platform) fieldset{min-width:0;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;margin:0} :where(.atlas-platform) fieldset label{overflow-wrap:anywhere;margin:8px 0}
+
+:where(.atlas-platform) .definition-steps,:where(.atlas-platform) .run-timeline{padding-left:26px}
+:where(.atlas-platform) .definition-steps li{padding:8px 0}
+:where(.atlas-platform) .run-timeline li{padding:0 0 24px 12px;border-left:2px solid var(--border);margin:0 0 12px}
+:where(.atlas-platform) .tabs{margin-bottom:24px}
+:where(.atlas-platform) .health-grid,:where(.atlas-platform) .quota-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+:where(.atlas-platform) .health-card{padding:16px;border:1px solid var(--border);border-radius:var(--radius-sm);min-width:0}
+:where(.atlas-platform) .health-card h3{margin-top:0}
+:where(.atlas-platform) .usage-chart{display:block;width:100%;height:auto;max-height:320px;color:var(--muted);margin-bottom:20px}
+:where(.atlas-platform) .usage-chart text{fill:currentColor;font-size:12px}
+:where(.atlas-platform) details>summary{cursor:pointer;overflow-wrap:anywhere}
+:where(.atlas-platform) select[multiple]{min-height:130px}
+:where(.atlas-platform) .chunk-card>small{display:block}
+:where(.atlas-platform) .report-section{margin-top:24px}
+@media(max-width:767px){
+  :where(.atlas-platform) .side-panel{position:fixed;inset:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0;padding:20px}
+  :where(.atlas-platform) .health-grid,:where(.atlas-platform) .quota-grid{grid-template-columns:minmax(0,1fr)}
+  :where(.atlas-platform) .run-timeline{padding-left:18px}
+}
