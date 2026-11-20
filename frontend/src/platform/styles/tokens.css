@@ -154,3 +154,8 @@
   :where(.atlas-platform) .health-grid,:where(.atlas-platform) .quota-grid{grid-template-columns:minmax(0,1fr)}
   :where(.atlas-platform) .run-timeline{padding-left:18px}
 }
+/* A chat thread owns the remaining viewport; only its messages scroll. */
+:where(.atlas-platform) .chat-layout { height:100dvh; min-height:0; overflow:hidden }
+:where(.atlas-platform) .chat-layout .app-main { display:flex; flex-direction:column; height:100dvh; min-height:0 }
+:where(.atlas-platform) .chat-layout .app-topbar { flex-shrink:0 }
+:where(.atlas-platform) .chat-layout .page-content { display:flex; flex-direction:column; flex:1; min-height:0; width:100%; max-width:none; padding:0 }
