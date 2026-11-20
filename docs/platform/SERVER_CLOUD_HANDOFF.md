@@ -10,8 +10,8 @@
 |---|---|
 | Atlas GitHub Repo | `jackteng-dev/atlas-rag` |
 | 目標功能分支 | `feature/atlas-platform-v1`（**不得**在預檢與 Owner 批准前 merge 到 `main`；merge 會觸發既有 GHCR → 主機 CD） |
-| 已測試 Commit SHA | 見 `docs/HANDOFF.md` 最新段落「Final branch head」（本文件撰寫時的 head 會在交接段落記錄） |
-| PR / CI 證據 | Draft PR（見 HANDOFF；只觸發 `showcase-verify` 的 pull_request 事件；`homelab-release.yml` 只在 `main` 的 workflow_run 執行） |
+| 已測試 Commit SHA | `e51a197`（本機 277 tests / build / e2e / smoke / eval 均在此內容上執行；之後僅有文件 commit） |
+| PR / CI 證據 | Draft PR https://github.com/jackteng-dev/atlas-rag/pull/5（CI 結果以 PR checks 為準；只觸發 `showcase-verify` 的 pull_request 事件；`homelab-release.yml` 只在 `main` 的 workflow_run 執行） |
 | 產物／Docker digest | 本機未發布任何映像。`deploy/platform/Dockerfile` 只供本機／審查建置；正式映像 recipe 由伺服器端在切換時決定 |
 | 既有正式部署 SHA / digest | `<由 server-side Claude 唯讀確認>` |
 | 執行者與批准者 | `<owner / server-side Claude / 明確授權>` |

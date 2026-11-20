@@ -38,6 +38,10 @@ Legacy 帳號不自動遷移（改用邀請）；legacy 非公開文件匯入後
 ### 已知問題
 小模型跨文件多子題常只答一部分；引用有效不等於語意正確。BM25 每次查詢掃描授權 chunk（上限 5 萬）。CPU 同時 1 個推論位，佇列只保證公平不增加吞吐。
 
+### 分支與 PR
+- 功能分支 `feature/atlas-platform-v1`，已測試內容 `e51a197`；Draft PR：https://github.com/jackteng-dev/atlas-rag/pull/5（**不要 merge**）。
+- Codex 協作分支（`codex/*`）只存在本機 worktree，已全部合併進功能分支，未推送。
+
 ### 下一步建議
 1. 伺服器端 Claude 依 SERVER_CLOUD_HANDOFF B 節唯讀盤點，結果填入 G 節「伺服器結果」。
 2. 隔離 STAGE 環境部署 platform、對正式 store 複本做 dry-run 匯入並驗證，再由 Owner 決定切換窗口。
