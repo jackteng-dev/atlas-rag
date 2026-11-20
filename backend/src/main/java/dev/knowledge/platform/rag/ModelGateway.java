@@ -77,9 +77,11 @@ public class ModelGateway {
     }
 
     @Bean @Primary VectorStore vectorStore(@Value("${atlas.qdrant.url}") String url, @Value("${atlas.qdrant.collection}") String collection,
-                                  ObjectMapper mapper, Optional<TestVectorStore> override) {
+                                  @Value("${atlas.network.internal-hosts:}") String internalHosts, ObjectMapper mapper, Optional<TestVectorStore> override) {
         if (override.isPresent()) return override.get();
-        return new QdrantVectorStore(url, collection, mapper);
+        var hosts = new java.util.HashSet<String>();
+        for (var h : internalHosts.split(",")) if (!h.isBlank()) hosts.add(h.strip());
+        return new QdrantVectorStore(url, collection, mapper, java.util.Set.copyOf(hosts));
     }
 
     /** Marker for test-provided deterministic models (never used in production wiring). */

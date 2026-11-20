@@ -13,3 +13,6 @@ data/
 !docs/verification/*.log
 .idea/
 .vscode/
+
+# platform local secrets
+deploy/platform/.env

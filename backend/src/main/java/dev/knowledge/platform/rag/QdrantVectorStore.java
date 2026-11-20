@@ -12,10 +12,10 @@ public final class QdrantVectorStore implements VectorStore {
     private final String collection;
     private volatile Integer dimensions;
 
-    public QdrantVectorStore(String origin, String collection, ObjectMapper mapper) {
+    public QdrantVectorStore(String origin, String collection, ObjectMapper mapper, java.util.Set<String> internalHosts) {
         if (!collection.matches("[a-zA-Z0-9_-]{1,64}")) throw new IllegalArgumentException("Invalid Qdrant collection");
         this.collection = "/collections/" + collection;
-        this.http = new LocalJsonHttp(origin, mapper);
+        this.http = new LocalJsonHttp(origin, mapper, java.time.Duration.ofSeconds(120), internalHosts);
     }
 
     private void ensureCollection(int size) {

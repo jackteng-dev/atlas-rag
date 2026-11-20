@@ -1,0 +1,58 @@
+# Atlas AI Platform — LOCAL DEVELOPMENT stack. Not a production recipe (see docs/platform/SERVER_CLOUD_HANDOFF.md).
+# Isolated project name, ports, network and volumes; nothing here touches an existing server, database or index.
+#   docker compose -f deploy/platform/compose.yaml --env-file deploy/platform/.env up -d            # infra only
+#   docker compose -f deploy/platform/compose.yaml --env-file deploy/platform/.env --profile app up -d --build   # + Atlas container
+name: atlas-platform-dev
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: atlas
+      POSTGRES_USER: atlas
+      POSTGRES_PASSWORD: ${ATLAS_DB_PASSWORD:?set ATLAS_DB_PASSWORD in deploy/platform/.env}
+    ports: ["127.0.0.1:15432:5432"]
+    volumes: ["atlas-pg:/var/lib/postgresql/data"]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U atlas -d atlas"], interval: 5s, timeout: 3s, retries: 20 }
+    networks: [atlas]
+  # S3-compatible object store. MinIO no longer publishes public container images, so local dev uses RustFS
+  # (S3 API compatible; the app talks plain S3 through the MinIO Java client and works with MinIO/AWS S3/Ceph alike).
+  minio:
+    image: rustfs/rustfs:1.0.5
+    environment:
+      RUSTFS_ACCESS_KEY: ${ATLAS_S3_ACCESS_KEY:?set ATLAS_S3_ACCESS_KEY}
+      RUSTFS_SECRET_KEY: ${ATLAS_S3_SECRET_KEY:?set ATLAS_S3_SECRET_KEY}
+      RUSTFS_CONSOLE_ENABLE: "false"
+    ports: ["127.0.0.1:19000:9000"]
+    volumes: ["atlas-objects:/data"]
+    networks: [atlas]
+  qdrant:
+    image: qdrant/qdrant:v1.19.1
+    environment: { QDRANT__TELEMETRY_DISABLED: "true" }
+    ports: ["127.0.0.1:16433:6333"]
+    volumes: ["atlas-qdrant:/qdrant/storage"]
+    networks: [atlas]
+  atlas:
+    profiles: ["app"]
+    build: { context: ../.., dockerfile: deploy/platform/Dockerfile }
+    depends_on:
+      postgres: { condition: service_healthy }
+      minio: { condition: service_started }
+      qdrant: { condition: service_started }
+    environment:
+      SPRING_PROFILES_ACTIVE: platform
+      ATLAS_BIND_ADDRESS: 0.0.0.0
+      ATLAS_DB_URL: jdbc:postgresql://postgres:5432/atlas
+      ATLAS_DB_USER: atlas
+      ATLAS_DB_PASSWORD: ${ATLAS_DB_PASSWORD}
+      ATLAS_S3_ENDPOINT: http://minio:9000
+      ATLAS_S3_ACCESS_KEY: ${ATLAS_S3_ACCESS_KEY}
+      ATLAS_S3_SECRET_KEY: ${ATLAS_S3_SECRET_KEY}
+      AKA_QDRANT_URL: http://qdrant:6333
+      ATLAS_INTERNAL_HOSTS: qdrant
+      ATLAS_MODELS_ENABLED: ${ATLAS_MODELS_ENABLED:-false}
+      ATLAS_BOOTSTRAP_ADMIN_EMAIL: ${ATLAS_BOOTSTRAP_ADMIN_EMAIL:-}
+      ATLAS_BOOTSTRAP_ADMIN_PASSWORD: ${ATLAS_BOOTSTRAP_ADMIN_PASSWORD:-}
+    ports: ["127.0.0.1:18091:18081"]
+    networks: [atlas]
+networks: { atlas: { name: atlas-platform-dev } }
+volumes: { atlas-pg: {}, atlas-objects: {}, atlas-qdrant: {} }

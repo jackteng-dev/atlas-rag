@@ -15,13 +15,15 @@ public final class LocalJsonHttp {
     private final HttpClient client=HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3))
             .followRedirects(HttpClient.Redirect.NEVER).build();
     public LocalJsonHttp(String origin,ObjectMapper mapper) { this(origin,mapper,Duration.ofSeconds(120)); }
-    public LocalJsonHttp(String origin,ObjectMapper mapper,Duration timeout) {
+    public LocalJsonHttp(String origin,ObjectMapper mapper,Duration timeout) { this(origin,mapper,timeout,Set.of()); }
+    /** internalHosts: operator-configured private service names (e.g. a compose "qdrant" service); never user input. */
+    public LocalJsonHttp(String origin,ObjectMapper mapper,Duration timeout,Set<String> internalHosts) {
         if(timeout.isNegative() || timeout.isZero() || timeout.toSeconds()>900) throw new IllegalArgumentException("Local request timeout must be 1–900 seconds");
         this.timeout=timeout;
         this.origin=URI.create(origin.endsWith("/")?origin.substring(0,origin.length()-1):origin);
         if(!Set.of("http","https").contains(this.origin.getScheme()) || this.origin.getUserInfo()!=null
                 || this.origin.getQuery()!=null || this.origin.getFragment()!=null
-                || !Set.of("127.0.0.1","localhost","[::1]","::1").contains(this.origin.getHost())
+                || !(Set.of("127.0.0.1","localhost","[::1]","::1").contains(this.origin.getHost()) || internalHosts.contains(this.origin.getHost()))
                 || (!this.origin.getPath().isEmpty() && !this.origin.getPath().equals("/")))
             throw new IllegalArgumentException("The free local profile requires a loopback service origin");
         this.mapper=mapper;
