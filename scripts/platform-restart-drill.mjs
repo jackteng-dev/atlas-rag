@@ -6,9 +6,9 @@ const base = process.env.ATLAS_URL ?? 'http://127.0.0.1:18081'
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 const cookies = new Map()
 async function req(method, path, body, form) {
-  if (method !== 'GET' && !cookies.has('XSRF-TOKEN')) await req('GET', '/api/v2/auth/csrf')
+  if (method !== 'GET' && !cookies.has('ATLAS_XSRF')) await req('GET', '/api/v2/auth/csrf')
   const headers = { Accept: 'application/json', Cookie: [...cookies].map(([k, v]) => `${k}=${v}`).join('; ') }
-  if (method !== 'GET') headers['X-XSRF-TOKEN'] = decodeURIComponent(cookies.get('XSRF-TOKEN') ?? '')
+  if (method !== 'GET') headers['X-ATLAS-XSRF'] = decodeURIComponent(cookies.get('ATLAS_XSRF') ?? '')
   if (body) headers['Content-Type'] = 'application/json'
   const res = await fetch(base + path, { method, headers, body: form ?? (body ? JSON.stringify(body) : undefined) })
   for (const c of res.headers.getSetCookie?.() ?? []) { const [p] = c.split(';'); const i = p.indexOf('='); cookies.set(p.slice(0, i), p.slice(i + 1)) }

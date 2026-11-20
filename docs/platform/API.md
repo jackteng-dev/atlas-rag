@@ -6,7 +6,7 @@ Active only with the Spring profile `platform`. Legacy `/api/*` (single-instance
 
 - Base path `/api/v2`. JSON bodies, UTF-8. Timestamps ISO-8601 UTC strings. IDs are UUID strings.
 - **Session auth**: `POST /api/v2/auth/login` sets an `HttpOnly; SameSite=Lax` session cookie (`ATLAS_SESSION`). No bearer tokens.
-- **CSRF**: every non-GET request must send header `X-XSRF-TOKEN` equal to the `XSRF-TOKEN` cookie. Call `GET /api/v2/auth/csrf` once on boot to obtain the cookie.
+- **CSRF**: every non-GET request must send header `X-ATLAS-XSRF` equal to the `ATLAS_XSRF` cookie. Call `GET /api/v2/auth/csrf` once on boot to obtain the cookie.
 - **Tenant scope**: tenant resources live under `/api/v2/orgs/{orgId}/…`. The server checks the caller's membership on every request; the client-supplied orgId never grants access by itself. Unknown or foreign resources answer `404` (never revealing existence); a known resource without permission answers `403`.
 - **Errors**: `{ "code": "UPPER_SNAKE", "message": "human text", "traceId": "…" }`. Every response carries header `X-Trace-Id`.
 - Lists return arrays unless noted.
@@ -67,7 +67,7 @@ export interface PlatformStatus { mode: 'PLATFORM'; version: string; registratio
 | Method | Path | Body → Result |
 |---|---|---|
 | GET | `/api/status` | → `PlatformStatus` (legacy profile answers its own shape without `mode:'PLATFORM'`) |
-| GET | `/api/v2/auth/csrf` | → 204, sets `XSRF-TOKEN` cookie |
+| GET | `/api/v2/auth/csrf` | → 204, sets `ATLAS_XSRF` cookie |
 | POST | `/api/v2/auth/login` | `{email,password}` → `Me`; 401 `BAD_CREDENTIALS`; 429 `TOO_MANY_ATTEMPTS` |
 | POST | `/api/v2/auth/logout` | → 204 |
 | GET | `/api/v2/auth/me` | → `Me`; 401 `AUTH_REQUIRED` |

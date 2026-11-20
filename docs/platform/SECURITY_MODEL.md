@@ -4,7 +4,7 @@
 - Server-side sessions (Spring Session JDBC, table `spring_session`), cookie `ATLAS_SESSION` (`HttpOnly`, `SameSite=Lax`, `Secure` via
   `ATLAS_COOKIE_SECURE=true` behind HTTPS). No bearer tokens, nothing sensitive in `localStorage`.
 - Session fixation: the old session is invalidated and a new id issued on every sign-in.
-- CSRF: double-submit cookie (`XSRF-TOKEN` cookie → `X-XSRF-TOKEN` header) on every non-GET request, including login.
+- CSRF: double-submit cookie (`ATLAS_XSRF` cookie → `X-ATLAS-XSRF` header) on every non-GET request, including login.
 - Passwords: bcrypt cost 12, 10–128 chars, must not contain the email name, minimum character variety. Unknown emails still pay one bcrypt
   comparison (timing). Login throttle: 5 failures / 15 min per email and per IP → `429`.
 - Revocation: password change deletes the user's other sessions; system-admin disable deletes all; `CurrentUser` re-reads the user on every

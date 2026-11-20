@@ -19,8 +19,9 @@ class IdentityTenantTest extends PlatformTestBase {
     @Test void mutatingRequestsWithoutCsrfTokenAreRejected() throws Exception {
         var auth = login(ROOT, ROOT_PASSWORD);
         mvc.perform(post("/api/v2/orgs").cookie(auth.cookie()).contentType("application/json").content("{\"name\":\"No CSRF\",\"slug\":\"no-csrf\"}"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isForbidden()).andExpect(jsonPath("$.code").value("CSRF_TOKEN_INVALID"));
     }
+
 
     @Test void bootstrapAdminCanSignInAndBadPasswordsAreThrottled() throws Exception {
         var auth = login(ROOT, ROOT_PASSWORD);

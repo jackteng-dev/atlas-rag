@@ -11,8 +11,8 @@ mkdirSync(screenshots, { recursive: true })
 
 async function csrfHeaders(api: APIRequestContext) {
   await api.get('/api/v2/auth/csrf')
-  const token = (await api.storageState()).cookies.find(c => c.name === 'XSRF-TOKEN')?.value ?? ''
-  return { 'X-XSRF-TOKEN': decodeURIComponent(token) }
+  const token = (await api.storageState()).cookies.find(c => c.name === 'ATLAS_XSRF')?.value ?? ''
+  return { 'X-ATLAS-XSRF': decodeURIComponent(token) }
 }
 
 test('register, upload, ask with citations, verify source, isolation and agent run through the UI', async ({ page, browser }) => {
@@ -32,6 +32,8 @@ test('register, upload, ask with citations, verify source, isolation and agent r
   const kb = await (await api.post(`/api/v2/orgs/${orgId}/knowledge-bases`, { headers, data: { workspaceId: ws, name: '人資規章', description: '', visibility: 'ORG' } })).json()
   await api.post('/api/v2/auth/logout', { headers })
 
+  // Another local app on the same host may have left a generic XSRF-TOKEN cookie (cookies ignore ports); it must not break sign-in.
+  await page.context().addCookies([{ name: 'XSRF-TOKEN', value: 'token-from-another-local-app', url: page.url().startsWith('http') ? new URL(page.url()).origin : 'http://127.0.0.1:18081' }])
   // Sign in through the UI.
   await page.goto('/login')
   await page.getByLabel('電子郵件').fill(email)

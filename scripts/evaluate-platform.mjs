@@ -32,9 +32,9 @@ function pdf(pages) {
 class Client {
   constructor() { this.cookies = new Map() }
   async req(method, path, body, form) {
-    if (method !== 'GET' && !this.cookies.has('XSRF-TOKEN')) await this.req('GET', '/api/v2/auth/csrf')
+    if (method !== 'GET' && !this.cookies.has('ATLAS_XSRF')) await this.req('GET', '/api/v2/auth/csrf')
     const headers = { Accept: 'application/json', Cookie: [...this.cookies].map(([k, v]) => `${k}=${v}`).join('; ') }
-    if (method !== 'GET') headers['X-XSRF-TOKEN'] = decodeURIComponent(this.cookies.get('XSRF-TOKEN') ?? '')
+    if (method !== 'GET') headers['X-ATLAS-XSRF'] = decodeURIComponent(this.cookies.get('ATLAS_XSRF') ?? '')
     if (body) headers['Content-Type'] = 'application/json'
     const res = await fetch(base + path, { method, headers, body: form ?? (body ? JSON.stringify(body) : undefined) })
     for (const c of res.headers.getSetCookie?.() ?? []) { const [p] = c.split(';'); const i = p.indexOf('='); this.cookies.set(p.slice(0, i), p.slice(i + 1)) }

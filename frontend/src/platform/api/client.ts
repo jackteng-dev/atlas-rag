@@ -14,10 +14,13 @@ const q = (values: Record<string, string | number | undefined>) => {
   Object.entries(values).forEach(([k, v]) => { if (v !== undefined && v !== '') p.set(k, String(v)) })
   return p.size ? '?' + p : ''
 }
+// Atlas-specific names: cookies are shared across ports on 127.0.0.1/localhost, so a generic XSRF-TOKEN from another local app would collide.
+const CSRF_COOKIE = 'ATLAS_XSRF', CSRF_HEADER = 'X-ATLAS-XSRF'
 function token() {
-  const cookie = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('XSRF-TOKEN='))
-  try { return cookie ? decodeURIComponent(cookie.slice(11)) : '' } catch { return '' }
+  const cookie = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith(CSRF_COOKIE + '='))
+  try { return cookie ? decodeURIComponent(cookie.slice(CSRF_COOKIE.length + 1)) : '' } catch { return '' }
 }
+function refreshCsrf(): Promise<void> { csrfPromise = undefined; return csrf() }
 let csrfPromise: Promise<void> | undefined
 export function csrf(): Promise<void> {
   return csrfPromise ??= fetch(base + '/auth/csrf', { credentials: 'same-origin' })
@@ -28,24 +31,29 @@ async function responseError(res: Response): Promise<ApiError> {
   const b = await res.json().catch(() => ({}))
   return new ApiError(res.status, b?.code ?? 'HTTP_ERROR', b?.message ?? `請求失敗（${res.status}）`, b?.traceId ?? res.headers.get('X-Trace-Id') ?? '')
 }
-export async function request<R>(path: string, method = 'GET', body?: unknown): Promise<R> {
-  if (method !== 'GET') await csrf()
+export async function request<R>(path: string, method = 'GET', body?: unknown, retried = false): Promise<R> {
+  if (method !== 'GET') await (token() ? csrf() : refreshCsrf())
   const res = await fetch(path, {
     method, credentials: 'same-origin',
-    headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }), ...(method === 'GET' ? {} : { 'X-XSRF-TOKEN': token() }) },
+    headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }), ...(method === 'GET' ? {} : { [CSRF_HEADER]: token() }) },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   })
-  if (!res.ok) throw await responseError(res)
+  if (!res.ok) {
+    const error = await responseError(res)
+    // A missing/expired CSRF cookie gets one transparent refresh + retry; real permission errors are surfaced unchanged.
+    if (error.code === 'CSRF_TOKEN_INVALID' && method !== 'GET' && !retried) { await refreshCsrf(); return request<R>(path, method, body, true) }
+    throw error
+  }
   if (res.status === 204) return undefined as R
   const text = await res.text()
   return (text ? JSON.parse(text) : undefined) as R
 }
 async function upload<R>(path: string, file: File, progress?: (percent: number) => void, title?: string): Promise<R> {
-  await csrf()
+  await (token() ? csrf() : refreshCsrf())
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     xhr.open('POST', path); xhr.withCredentials = true; xhr.timeout = 120000
-    xhr.setRequestHeader('X-XSRF-TOKEN', token()); xhr.setRequestHeader('Accept', 'application/json')
+    xhr.setRequestHeader(CSRF_HEADER, token()); xhr.setRequestHeader('Accept', 'application/json')
     xhr.upload.onprogress = e => { if (e.lengthComputable) progress?.(Math.round(e.loaded / e.total * 100)) }
     xhr.onerror = () => reject(new ApiError(0, 'NETWORK_ERROR', '上傳連線失敗，請重試。'))
     xhr.ontimeout = () => reject(new ApiError(0, 'TIMEOUT', '上傳逾時，請重新整理確認文件狀態。'))

@@ -12,9 +12,9 @@ class Client {
   header() { return [...this.cookies].map(([k, v]) => `${k}=${v}`).join('; ') }
   absorb(res) { for (const c of res.headers.getSetCookie?.() ?? []) { const [pair] = c.split(';'); const i = pair.indexOf('='); this.cookies.set(pair.slice(0, i), pair.slice(i + 1)) } }
   async req(method, path, body, { expect, form } = {}) {
-    if (method !== 'GET' && !this.cookies.has('XSRF-TOKEN')) await this.req('GET', '/api/v2/auth/csrf')
+    if (method !== 'GET' && !this.cookies.has('ATLAS_XSRF')) await this.req('GET', '/api/v2/auth/csrf')
     const headers = { Accept: 'application/json', Cookie: this.header() }
-    if (method !== 'GET') headers['X-XSRF-TOKEN'] = decodeURIComponent(this.cookies.get('XSRF-TOKEN') ?? '')
+    if (method !== 'GET') headers['X-ATLAS-XSRF'] = decodeURIComponent(this.cookies.get('ATLAS_XSRF') ?? '')
     if (body && !form) headers['Content-Type'] = 'application/json'
     const res = await fetch(base + path, { method, headers, body: form ?? (body ? JSON.stringify(body) : undefined), redirect: 'manual' })
     this.absorb(res)
