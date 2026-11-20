@@ -1,0 +1,51 @@
+{
+ "base": "http://127.0.0.1:18081",
+ "users": 6,
+ "quality": false,
+ "wallMs": 17772,
+ "p50Ms": 8933,
+ "p95Ms": 17733,
+ "maxMs": 17733,
+ "completed": 6,
+ "refused": 0,
+ "failed": 0,
+ "timings": [
+  {
+   "user": 0,
+   "ms": 3741,
+   "status": "COMPLETE",
+   "citations": 1
+  },
+  {
+   "user": 1,
+   "ms": 17733,
+   "status": "COMPLETE",
+   "citations": 1
+  },
+  {
+   "user": 2,
+   "ms": 8933,
+   "status": "COMPLETE",
+   "citations": 1
+  },
+  {
+   "user": 3,
+   "ms": 6332,
+   "status": "COMPLETE",
+   "citations": 1
+  },
+  {
+   "user": 4,
+   "ms": 12056,
+   "status": "COMPLETE",
+   "citations": 1
+  },
+  {
+   "user": 5,
+   "ms": 14641,
+   "status": "COMPLETE",
+   "citations": 1
+  }
+ ],
+ "note": "Local CPU, 1 concurrent inference slot; answers queue fairly. Not a production SLA."
+}

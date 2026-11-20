@@ -22,6 +22,8 @@ public class JobWorker implements AutoCloseable {
     private final Duration lease;
     private final String instance = "w-" + UUID.randomUUID().toString().substring(0, 8);
     private ScheduledExecutorService executor;
+    /** Renews leases of running jobs, so a short lease detects crashed workers quickly while long CPU inference keeps its claim. */
+    private final ScheduledExecutorService heartbeats = Executors.newSingleThreadScheduledExecutor(r -> { var t = new Thread(r, "atlas-job-heartbeat"); t.setDaemon(true); return t; });
 
     public JobWorker(JobQueue queue, List<JobHandler> handlers, @Value("${atlas.jobs.workers:2}") int workers,
                      @Value("${atlas.jobs.poll-ms:500}") long pollMs, @Value("${atlas.jobs.lease-seconds:900}") long leaseSeconds) {
@@ -51,6 +53,8 @@ public class JobWorker implements AutoCloseable {
         var job = claimed.get();
         var handler = handlers.get(job.type());
         Trace.set(job.traceId());
+        long every = Math.max(1, lease.toSeconds() / 3);
+        var beat = heartbeats.scheduleAtFixedRate(() -> { try { queue.heartbeat(job.id(), lease); } catch (RuntimeException ignored) { } }, every, every, TimeUnit.SECONDS);
         try {
             var result = handler.handle(job, () -> {
                 if (queue.cancelRequested(job.id())) throw new JobHandler.JobFailure("Cancelled by user", false);
@@ -65,7 +69,7 @@ public class JobWorker implements AutoCloseable {
         } catch (Exception e) {
             LoggerFactory.getLogger(JobWorker.class).warn("Job {} ({}) failed", job.id(), job.type(), e);
             failed(handler, job, "INTERNAL_ERROR: " + e.getClass().getSimpleName(), true);
-        } finally { Trace.clear(); }
+        } finally { beat.cancel(false); Trace.clear(); }
         return true;
     }
 
@@ -76,5 +80,5 @@ public class JobWorker implements AutoCloseable {
         }
     }
 
-    @Override public void close() { if (executor != null) executor.shutdownNow(); }
+    @Override public void close() { if (executor != null) executor.shutdownNow(); heartbeats.shutdownNow(); }
 }
