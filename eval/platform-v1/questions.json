@@ -1,0 +1,186 @@
+{
+ "name": "atlas-platform-v1",
+ "frozen": false,
+ "description": "Independent platform evaluation set (does not modify the frozen legacy benchmark). Checks status, cited document and expected facts; keyword checks are a proxy, not semantic accuracy.",
+ "documents": [
+  {
+   "file": "corpus/travel-policy.md",
+   "kb": "A"
+  },
+  {
+   "file": "corpus/security-standard.md",
+   "kb": "A"
+  },
+  {
+   "file": "corpus/qa-sop.md",
+   "kb": "A"
+  },
+  {
+   "file": "@pdf:datasheet",
+   "kb": "A",
+   "pages": [
+    "MCU-200 operates from 2.7 V to 5.5 V supply voltage.",
+    "MCU-200 operating temperature range is -40 C to 105 C."
+   ]
+  },
+  {
+   "file": "@pdf:scan",
+   "kb": "A",
+   "pages": [
+    null
+   ]
+  },
+  {
+   "file": "@md:other-tenant",
+   "kb": "B",
+   "text": "# Bonus\n\nThe annual bonus is paid in February and equals two months of salary.\n"
+  }
+ ],
+ "questions": [
+  {
+   "id": "P01",
+   "category": "zh",
+   "q": "國內出差要幾天前申請？",
+   "expect": "ANSWER",
+   "doc": "travel-policy",
+   "keywords": [
+    "三"
+   ]
+  },
+  {
+   "id": "P02",
+   "category": "en-cross-lingual",
+   "q": "How many days in advance must an international trip be requested?",
+   "expect": "ANSWER",
+   "doc": "travel-policy",
+   "keywords": [
+    "ten",
+    "10",
+    "十"
+   ]
+  },
+  {
+   "id": "P03",
+   "category": "zh",
+   "q": "國內住宿每晚上限多少錢？",
+   "expect": "ANSWER",
+   "doc": "travel-policy",
+   "keywords": [
+    "三千",
+    "3000",
+    "3,000"
+   ]
+  },
+  {
+   "id": "P04",
+   "category": "en",
+   "q": "How quickly must security incidents be reported?",
+   "expect": "ANSWER",
+   "doc": "security-standard",
+   "keywords": [
+    "one hour",
+    "1 hour",
+    "一小時",
+    "1 小時"
+   ]
+  },
+  {
+   "id": "P05",
+   "category": "false-premise",
+   "q": "Why must personal account passwords be rotated every 90 days?",
+   "expect": "REFUSE_OR_CORRECT",
+   "doc": "security-standard",
+   "keywords": [
+    "180",
+    "service",
+    "not"
+   ]
+  },
+  {
+   "id": "P06",
+   "category": "zh-en-mixed",
+   "q": "MCU 進料檢驗用什麼 AQL？",
+   "expect": "ANSWER",
+   "doc": "qa-sop",
+   "keywords": [
+    "0.65"
+   ]
+  },
+  {
+   "id": "P07",
+   "category": "pdf",
+   "q": "What is the maximum supply voltage of MCU-200?",
+   "expect": "ANSWER",
+   "doc": "datasheet",
+   "keywords": [
+    "5.5"
+   ]
+  },
+  {
+   "id": "P08",
+   "category": "pdf",
+   "q": "MCU-200 最高工作溫度是幾度？",
+   "expect": "ANSWER",
+   "doc": "datasheet",
+   "keywords": [
+    "105"
+   ]
+  },
+  {
+   "id": "P09",
+   "category": "no-evidence",
+   "q": "公司的年終獎金何時發放？",
+   "expect": "REFUSE",
+   "doc": null,
+   "keywords": []
+  },
+  {
+   "id": "P10",
+   "category": "cross-tenant",
+   "q": "When is the annual bonus paid?",
+   "expect": "REFUSE",
+   "doc": null,
+   "keywords": [],
+   "mustNotContain": [
+    "February",
+    "二月"
+   ]
+  },
+  {
+   "id": "P11",
+   "category": "cross-document",
+   "q": "不合格批要多久內開 NCR？資安事件要多久內通報？",
+   "expect": "ANSWER",
+   "doc": "qa-sop",
+   "keywords": [
+    "二十四",
+    "24"
+   ],
+   "keywordsAll": [
+    [
+     "二十四",
+     "24"
+    ],
+    [
+     "一小時",
+     "one hour",
+     "1 小時",
+     "1 hour",
+     "1小時"
+    ]
+   ]
+  },
+  {
+   "id": "P12",
+   "category": "no-evidence",
+   "q": "What is the parental leave policy?",
+   "expect": "REFUSE",
+   "doc": null,
+   "keywords": []
+  }
+ ],
+ "ocrCheck": {
+  "document": "scan",
+  "expectStatus": "NEEDS_OCR"
+ }
+}

@@ -100,6 +100,8 @@ public class ChatService {
         return new Posted(u, a, JobQueue.view(jobs.byId(job).orElseThrow()));
     }
 
+    /** One snapshot for messages and citations, so a concurrently completing answer is never seen without its citations. */
+    @Transactional(readOnly = true, isolation = org.springframework.transaction.annotation.Isolation.REPEATABLE_READ)
     public Detail detail(OrgContext ctx, String idText) {
         var conv = own(ctx, idText);
         var convId = UUID.fromString(conv.id());
