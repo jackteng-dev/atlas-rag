@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import static dev.knowledge.Models.*;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @RestController @RequestMapping("/api")
 public class ApiController {
     private final DocumentStore store;

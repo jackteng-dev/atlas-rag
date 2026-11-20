@@ -1,0 +1,15 @@
+{
+ "scenario": "question queued with quality model (Qwen3 8B), server process killed while RUNNING, restarted; job re-claimed after 60 s lease",
+ "result": {
+  "status": "COMPLETE",
+  "content": "資料庫備份保留三十天。",
+  "citations": 1,
+  "waitedMs": 48685,
+  "job": {
+   "state": "SUCCEEDED",
+   "attempts": 2,
+   "maxAttempts": 2,
+   "lastError": null
+  }
+ }
+}

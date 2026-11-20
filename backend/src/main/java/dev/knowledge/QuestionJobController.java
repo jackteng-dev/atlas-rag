@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import static dev.knowledge.Models.*;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @RestController @RequestMapping("/api/question-jobs")
 public class QuestionJobController {
     private final QuestionJobs jobs;

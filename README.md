@@ -10,6 +10,10 @@ Atlas 是以 Java／Spring Boot 與 Vue 建置的本地文件知識助理，適�
 目前僅於作者自架伺服器私人執行，因 CPU 推論資源需求，**不提供公開 Demo 或公開唯讀版**。
 可從[原始碼](https://github.com/jackteng-dev/atlas-rag)、[角色權限展示紀錄](docs/ROLE_DEMO.md)與[品質報告](docs/QUALITY_EVALUATION.md)審閱實作；文件中的歷史外部測試不代表目前有可用的公開服務。
 
+> **開發中：Atlas AI Platform v1**（分支 `feature/atlas-platform-v1`）— 多租戶知識庫、文件解析、Agent／人工審核與管理後台。
+> 以 `SPRING_PROFILES_ACTIVE=platform` 啟用；未啟用時行為與下文相同。說明見 [docs/platform](docs/platform/IMPLEMENTATION_REPORT.md)、
+> 本機啟動見 [LOCAL_DEPLOYMENT](docs/platform/LOCAL_DEPLOYMENT.md)。
+
 ## 主要功能
 
 - Markdown 匯入、更新與刪除，保存文件版本、內容雜湊、穩定段落 ID 與原文行號。

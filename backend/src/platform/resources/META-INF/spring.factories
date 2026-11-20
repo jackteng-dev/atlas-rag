@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=dev.knowledge.platform.core.ProfileDefaults

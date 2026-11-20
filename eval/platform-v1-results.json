@@ -1,0 +1,265 @@
+{
+ "name": "atlas-platform-v1",
+ "frozen": false,
+ "generatedAt": "2026-11-20T09:14:09.382Z",
+ "conditions": {
+  "model": "fast (Qwen3-4B-Instruct-2507 Q4_K_M)",
+  "embedding": "BGE-M3 Q8_0",
+  "reranker": "BGE-reranker-v2-m3 Q8_0",
+  "retrieval": "BM25 + dense, RRF k=60, rerank gates -8.0 / 5.0",
+  "hardware": "local CPU (developer workstation), llama.cpp b11401",
+  "questions": 12,
+  "caveat": "Keyword/document checks written by the implementer; a proxy for correctness, not independent human semantic grading."
+ },
+ "totals": {
+  "pass": 11,
+  "total": 12,
+  "ocrCheck": {
+   "expected": "NEEDS_OCR",
+   "actual": "NEEDS_OCR",
+   "pass": true
+  },
+  "p50LatencyMs": 4688,
+  "maxLatencyMs": 5740
+ },
+ "summary": {
+  "zh": {
+   "total": 2,
+   "pass": 2
+  },
+  "en-cross-lingual": {
+   "total": 1,
+   "pass": 1
+  },
+  "en": {
+   "total": 1,
+   "pass": 1
+  },
+  "false-premise": {
+   "total": 1,
+   "pass": 1
+  },
+  "zh-en-mixed": {
+   "total": 1,
+   "pass": 1
+  },
+  "pdf": {
+   "total": 2,
+   "pass": 2
+  },
+  "no-evidence": {
+   "total": 2,
+   "pass": 2
+  },
+  "cross-tenant": {
+   "total": 1,
+   "pass": 1
+  },
+  "cross-document": {
+   "total": 1,
+   "pass": 0
+  }
+ },
+ "results": [
+  {
+   "id": "P01",
+   "category": "zh",
+   "question": "國內出差要幾天前申請？",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "travel-policy"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4740,
+   "answer": "國內出差須於三個工作天前於系統提出申請"
+  },
+  {
+   "id": "P02",
+   "category": "en-cross-lingual",
+   "question": "How many days in advance must an international trip be requested?",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "travel-policy"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4711,
+   "answer": "必須至少提前十個工作天提出申請"
+  },
+  {
+   "id": "P03",
+   "category": "zh",
+   "question": "國內住宿每晚上限多少錢？",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "travel-policy"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4710,
+   "answer": "國內住宿費上限為每晚新台幣三千元"
+  },
+  {
+   "id": "P04",
+   "category": "en",
+   "question": "How quickly must security incidents be reported?",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "security-standard"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4688,
+   "answer": "Security incidents must be reported to the SOC within one hour of discovery."
+  },
+  {
+   "id": "P05",
+   "category": "false-premise",
+   "question": "Why must personal account passwords be rotated every 90 days?",
+   "expected": "REFUSE_OR_CORRECT",
+   "status": "REFUSED",
+   "citedDocuments": [],
+   "citedVersions": [],
+   "keywordHit": false,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 3148,
+   "answer": "根據目前可存取的文件，找不到足夠的證據回答這個問題。"
+  },
+  {
+   "id": "P06",
+   "category": "zh-en-mixed",
+   "question": "MCU 進料檢驗用什麼 AQL？",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "qa-sop"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 5740,
+   "answer": "MCU 進料檢驗用 AQL 0.65"
+  },
+  {
+   "id": "P07",
+   "category": "pdf",
+   "question": "What is the maximum supply voltage of MCU-200?",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "datasheet"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4718,
+   "answer": "The maximum supply voltage of MCU-200 is 5.5 V."
+  },
+  {
+   "id": "P08",
+   "category": "pdf",
+   "question": "MCU-200 最高工作溫度是幾度？",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "datasheet"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 4687,
+   "answer": "MCU-200 最高工作溫度是 105 C"
+  },
+  {
+   "id": "P09",
+   "category": "no-evidence",
+   "question": "公司的年終獎金何時發放？",
+   "expected": "REFUSE",
+   "status": "REFUSED",
+   "citedDocuments": [],
+   "citedVersions": [],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 1074,
+   "answer": "根據目前可存取的文件，找不到足夠的證據回答這個問題。"
+  },
+  {
+   "id": "P10",
+   "category": "cross-tenant",
+   "question": "When is the annual bonus paid?",
+   "expected": "REFUSE",
+   "status": "REFUSED",
+   "citedDocuments": [],
+   "citedVersions": [],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 1054,
+   "answer": "根據目前可存取的文件，找不到足夠的證據回答這個問題。"
+  },
+  {
+   "id": "P11",
+   "category": "cross-document",
+   "question": "不合格批要多久內開 NCR？資安事件要多久內通報？",
+   "expected": "ANSWER",
+   "status": "COMPLETE",
+   "citedDocuments": [
+    "qa-sop"
+   ],
+   "citedVersions": [
+    1
+   ],
+   "keywordHit": false,
+   "leak": false,
+   "pass": false,
+   "latencyMs": 4677,
+   "answer": "不合格批須於二十四小時內開立 NCR"
+  },
+  {
+   "id": "P12",
+   "category": "no-evidence",
+   "question": "What is the parental leave policy?",
+   "expected": "REFUSE",
+   "status": "REFUSED",
+   "citedDocuments": [],
+   "citedVersions": [],
+   "keywordHit": true,
+   "leak": false,
+   "pass": true,
+   "latencyMs": 1582,
+   "answer": "根據目前可存取的文件，找不到足夠的證據回答這個問題。"
+  }
+ ]
+}

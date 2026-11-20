@@ -4,6 +4,7 @@ import java.util.*;
 import org.springframework.stereotype.Service;
 import static dev.knowledge.Models.*;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Service
 public class AnswerService {
     private static final org.slf4j.Logger LOG=org.slf4j.LoggerFactory.getLogger(AnswerService.class);

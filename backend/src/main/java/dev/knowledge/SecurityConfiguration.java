@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
+@org.springframework.context.annotation.Profile("!platform") // legacy single-instance mode; the platform profile replaces it
 @Configuration
 public class SecurityConfiguration {
     public record Account(String username,String passwordHash,List<String> roles,List<String> departments) {}
