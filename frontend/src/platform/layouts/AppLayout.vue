@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { useSessionStore } from '../stores/session'
@@ -31,7 +31,7 @@ async function changePassword() {
 }
 function openPassword() { passwords.value = { currentPassword: '', newPassword: '' }; error.value = null; passwordOpen.value = true }
 </script>
-<template><div class="app-layout" :class="{ compact: collapsed }">
+<template><div class="app-layout" :class="{ compact: collapsed, 'chat-layout': route.path.split('/')[3] === 'chat' }">
   <a class="skip-link" href="#platform-main">跳至主要內容</a>
   <button v-if="drawer" class="drawer-backdrop" aria-label="關閉導覽" @click="drawer = false"></button>
   <aside id="platform-sidebar" class="app-sidebar" :class="{ open: drawer }" @keydown.esc="drawer = false">

@@ -11,6 +11,8 @@ import ErrorBanner from '../components/ErrorBanner.vue'
 import Spinner from '../components/Spinner.vue'
 import EmptyState from '../components/EmptyState.vue'
 import DataTable from '../components/DataTable.vue'
+import FileTypeBadge from '../components/FileTypeBadge.vue'
+import { fileSize } from '../composables/files'
 import StatusBadge from '../components/StatusBadge.vue'
 const session = useSessionStore(); const org = session.currentOrgId
 const { busy, error, run } = useTask()
@@ -36,5 +38,5 @@ async function load() {
 }
 onMounted(load)
 </script>
-<template><PageHeader title="工作空間總覽" description="從團隊知識開始，讓每個答案都有依據。"><button :disabled="busy" @click="load">重新整理</button></PageHeader><ErrorBanner :error="error" /><Spinner v-if="busy" /><div v-if="counts.length" class="stat-grid"><article v-for="card in counts" :key="card.path" class="stat-card"><RouterLink :to="orgPath(org,card.path)">{{ card.label }}</RouterLink><strong>{{ card.count ?? '—' }}</strong><small>{{ card.count === null ? '讀取失敗' : '目前可存取的資料' }}</small></article></div><section class="panel"><h2>最近更新的文件</h2><DataTable v-if="recent.length" :rows="recent" :columns="[{key:'title',label:'文件'},{key:'status',label:'狀態'},{key:'updatedAt',label:'更新時間'}]"><template #cell-title="{row}"><RouterLink :to="orgPath(org,'documents/' + row.id)">{{ row.title }}</RouterLink></template><template #cell-status="{row}"><StatusBadge :state="row.status" /></template><template #cell-updatedAt="{row}">{{ date(row.updatedAt) }}</template></DataTable><EmptyState v-else-if="!busy && !error" title="尚無文件" description="建立知識庫並上傳文件，即可開始知識對話。" /></section></template>
+<template><PageHeader title="工作空間總覽" description="從團隊知識開始，讓每個答案都有依據。"><button :disabled="busy" @click="load">重新整理</button></PageHeader><ErrorBanner :error="error" /><Spinner v-if="busy" /><div v-if="counts.length" class="stat-grid"><article v-for="card in counts" :key="card.path" class="stat-card"><RouterLink :to="orgPath(org,card.path)">{{ card.label }}</RouterLink><strong>{{ card.count ?? '—' }}</strong><small>{{ card.count === null ? '讀取失敗' : '目前可存取的資料' }}</small></article></div><section class="panel"><h2>最近更新的文件</h2><DataTable v-if="recent.length" :rows="recent" :columns="[{key:'title',label:'文件'},{key:'extension',label:'類型'},{key:'sizeBytes',label:'大小'},{key:'status',label:'狀態'},{key:'updatedAt',label:'更新時間'}]"><template #cell-title="{row}"><div><RouterLink :to="orgPath(org,'documents/' + row.id)">{{ row.title }}</RouterLink><small class="muted">{{ row.filename || '—' }}</small></div></template><template #cell-extension="{row}"><FileTypeBadge :extension="row.extension" /></template><template #cell-sizeBytes="{row}">{{ fileSize(row.sizeBytes) }}</template><template #cell-status="{row}"><StatusBadge :state="row.status" /></template><template #cell-updatedAt="{row}">{{ date(row.updatedAt) }}</template></DataTable><EmptyState v-else-if="!busy && !error" title="尚無文件" description="建立知識庫並上傳文件，即可開始知識對話。" /></section></template>
 
