@@ -126,7 +126,7 @@ Citations are re-authorized on every read: a citation whose document was deleted
 |---|---|---|
 | GET | `/api/v2/orgs/{orgId}/agent-templates` | → `TemplateInfo[]` |
 | GET/POST | `/api/v2/orgs/{orgId}/agents` | POST `{name,template,description,definition}` [EDITOR] |
-| GET/PUT/DELETE | `/api/v2/orgs/{orgId}/agents/{id}` | PUT creates a new immutable version; DELETE disables |
+| GET/PUT/DELETE | `/api/v2/orgs/{orgId}/agents/{id}` | PUT `{name?,description?,definition?,enabled?}` — a new `definition` creates a new immutable version; DELETE disables |
 | POST | `/api/v2/orgs/{orgId}/agents/{id}/runs` | `{input}` → 202 `Run` [member with read access to the agent's KBs] |
 | GET | `/api/v2/orgs/{orgId}/runs?agentId=` · `/runs/{runId}` | → `Run[]` / `Run` |
 | POST | `/api/v2/orgs/{orgId}/runs/{runId}/cancel` · `/retry` | |
