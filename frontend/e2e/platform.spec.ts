@@ -45,24 +45,28 @@ test('register, upload, ask with citations, verify source, isolation and agent r
   // Upload through the knowledge base page.
   await page.goto(`/o/${orgId}/knowledge-bases/${kb.id}`)
   const fileInput = page.locator('input[type=file]').first()
-  await fileInput.setInputFiles({ name: 'leave.md', mimeType: 'text/markdown',
-    buffer: Buffer.from('# 請假規定\n\n特休假須於七日前提出申請，並經直屬主管核准。\n\n## 病假\n\n病假三日以上須附醫師證明。\n') })
-  await page.getByRole('button', { name: '上傳', exact: true }).click()
-  await expect(page.getByText('leave', { exact: false }).first()).toBeVisible({ timeout: 30_000 })
-  await expect.poll(async () => (await (await page.request.get(`/api/v2/orgs/${orgId}/documents?kbId=${kb.id}`)).json())[0]?.status, { timeout: 120_000 }).toBe('READY')
-  await page.reload()
-  await page.screenshot({ path: path.join(screenshots, '02-knowledge-base.png'), fullPage: true })
-
+  await fileInput.setInputFiles([
+    { name: 'leave.md', mimeType: 'text/markdown', buffer: Buffer.from('# 請假規定\n\n特休假須於七日前提出申請，並經直屬主管核准。\n\n## 病假\n\n病假三日以上須附醫師證明。\n') },
+    { name: 'parking.txt', mimeType: 'text/plain', buffer: Buffer.from('停車規定\n\n員工停車位依年資抽籤分配，每季重新抽籤。\n') },
+    { name: 'virus.exe', mimeType: 'application/octet-stream', buffer: Buffer.from('MZ') }])
+  await page.getByRole('button', { name: /^上傳 2 個檔案$/ }).click()   // .exe is rejected client-side; two files are queued
+  await expect(page.getByText(/已上傳 2 個，失敗 0 個/)).toBeVisible({ timeout: 60_000 })
+  await expect.poll(async () => (await (await page.request.get(`/api/v2/orgs/${orgId}/documents?kbId=${kb.id}`)).json())
+    .filter((d: { status: string }) => d.status === 'READY').length, { timeout: 120_000 }).toBe(2)
   // Ask in chat and open the citation.
+  await page.reload()
+  await expect(page.getByText('MD', { exact: true }).first()).toBeVisible()   // file type badge in the list
+  await expect(page.getByText('TXT', { exact: true }).first()).toBeVisible()
+  await page.screenshot({ path: path.join(screenshots, '02-knowledge-base.png'), fullPage: true })
   await page.goto(`/o/${orgId}/chat`)
-  await page.getByRole('button', { name: '新增對話' }).click()
   await page.getByLabel('人資規章').check()
-  await page.getByRole('button', { name: '建立對話' }).click()
+  await page.getByRole('button', { name: '開始對話' }).click()
   await page.getByLabel('向知識庫提問').fill('特休假要幾天前申請？')
-  await page.getByRole('button', { name: '傳送問題' }).click()
+  await page.getByLabel('向知識庫提問').press('Enter')   // Enter sends
   const chip = page.getByRole('button', { name: /^引用 1：/ })
   await expect(chip).toBeVisible({ timeout: 180_000 })
-  await expect(page.getByLabel('對話訊息')).toContainText('七日')
+  await expect(page.getByRole('log', { name: '對話訊息' })).toContainText('七日')
+  await page.screenshot({ path: path.join(screenshots, '03a-chat-thread.png') })
   await chip.click()
   await page.getByRole('button', { name: '檢視來源原文' }).click()
   await expect(page.getByText('特休假須於七日前提出申請', { exact: false }).last()).toBeVisible()
