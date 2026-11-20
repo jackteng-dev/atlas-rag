@@ -26,7 +26,7 @@ export interface KnowledgeBase { id: string; workspaceId: string; name: string; 
 export type DocumentStatus = 'PROCESSING' | 'READY' | 'FAILED' | 'NEEDS_OCR' | 'CANCELLED' | 'DELETING'
 export type PipelineState = 'RECEIVED' | 'VALIDATING' | 'STORED' | 'PARSING' | 'CHUNKING' | 'EMBEDDING' | 'INDEXING' | 'READY' | 'FAILED' | 'NEEDS_OCR' | 'CANCELLED' | 'SUPERSEDED'
 export interface DocumentVersion { versionNo: number; filename: string; mimeType: string; sizeBytes: number; sha256: string; pipelineState: PipelineState; errorCode: string | null; errorMessage: string | null; pageCount: number | null; chunkCount: number; parserVersion: string | null; createdAt: string; readyAt: string | null; jobId: string | null }
-export interface DocumentItem { id: string; kbId: string; title: string; status: DocumentStatus; currentVersion: number | null; latestVersion: number; ownerId: string; tags: string[]; expiresAt: string | null; updatedAt: string; versions?: DocumentVersion[] }
+export interface DocumentItem { id: string; kbId: string; title: string; status: DocumentStatus; currentVersion: number | null; latestVersion: number; ownerId: string; tags: string[]; expiresAt: string | null; updatedAt: string; filename: string | null; extension: string | null /* lower-case, no dot, of the latest version */; sizeBytes: number | null; versions?: DocumentVersion[] }
 export interface Locator { page?: number; lineStart?: number; lineEnd?: number; sheet?: string; row?: number; section?: string }
 export interface Chunk { chunkId: string; ordinal: number; heading: string; content: string; locator: Locator; documentId: string; versionNo: number; title: string; current: boolean }
 export type CitationState = 'CURRENT' | 'SUPERSEDED' | 'UNAVAILABLE'

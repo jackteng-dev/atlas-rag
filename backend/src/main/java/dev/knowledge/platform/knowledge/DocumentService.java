@@ -25,13 +25,14 @@ public class DocumentService {
     public static final String INGEST = "INGEST_VERSION", PURGE = "PURGE_DOCUMENT";
     public record Version(int versionNo, String filename, String mimeType, long sizeBytes, String sha256, String pipelineState, String errorCode,
                           String errorMessage, Integer pageCount, int chunkCount, String parserVersion, String createdAt, String readyAt, String jobId) {}
+    /** filename / extension / sizeBytes describe the latest uploaded version, so lists can tell same-titled files apart. */
     public record DocumentItem(String id, String kbId, String title, String status, Integer currentVersion, int latestVersion, String ownerId,
-                               List<String> tags, String expiresAt, String updatedAt, List<Version> versions) {}
+                               List<String> tags, String expiresAt, String updatedAt, String filename, String extension, Long sizeBytes, List<Version> versions) {}
     public record Chunk(String chunkId, int ordinal, String heading, String content, Map<String, Object> locator, String documentId, int versionNo,
                         String title, boolean current) {}
     /** Internal row with the ids needed for authorisation decisions. */
     public record DocRow(UUID id, UUID kbId, String title, String status, UUID currentVersionId, Integer currentVersionNo, int latestVersion,
-                         UUID ownerId, List<String> tags, Instant expiresAt, String updatedAt, String legacyId) {
+                         UUID ownerId, List<String> tags, Instant expiresAt, String updatedAt, String legacyId, String filename, Long sizeBytes) {
         public boolean expired() { return expiresAt != null && !expiresAt.isAfter(Instant.now()); }
     }
 
@@ -47,13 +48,15 @@ public class DocumentService {
 
     private static final String DOC_SELECT = """
             select d.id, d.kb_id, d.title, d.status, d.current_version_id, v.version_no as current_no, d.latest_version_no, d.owner_id, d.tags,
-                   d.expires_at, d.updated_at, d.legacy_id
+                   d.expires_at, d.updated_at, d.legacy_id, lv.filename as latest_filename, lv.size_bytes as latest_size
             from documents d left join document_versions v on v.id = d.current_version_id and v.org_id = d.org_id
+            left join document_versions lv on lv.document_id = d.id and lv.org_id = d.org_id and lv.version_no = d.latest_version_no
             """;
     private DocRow mapDoc(java.sql.ResultSet rs) throws java.sql.SQLException {
         return new DocRow(Db.uuid(rs, "id"), Db.uuid(rs, "kb_id"), rs.getString("title"), rs.getString("status"), Db.uuid(rs, "current_version_id"),
                 Db.intOrNull(rs, "current_no"), rs.getInt("latest_version_no"), Db.uuid(rs, "owner_id"), Db.textArray(rs, "tags"),
-                Db.instant(rs, "expires_at"), Db.iso(rs, "updated_at"), rs.getString("legacy_id"));
+                Db.instant(rs, "expires_at"), Db.iso(rs, "updated_at"), rs.getString("legacy_id"), rs.getString("latest_filename"),
+                rs.getObject("latest_size") == null ? null : rs.getLong("latest_size"));
     }
 
     /** Loads a live document and checks the caller's KB access (404 when not readable). */
@@ -87,7 +90,7 @@ public class DocumentService {
     }
     private DocumentItem view(DocRow d, List<Version> versions) {
         return new DocumentItem(d.id().toString(), d.kbId().toString(), d.title(), d.status(), d.currentVersionNo(), d.latestVersion(), d.ownerId().toString(),
-                d.tags(), d.expiresAt() == null ? null : d.expiresAt().toString(), d.updatedAt(), versions);
+                d.tags(), d.expiresAt() == null ? null : d.expiresAt().toString(), d.updatedAt(), d.filename(), extension(d.filename()), d.sizeBytes(), versions);
     }
     public List<Version> versions(UUID orgId, UUID docId) {
         return db.sql("""
@@ -255,6 +258,11 @@ public class DocumentService {
     public static String sha256(byte[] bytes) {
         try { return HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(bytes)); }
         catch (java.security.NoSuchAlgorithmException e) { throw new IllegalStateException(e); }
+    }
+    static String extension(String filename) {
+        if (filename == null) return null;
+        int dot = filename.lastIndexOf('.');
+        return dot > 0 && dot < filename.length() - 1 ? filename.substring(dot + 1).toLowerCase(java.util.Locale.ROOT) : null;
     }
     static String stripExtension(String name) { int dot = name.lastIndexOf('.'); return dot > 0 ? name.substring(0, dot) : name; }
 }

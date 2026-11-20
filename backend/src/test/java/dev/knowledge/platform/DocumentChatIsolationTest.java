@@ -44,6 +44,8 @@ class DocumentChatIsolationTest extends PlatformTestBase {
         String docId = doc.path("id").asText();
         var readyDoc = ready(a, docId);
         assertThat(readyDoc.path("currentVersion").asInt()).isEqualTo(1);
+        assertThat(readyDoc.path("filename").asText()).isEqualTo("leave-policy.md");
+        assertThat(readyDoc.path("extension").asText()).isEqualTo("md");
         var chunks = call(a.auth(), get("/api/v2/orgs/" + a.orgId() + "/documents/" + docId + "/versions/1/chunks"), null, 200);
         assertThat(chunks.size()).isGreaterThanOrEqualTo(2);
         assertThat(chunks.path(0).path("locator").path("lineStart").asInt()).isPositive();
